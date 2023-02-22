@@ -1,0 +1,33 @@
+{
+  "name": "project-cteam",
+  "version": "1.0.0",
+  "description": "COMP6905 Assignment 2 teamC",
+  "main": "serve.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon frontend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MUN-COMP6905/project-cteam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MUN-COMP6905/project-cteam/issues"
+  },
+  "homepage": "https://github.com/MUN-COMP6905/project-cteam#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.10.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
