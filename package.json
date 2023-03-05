@@ -1,5 +1,32 @@
 {
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.0"
+  },
+  "name": "project-cteam",
+  "description": "Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student)",
+  "version": "1.0.0",
+  "main": "serve.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon frontend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MUN-COMP6905/project-cteam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MUN-COMP6905/project-cteam/issues"
+  },
+  "homepage": "https://github.com/MUN-COMP6905/project-cteam#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
