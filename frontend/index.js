@@ -6,7 +6,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const port = 3000;
+const port = 8080;
 
 // load assets
 app.use("/assets", express.static(path.join(__dirname, "assets")));
