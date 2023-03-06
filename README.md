@@ -2,9 +2,16 @@
 
 ## Team description
 
+> ### **Frontend**
+> **Team Lead:** Pranav Arora @pranavarora1895
+> 
+> **Team Member:** Balsher Singh @balshersingh10
+
 ## Project Description
 
 ## Repository Structure
+
+
 
 ## Attributions
 
