@@ -3,9 +3,9 @@
 ## Team description
 
 > ### **Frontend**
-> **Team Lead:** Pranav Arora @pranavarora1895
+> **Team Lead:** Pranav Arora [@pranavarora1895](https://github.com/pranavarora1895)
 > 
-> **Team Member:** Balsher Singh @balshersingh10
+> **Team Member:** Balsher Singh [@balshersingh10](https://github.com/balshersingh10)
 
 ## Project Description
 > ### Frontend
@@ -40,7 +40,7 @@
 > nodemon frontend/index.js
 > ```
 >
-> The port will listen to http://localhost:8080
+> The app will listen to http://localhost:8080
 
 ## Repository Structure
 
