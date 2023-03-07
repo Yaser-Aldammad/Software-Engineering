@@ -12,6 +12,8 @@
 >
 > The frontend part of the project renders the webpages on the client. It will be connected with the backend to perform the CRUD operations(Create, Read, Update, Delete) using various REST APIs (GET, POST, PUT, DELETE) respectively, and store them into the MongoDB Database.
 >
+> _All the frontend files are in the folder [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/u-app-ui/frontend)_
+>
 > #### Frontend Code Run Instructions
 > To run frontend code, kindly follow the given instructions:
 >
