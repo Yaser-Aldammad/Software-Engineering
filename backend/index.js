@@ -12,22 +12,22 @@
 // LOAD REQUIRED PACKAGES
 // *****************************************
 
-import logger from 'morgan'
-import express from 'express'
-import session from 'express-session'
-import cookieParser from 'cookie-parser'
-import mongoose from 'mongoose'
-import MongoStore from 'connect-mongo'
-import passport from 'passport'
-import url from 'url'
-import tunnel from 'tunnel-ssh'
-import settings from './server-settings.json'
-import {token} from 'morgan'
-import path from 'path'
-import dotenv from 'dotenv'
+const logger = require(`morgan`);
+const express = require(`express`);
+const session = require(`express-session`);
+const cookieParser = require(`cookie-parser`);
+const mongoose = require(`mongoose`);
 mongoose.Promise = Promise;
+const MongoStore = require(`connect-mongo`);
+const passport = require(`passport`);
+const bodyParser = require(`body-parser`);
+const url = require(`url`);
+const tunnel = require(`tunnel-ssh`);
+const settings = require(`./server-settings`);
+const {token} = require(`morgan`);
+const path = require('path')
 const app = express();
-dotenv.config();
+require(`dotenv`).config();
 
 const port = process.env.PORT || settings.server.port || 3000;
 process.env.NODE_ENV !== `development` && (console.log = () => null);
