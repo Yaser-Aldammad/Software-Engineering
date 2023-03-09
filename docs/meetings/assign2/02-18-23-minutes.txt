@@ -1,0 +1,14 @@
+Yaser - background in work dev, no prior experience in Node
+Balsher - background in data analytics/ML, no prior experience in Node
+Judah - little practical experience with Node and webdev
+Prabin - experience in backend dev and some frontend, some/little experience with Node
+Pranav - experienced in webdev/Node
+Shaheryar - experienced in webdev/Node
+
+objectives
+- each person should join team C of the assign2 repo, using the link on Prof. B's site: https://classroom.github.com/a/Zx0ezMaC
+- each team member should go over the general description of assign2 via the .md file on the repo
+- each team member should review the todo tasks for assign2 to gain some insight into the requirements
+- feel free to ask questions in the group chat to clarify details
+- next meeting set 2-3 days to discuss nature of nodejs, mongodb, team roles and begin
+assign tasks to individual team members

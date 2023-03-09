@@ -1,0 +1,49 @@
+Prabin 
+	- presented an overview of the  Software Principles & Methodology that the documentation team discussed
+	  during their meeting earlier in the day
+	- demo'd how to define sprints, tasks (issues in Github) and subtasks, and the correct way to label
+          their status/progress in the sprint cycle
+
+Shaher
+	- presented an overview of the current backend codebase, and demo'd the creation/addition of a user
+	  account
+
+
+it would seem that at present the team is organized as such:
+frontend
+	- Balsher (team lead)
+	- Pranav
+	- Yaser
+
+backend
+	- Shaher (team lead)
+	- Prabin
+	- Yaser
+	- Judah
+
+documentation team
+	- Prabin
+	- Yaser
+	- Judah
+
+kanban board manager/scrum master
+	- Prabin/Yaser (most combined experience in ~prod. mgmt.)
+
+code reviewers
+	- respective team leads for frontend/backend
+
+documentation
+	- everyone (each person does low-level documentation for their code)
+	- as for high level project architecture/code documentation (module composition, file structure
+          layout), team leads should work with members to design this
+
+
+objectives
+- we need to clarify a few things from the professor on Monday
+	- scope of project and specific expectations (todo) for assignment 2
+	- details about mechanism for performance review and code review
+
+- documentation team needs to finalize the templates/standards for architecture & code design, 
+  documentation and code review so all team members have a reference for these processes
+
+- documentation team needs to start implementing task creation process and task assignment to team members
