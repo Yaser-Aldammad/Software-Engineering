@@ -1,5 +1,7 @@
+Meeting SCRUM Master: Pranav
+
 Team Roles
-- Team Lead: 
+- Team Lead: Shaher
 - Vice Team Lead: Pranav
 - KanBan Board Manager: Prabin
 
@@ -17,7 +19,7 @@ Architecture
 
 objectives
 - everyone
-	- get up to speed with the techno
+	- get up to speed with the tech stack
 - Shaher
 	-design basic login/auth and push to git
 - Yaser & Judah

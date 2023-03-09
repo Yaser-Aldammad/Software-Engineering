@@ -1,3 +1,5 @@
+Meeting SCRUM Master: Judah
+
 Judah
 	- gave a live demo of how user stories/features/issues should be created on the Kanban board
 	
