@@ -1,83 +1,55 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.0"
-  },
-  "name": "project-cteam",
-  "description": "Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student)",
-  "version": "1.0.0",
-  "main": "serve.js",
-  "directories": {
-    "doc": "doc",
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "nodemon frontend/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MUN-COMP6905/project-cteam.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MUN-COMP6905/project-cteam/issues"
-  },
-  "homepage": "https://github.com/MUN-COMP6905/project-cteam#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.21"
-=======
-  "name": "quizapp",
-  "version": "1.0.0",
-  "description": "Quiz App (SE Asignment 2)",
-  "main": "index.js",
-  "scripts": {
-    "watch": "nodemon index.js",
-    "start": "node index.js",
-    "test": "jest"
-  },
-  "engines": {
-    "node": "^16.14.0",
-    "npm": "^8.3.0"
-  },
-  "keywords": [
-    "RestAPI's"
-  ],
-  "author": "Muhammad_Shaheryar",
-  "license": "ISC",
-  "dependencies": {
-    "api-spec-transformer": "^0.2.6",
-    "axios": "^0.25.0",
-    "bcrypt-nodejs": "0.0.3",
-    "bcryptjs": "^2.4.3",
-    "connect-mongo": "^4.6.0",
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "ethers": "^5.6.6",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "ipfs-http-client": "^56.0.1",
-    "jwt-decode": "^3.1.2",
-    "mime-types": "^2.1.34",
-    "moment": "^2.29.4",
-    "mongoose": "^6.10.0",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "nodemailer": "^6.7.2",
-    "nodeman": "^1.1.2",
-    "nodemon": "^2.0.19",
-    "passport": "^0.5.0",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
-    "swagger-ui-express": "^4.2.0",
-    "tunnel-ssh": "^4.1.6",
-    "uuid": "^8.3.2",
-    "web3": "^1.7.0",
-    "yamljs": "^0.3.0"
->>>>>>> backend-dev
-  }
+	"name": "quizz-app-backend",
+	"version": "1.0.0",
+	"description": "This is a backend server for the restful API's of QuizApp",
+	"main": "index.js",
+	"scripts": {
+		"watch": "nodemon index.js",
+		"start": "node index.js"
+	},
+	"engines": {
+		"node": "^16.14.0",
+		"npm": "^8.3.0"
+	},
+	"repository": {
+		"type": "",
+		"url": ""
+	},
+	"keywords": [
+		"RestAPI's"
+	],
+	"author": "l",
+	"license": "ISC",
+	"bugs": {},
+	"homepage": "",
+	"dependencies": {
+		"api-spec-transformer": "^0.2.6",
+		"axios": "^0.25.0",
+		"bcrypt-nodejs": "0.0.3",
+		"bcryptjs": "^2.4.3",
+		"connect-mongo": "^4.6.0",
+		"cookie-parser": "^1.4.6",
+		"dotenv": "^10.0.0",
+		"ejs": "^3.1.6",
+		"ethers": "^5.6.6",
+		"express": "^4.17.1",
+		"express-session": "^1.17.2",
+		"ipfs-http-client": "^56.0.1",
+		"jwt-decode": "^3.1.2",
+		"mime-types": "^2.1.34",
+		"moment": "^2.29.4",
+		"mongoose": "^6.10.0",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.2",
+		"nodemailer": "^6.7.2",
+		"nodemon": "^2.0.19",
+		"passport": "^0.5.0",
+		"passport-jwt": "^4.0.0",
+		"passport-local": "^1.0.0",
+		"swagger-ui-express": "^4.2.0",
+		"tunnel-ssh": "^4.1.6",
+		"uuid": "^8.3.2",
+		"web3": "^1.7.0",
+		"yamljs": "^0.3.0"
+	}
 }

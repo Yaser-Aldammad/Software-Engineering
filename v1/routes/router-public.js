@@ -1,11 +1,10 @@
 const router = require(`express`).Router();
-const exampleController = require(`../controllers/exampleController`);
+const userController = require(`../controllers/Users`);
 
 module.exports = function RouterPublic(database, settings) {
-    const db = database;
-      
-    router.route(`/example`).post(exampleController.ExampleAddUser)
+	const db = database;
 
+	router.route(`/example`).post(userController.AddUser);
 
-    return router;
+	return router;
 };
