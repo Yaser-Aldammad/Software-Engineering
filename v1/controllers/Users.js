@@ -1,6 +1,8 @@
 const moment = require(`moment`);
 const UsersModel = require(`./models/UsersModel`);
-const settings = require(`../../server-settings.json`);
+const ForgetPasswordModel = require('./models/ForgottenPasswordModel');
+const settings = require(`../../server-settings`);
+const mailer = require('../helpers/mailer');
 const jwt = require(`jsonwebtoken`);
 const Usermodel = require('./models/UsersModel');
 
