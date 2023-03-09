@@ -1,3 +1,5 @@
+Meeting SCRUM Master: Shaher
+
 Yaser - background in work dev, no prior experience in Node
 Balsher - background in data analytics/ML, no prior experience in Node
 Judah - little practical experience with Node and webdev
