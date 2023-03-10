@@ -4,14 +4,14 @@ const quizItemsController = require('../controllers/quizItemsController');
 
 
 module.exports = function RouterPrivate(database, settings) {
-  router.use(authentication.authenticate);
+  //router.use(authentication.authenticate);
 
   router.route('/createQuizItem').post(quizItemsController.createQuizItem);
-  router.route('/updateQuizItem').post(quizItemsController.updateQuizItem);
-  router.route('/getQuizItem').post(quizItemsController.getQuizItem);
-  router.route('/getQuizItems').post(quizItemsController.getQuizItems);
-  router.route('/getQuizItemsByQuizId').post(quizItemsController.getQuizItemsByQuizId);
-  router.route('/deleteQuizItem').post(quizItemsController.deleteQuizItem);
+  router.route('/updateQuizItem/:id').patch(quizItemsController.updateQuizItem);
+  router.route('/getQuizItem/:id').get(quizItemsController.getQuizItem);
+  router.route('/getQuizItems').get(quizItemsController.getQuizItems);
+  router.route('/getQuizItemsByQuizId/:id').get(quizItemsController.getQuizItemsByQuizId);
+  router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem);
 
   return router;
 };

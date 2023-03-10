@@ -24,7 +24,7 @@ const validateQuestion = async function (question, type) {
 };
 
 /**
- * @desc: creates a new QuizItem, after validating that it does not already exist
+ * @desc: creates a new QuizItem, after validating that it (combination of question and type) does not already exist
  * @param {*} req 
  * @param {*} res 
  * @returns 
@@ -66,7 +66,7 @@ controller.createQuizItem = async function (req, res) {
 };
 
 /**
- * @desc: creates a new QuizItem, after validating that it does not already exist
+ * @desc: updates the properties of a quiz given the newly specified properties
  * @param {*} req 
  * @param {*} res 
  * @returns 
@@ -115,7 +115,7 @@ controller.updateQuizItem = async function (req, res) {
 };
 
 /**
- * @description: finds and retrieves the corresponding QuizItem from its id, if it exists
+ * @description: finds and retrieves the corresponding QuizItem from its id, if it exists, and returns it to the user
  * @param {*} req 
  * @param {*} res 
  * @returns 
@@ -151,7 +151,7 @@ controller.getQuizItem = async function (req, res) {
 };
 
 /**
- * @description: finds and retrieves the corresponding QuizItem from its id, if it exists
+ * @description: finds and retrieves all existing QuizItems, if any
  * @param {*} req 
  * @param {*} res 
  * @returns 
@@ -188,7 +188,7 @@ controller.getQuizItems = async function (req, res) {
 };
 
 /**
- * @description: finds and retrieves the QuizItems under a specific Quiz from its id, if it exists
+ * @description: finds and retrieves the QuizItems under a specific Quiz from its (Quiz') id, if they exist
  * @param {*} req 
  * @param {*} res 
  * @returns 
@@ -218,7 +218,7 @@ controller.getQuizItemsByQuizId = async function (req, res) {
     
         let resp = {
             success: false,
-            message: "error"
+            message: "Quiz does not exist!"
         };
         res.status(400).json(resp);
     }
