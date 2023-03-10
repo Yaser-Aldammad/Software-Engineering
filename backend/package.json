@@ -1,22 +1,28 @@
 {
-  "name": "quizapp",
+  "name": "quizz-app-backend",
   "version": "1.0.0",
-  "description": "Quiz App (SE Asignment 2)",
+  "description": "This is a backend server for the restful API's of QuizApp",
   "main": "index.js",
   "scripts": {
     "watch": "nodemon index.js",
     "start": "node index.js",
-    "test": "jest"
+    "doc": "jsdoc -c jsdoc.json"
   },
   "engines": {
     "node": "^16.14.0",
     "npm": "^8.3.0"
   },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
   "keywords": [
     "RestAPI's"
   ],
-  "author": "Muhammad_Shaheryar",
+  "author": "l",
   "license": "ISC",
+  "bugs": {},
+  "homepage": "",
   "dependencies": {
     "api-spec-transformer": "^0.2.6",
     "axios": "^0.25.0",
@@ -30,6 +36,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "ipfs-http-client": "^56.0.1",
+    "jsdoc": "^4.0.2",
     "jwt-decode": "^3.1.2",
     "mime-types": "^2.1.34",
     "moment": "^2.29.4",
