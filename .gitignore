@@ -3,6 +3,12 @@
 
 # Node packages
 backend/node_modules/
-
 backend/package-lock.json
+<<<<<<< HEAD
 node_modules
+=======
+
+# local files
+z_drafts/
+z_misc/
+>>>>>>> c51816639bb927903b1de7e8ec3779fa2d31951a
