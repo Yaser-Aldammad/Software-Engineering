@@ -29,7 +29,7 @@ const controller = {};
 */
 const validateUserName = async function (name) {
   let result = false;
-  const p = ExampleModel.findOne({ username: name }).exec();
+  const p = UsersModel.findOne({ username: name }).exec();
   await p.then(user => {
     if (user === null) {
       result = true;
