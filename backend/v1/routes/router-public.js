@@ -32,7 +32,7 @@ module.exports = function RouterPublic(database, settings) {
 	router.route(`/users`).get(users.GetUsersList);
 
 	// Get single user endpoint
-	router.route(`/user/:userId`).get(users.GetUserProfile);
+	router.route(`/user/:id`).get(users.GetUserProfile);
 
 	return router;
 };

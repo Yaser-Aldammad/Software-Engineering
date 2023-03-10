@@ -141,4 +141,28 @@ controller.GetUserProfile = function (req, res) {
 		});
 };
 
+controller.UpdateUser = async function (req, res) {
+	UsersModel.findById(req.params.id)
+		.then(async (user) => {
+			if (user === null) {
+				throw `User not found with that ID`;
+			}
+			user.first_name = req.body.first_name || user.first_name;
+			user.last_name = req.body.last_name || user.last_name;
+			user.username = req.body.username || user.username;
+			user.password = req.body.password || user.password;
+			user.email = req.body.email || user.email;
+			user.picture = req.body.picture || user.picture;
+			user.phoneNo = req.body.phoneNo || user.phoneNo;
+			user.picture = req.body.picture || user.picture;
+
+			return await user.save();
+		})
+		.then((user) => {
+			res.status(200).json({ success: true, message: 'Success', data: user });
+		})
+		.catch((ex) => {
+			res.status(500).json({ success: false, message: 'error' });
+		});
+};
 module.exports = controller;
