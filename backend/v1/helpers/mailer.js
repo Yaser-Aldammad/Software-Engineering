@@ -1,5 +1,5 @@
 const mailer = require('nodemailer');
-const settings = require('../../server-settings.json')
+const settings = require('../../../server-settings.json')
 
 const transporter = mailer.createTransport({
     service: 'gmail',
