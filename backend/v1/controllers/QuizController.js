@@ -166,4 +166,43 @@ controller.DeleteByQuizId = async function (req, res) {
   }
 };
 
+/**
+ * An async function that receives a request object and a response object.
+ * The function soft deletes the quiz from the database.
+ * The function returns a response with a success flag and a message.
+ * @function
+ * @async
+ * @param {Object} req - Express request object containing the quizId params.
+ * @param {Object} res - Express response object containing the response to send back to the client.
+ * @returns {Object} Returns a JSON object containing a success flag and a message.
+ */
+controller.SoftDeleteByQuizId = async function (req, res) {
+  try {
+    const quiz = await QuizModel.findById(req.params.quizId).exec(); //Get quiz by id from the database
+    if (!quiz) {
+      //if not present, return response with success flag False
+      res.status(404).json({
+        success: false,
+        message: `Quiz with Id ${req.params.quizId} not found in the system.`,
+      });
+    } else {
+      quiz.is_deleted = true;
+      const updatedQuiz = await QuizModel.findByIdAndUpdate(
+        req.params.quizId,
+        quiz,
+        { new: true, useFindAndModify: false }
+      );
+      res.json({
+        success: true,
+        message: "Quiz deleted successfully.",
+      });
+    }
+  } catch (ex) {
+    res.status(400).json({
+      success: false,
+      message: "Error while deleting the record.",
+    });
+  }
+};
+
 module.exports = controller;

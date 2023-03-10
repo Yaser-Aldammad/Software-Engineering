@@ -34,6 +34,10 @@ module.exports = function RouterPrivate(database, settings) {
      */
     router.route(`/quiz/:quizId`).delete(quizController.DeleteByQuizId);
     /**
+     * routes DELETE /quiz/:quizId to delete quiz
+     */
+    router.route(`/quiz/softdelete/:quizId`).delete(quizController.SoftDeleteByQuizId);
+    /**
      * routes GET /quiz/:quizId to get quiz by quizId
      */
     router.route(`/quiz/:quizId`).get(quizController.GetQuizById);
