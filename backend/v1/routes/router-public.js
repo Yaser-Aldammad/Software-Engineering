@@ -38,5 +38,8 @@ module.exports = function RouterPublic(database, settings) {
 	// update single user endpoint
 	router.route(`/user/:id`).put(users.UpdateUser);
 
+	// Delete single user endpoint
+	router.route(`/user/:id`).delete(users.DeleteUser);
+
 	return router;
 };

@@ -167,4 +167,24 @@ controller.UpdateUser = async function (req, res) {
 			res.status(500).json({ success: false, message: `error` });
 		});
 };
+
+controller.DeleteUser = function (req, res) {
+	const query = UsersModel.findById(req.params.id).exec();
+	let name;
+
+	query
+		.then((user) => {
+			if (user !== null) {
+				name = user.username;
+				return user.deleteOne();
+			}
+			throw `User not found with that ID`;
+		})
+		.then(() => {
+			res.status(200).json({ success: true, message: `User ${name} removed` });
+		})
+		.catch((ex) => {
+			res.status(500).json({ success: false, message: 'error' });
+		});
+};
 module.exports = controller;
