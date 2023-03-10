@@ -6,5 +6,5 @@ backend/node_modules/
 backend/package-lock.json
 
 # local files
-drafts/
-misc/
+z_drafts/
+z_misc/
