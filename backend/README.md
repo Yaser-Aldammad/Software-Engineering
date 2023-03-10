@@ -1,6 +1,6 @@
-# QuizApp
+# Term Project COMP 6905 Winter 2023
 
-Software Engineering Assignment 2, Group C
+## Team description
 
 > ### **Frontend**
 > **Team Lead:** Pranav Arora [@pranavarora1895](https://github.com/pranavarora1895)
@@ -44,20 +44,9 @@ Software Engineering Assignment 2, Group C
 >
 > The app will listen to http://localhost:8080
 
-To install QuizApp, you can follow these steps:
+## Repository Structure
 
-- Clone or download the project code from the repository where it is hosted.
-- Open your terminal or command prompt.
-- Navigate to the directory where you have saved the project
-- Type the following command to install the project dependencies:
-  - npm install
-- Once the dependencies are installed, you can start the Express application
-  using the following command:
-  - npm i nodemon
-  - npm run watch or npm start
-- Open browser, type URL: http://localhost:3000/
-  - You get the message: {"Message":"Welcome to the Quiz App Restful
-    API's","Version":"1.0.0"}
+## Attributions
 
 <!-- Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student) -->
  
