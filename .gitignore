@@ -4,4 +4,9 @@
 # Node packages
 node_modules/
 
+# config
 package-lock.json
+
+# local
+drafts/
+misc/
