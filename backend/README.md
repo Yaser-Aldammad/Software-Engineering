@@ -40,7 +40,6 @@ To install QuizApp, you can follow these steps:
        * phoneNo (not required)
        * countryCode (not required)
    * Response: 200 OK on success
-
 ```bash
 {
     "success": true,

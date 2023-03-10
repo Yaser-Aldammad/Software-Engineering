@@ -9,6 +9,13 @@ const transporter = mailer.createTransport({
     }
 });
 
+/**
+ * this function will send a confirmation email 
+ * @param {String} to 
+ * @param {String} subject 
+ * @param {String} html 
+ * @returns {boolean}
+ */
 async function sendMail(to, subject, html) {
     const mailOptions = {from: settings.emailPreferences.sender, to, subject, html};
     let resp = await transporter.sendMail(mailOptions);

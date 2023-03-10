@@ -1,32 +1,31 @@
 {
-    "database": {
-      "connectionString": "mongodb://127.0.0.1:27017/QuizAppDatabase"
+  "database": {
+    "connectionString": "mongodb://127.0.0.1:27017/QuizAppDatabase"
+  },
+  "server": {
+    "siteURL": "",
+    "serverURL": "",
+    "name": "QuizApp Backenda API",
+    "signingKey": "QuizAppBackendAPI",
+    "secret": "QuizAppXXQuizAppXXPlaceXX",
+    "port": 3000,
+    "sessionDurationSeconds": 604800,
+    "signupWhiteList": [],
+    "ssh": {
+      "enabled": false,
+      "user": "root",
+      "password": ""
     },
-    "server": {
-      "siteURL": "",
-      "serverURL": "",
-      "name": "QuizApp Backenda API",
-      "signingKey": "QuizAppBackendAPI",
-      "secret": "QuizAppXXQuizAppXXPlaceXX",
-      "port": 3000,
-      "sessionDurationSeconds": 604800,
-      "signupWhiteList": [],
-      "ssh": {
-        "enabled": false,
-        "user": "root",
-        "password": ""
-      },
-      "recovery": {
-        "enabled": true,
-        "clientURL": "http://localhost",
-        "saltRounds": 5
-      }
-    },
-    "preferences": {},
-    "emailPreferences": {
-      "emailAddress": "",
-      "emailPassword": "",
-      "sender": ""
+    "recovery": {
+      "enabled": true,
+      "clientURL": "http://localhost",
+      "saltRounds": 5
     }
+  },
+  "preferences": {},
+  "emailPreferences": {
+    "emailAddress": "",
+    "emailPassword": "",
+    "sender": ""
   }
-  
+}
