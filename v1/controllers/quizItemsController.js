@@ -31,16 +31,18 @@ const validateQuestion = async function (question, type) {
  */
 controller.createQuizItem = async function (req, res) {
     const quizItem = {
+        //quiz_id: req.body.quiz_id,
         type: req.body.type,
         question: req.body.question,
         answer: req.body.answer,
     };
 
-    if ((await validateQuestion(user.username)) === false) {
+    if ((await validateQuestion(quizItem.question, quizItem.type)) === false) {
         return res.status(400).json({ success: false, message: `That QuizItem already exists; you can either change the question or change the type!` });
     }
 
-    const model = new quizItemsModel(user);
+
+    const model = new quizItemsModel(quizItem);
     const promise = model.save();
     promise
         .then(quizItem => {
@@ -49,10 +51,10 @@ controller.createQuizItem = async function (req, res) {
                 message: "QuizItem created successfully.",
                 data: { user: user, token: token }
             };
-            res.json(resp);
+            res.status(200).json(resp);
         })
-        .catch(ex => {
-            console.log(ex);
+        .catch(error => {
+            console.log(error);
     
             let resp = {
                 success: false,
@@ -70,37 +72,195 @@ controller.createQuizItem = async function (req, res) {
  * @returns 
  */
 controller.updateQuizItem = async function (req, res) {
-    const quizItem = {
-        type: req.body.type,
-        question: req.body.question,
-        answer: req.body.answer,
-    };
+    try {
+        const record = await quizItemsModel.findById(req.params.id)
 
-    if ((await validateQuestion(user.username)) === false) {
-        return res.status(400).json({ success: false, message: `That QuizItem already exists; you can either change the question or change the type!` });
-    }
-
-    const model = new quizItemsModel(user);
-    const promise = model.save();
-    promise
-        .then(quizItem => {
-            let resp = {
-                success: true,
-                message: "QuizItem created successfully.",
-                data: { user: user, token: token }
-            };
-            res.json(resp);
-        })
-        .catch(ex => {
-            console.log(ex);
-    
+        if(!record) {
             let resp = {
                 success: false,
-                message: "error"
+                message: "QuizItem not found!"
             };
-            res.status(400).json(resp);
-        });
+            res.status(404).json(resp);
+        }
 
+        const quizItem = {
+            quiz_id: req.body.quiz_id ?? record.type,
+            type: req.body.type ?? record.type,
+            question: req.body.question ?? record.question,
+            answer: req.body.answer ?? record.answer,
+        };
+
+        let updatedQuizItem = await updatedQuizItem.findByIdAndUpdate(
+            req.params.id,
+            quizItem,
+            { new: true, useFindAndModify: false}
+        )
+
+        let resp = {
+            success: true,
+            message: "QuizItem created successfully.",
+            data: { quizItem: updatedQuizItem }
+        };
+
+        return res.status(200).json(resp);
+    } catch(error) {
+        console.log(error);
+    
+        let resp = {
+            success: false,
+            message: "error"
+        };
+        res.status(400).json(resp);
+    }
+};
+
+/**
+ * @description: finds and retrieves the corresponding QuizItem from its id, if it exists
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+controller.getQuizItem = async function (req, res) {
+    try {
+        const quizItem = await quizItemsModel.findById(req.params.id)
+        if(!quizItem){
+
+            let resp = {
+                success: false,
+                message: "QuizItem not found!"
+            };
+            return res.status(404).json(resp);
+        }
+
+        let resp = {
+            success: true,
+            message: "QuizItem found!",
+            data: { quizItem: quizItem}
+        };
+        return res.status(200).json(resp)
+
+    } catch(error){
+        console.log(error);
+    
+        let resp = {
+            success: false,
+            message: "error"
+        };
+        res.status(400).json(resp);
+    }
+};
+
+/**
+ * @description: finds and retrieves the corresponding QuizItem from its id, if it exists
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+controller.getQuizItems = async function (req, res) {
+    try {
+        const quizItems = await quizItemsModel.find()
+
+        if(!quizItems){
+
+            let resp = {
+                success: false,
+                message: "QuizItems not found!"
+            };
+            return res.status(404).json(resp);
+        }
+
+        let resp = {
+            success: true,
+            message: "QuizItems found!",
+            data: { quizItems: quizItems}
+        };
+        return res.status(200).json(resp)
+
+    } catch(error){
+        console.log(error);
+    
+        let resp = {
+            success: false,
+            message: "error"
+        };
+        res.status(400).json(resp);
+    }
+};
+
+/**
+ * @description: finds and retrieves the QuizItems under a specific Quiz from its id, if it exists
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+controller.getQuizItemsByQuizId = async function (req, res) {
+    try {
+        const quizItems = await quizItemsModel.find({quiz_id: req.params.quiz_id})
+
+        if(!quizItems){
+
+            let resp = {
+                success: false,
+                message: "QuizItems not found!"
+            };
+            return res.status(404).json(resp);
+        }
+
+        let resp = {
+            success: true,
+            message: "QuizItems found!",
+            data: { quizItems: quizItems}
+        };
+        return res.status(200).json(resp)
+
+    } catch(error){
+        console.log(error);
+    
+        let resp = {
+            success: false,
+            message: "error"
+        };
+        res.status(400).json(resp);
+    }
+};
+
+/**
+ * @description: finds and retrieves the corresponding QuizItem from its id, if it exists, then deletes it
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+controller.delete = async function (req, res) {
+    try {
+        const quizItem = await quizItemsModel.findById(req.params.id)
+
+        if(!quizItem){
+
+            let resp = {
+                success: false,
+                message: "QuizItem not found!"
+            };
+            return res.status(404).json(resp);
+        }
+
+        quizItem = await quizItem.remove()
+
+        let resp = {
+            success: true,
+            message: "Successfully deleted!",
+            data: { quizItems: quizItem}
+        };
+        return res.status(200).json(resp)
+
+    } catch(error){
+        console.log(error);
+    
+        let resp = {
+            success: false,
+            message: "error"
+        };
+        res.status(400).json(resp);
+    }
 };
 
 module.exports = controller;
