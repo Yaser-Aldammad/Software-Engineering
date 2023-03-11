@@ -11,7 +11,7 @@ const Quizzes = Schema({
   title: { type: String, required: true },
   quizType: { type: String, required: true },
   description: { type: String, required: false },
-  createdBy: { type: String, required: true },
+  createdBy: { type: mongoose.Types.ObjectId, ref: 'Users', required: false},
   is_deleted: { type: Boolean, default: false },
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },

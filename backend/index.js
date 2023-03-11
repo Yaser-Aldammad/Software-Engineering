@@ -152,7 +152,6 @@ function startServer(db, dbConnectString) {
  * @param {Object} next 
  */
 function startDB(config, next) {
-    mongoose.set('strictQuery', false);
     mongoose.connect(config.db.connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true

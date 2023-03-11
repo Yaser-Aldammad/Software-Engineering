@@ -1,5 +1,5 @@
 const settings = require(`../../server-settings`);
-const quizItemsModel = require("./models/quizItemsModel");
+const quizItemsModel = require("./models/QuizQuestionModel");
 
 const controller = {};
 
@@ -43,25 +43,9 @@ controller.createQuizItem = async function (req, res) {
 
 
     const model = new quizItemsModel(quizItem);
-    const promise = model.save();
-    promise
-        .then(quizItem => {
-            let resp = {
-                success: true,
-                message: "QuizItem created successfully.",
-                data: { user: user, token: token }
-            };
-            res.status(200).json(resp);
-        })
-        .catch(error => {
-            console.log(error);
-    
-            let resp = {
-                success: false,
-                message: "error"
-            };
-            res.status(400).json(resp);
-        });
+    await model.save();
+   
+    return res.status(200).json({ success: true, data: model });
 
 };
 
@@ -230,7 +214,7 @@ controller.getQuizItemsByQuizId = async function (req, res) {
  * @param {*} res 
  * @returns {Object} 
  */
-controller.delete = async function (req, res) {
+controller.deleteQuizItem = async function (req, res) {
     try {
         const quizItem = await quizItemsModel.findById(req.params.id)
 
@@ -243,7 +227,7 @@ controller.delete = async function (req, res) {
             return res.status(404).json(resp);
         }
 
-        quizItem = await quizItem.remove()
+      await quizItem.remove()
 
         let resp = {
             success: true,

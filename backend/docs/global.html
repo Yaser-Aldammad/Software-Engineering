@@ -225,6 +225,69 @@ it has user and a code</p>
 
         
             
+<h4 class="name" id="Quizzes"><span class="type-signature">(constant) </span>Quizzes<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>A schema for Quiz with the following properties
+title , quizType, description, createdBy, created, updated, and is_deleted (if a quiz is deleted)</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="v1_controllers_models_QuizModel.js.html">v1/controllers/models/QuizModel.js</a>, <a href="v1_controllers_models_QuizModel.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="Users"><span class="type-signature">(constant) </span>Users<span class="type-signature"></span></h4>
 
 
@@ -820,6 +883,364 @@ phone no ,country code, creation time ,updation time, and is_deleted (if a user 
     
 
     
+    <h4 class="name" id="validateQuestion"><span class="type-signature">(async) </span>validateQuestion<span class="signature">(question, type)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>question</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="v1_controllers_QuizQuestions.js.html">v1/controllers/QuizQuestions.js</a>, <a href="v1_controllers_QuizQuestions.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true:  if question does not exist
+false: if question exists</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="validateQuestion"><span class="type-signature">(async) </span>validateQuestion<span class="signature">(question, type)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>question</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="v1_controllers_quizItemsController.js.html">v1/controllers/quizItemsController.js</a>, <a href="v1_controllers_quizItemsController.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true:  if question does not exist
+false: if question exists</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="validateUserName"><span class="type-signature">(async) </span>validateUserName<span class="signature">(name)</span><span class="type-signature"></span></h4>
     
 
@@ -961,6 +1382,154 @@ phone no ,country code, creation time ,updation time, and is_deleted (if a user 
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="Controller">Controller</h4>
+
+
+
+
+<div class="description">
+    <p>An object representing the controller.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="v1_controllers_Quiz.js.html">v1/controllers/Quiz.js</a>, <a href="v1_controllers_Quiz.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="Controller">Controller</h4>
+
+
+
+
+<div class="description">
+    <p>An object representing the controller.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="v1_controllers_QuizController.js.html">v1/controllers/QuizController.js</a>, <a href="v1_controllers_QuizController.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+    
 
     
 </article>
@@ -973,13 +1542,13 @@ phone no ,country code, creation time ,updation time, and is_deleted (if a user 
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Countries">Countries</a></li><li><a href="global.html#ForgetPasswordSch">ForgetPasswordSch</a></li><li><a href="global.html#Users">Users</a></li><li><a href="global.html#sendMail">sendMail</a></li><li><a href="global.html#startDB">startDB</a></li><li><a href="global.html#startServer">startServer</a></li><li><a href="global.html#validateUserName">validateUserName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Countries">Countries</a></li><li><a href="global.html#ForgetPasswordSch">ForgetPasswordSch</a></li><li><a href="global.html#Quizzes">Quizzes</a></li><li><a href="global.html#Users">Users</a></li><li><a href="global.html#sendMail">sendMail</a></li><li><a href="global.html#startDB">startDB</a></li><li><a href="global.html#startServer">startServer</a></li><li><a href="global.html#validateQuestion">validateQuestion</a></li><li><a href="global.html#validateUserName">validateUserName</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 10 2023 05:13:04 GMT-0600 (Central Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 10 2023 20:22:29 GMT-0600 (Central Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
