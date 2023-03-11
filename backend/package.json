@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watch": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "engines": {
     "node": "^16.14.0",
@@ -35,6 +36,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "ipfs-http-client": "^56.0.1",
+    "jsdoc": "^4.0.2",
     "jwt-decode": "^3.1.2",
     "mime-types": "^2.1.34",
     "moment": "^2.29.4",
