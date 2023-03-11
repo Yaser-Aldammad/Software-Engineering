@@ -1,16 +1,16 @@
 const router = require(`express`).Router();
-const { Router } = require("express");
 const _auth = require(`../auth`);
 const users = require(`../controllers/Users`);
 /**
  * Public router
- * @param {*} database 
- * @param {*} settings 
+ * @param {*} database
+ * @param {*} settings
  * @returns {Router}
  */
 module.exports = function RouterPublic(database, settings) {
-    const db = database;
-    const auth = _auth();
+	const db = database;
+	const auth = _auth();
+
 
     // Auth
     /**
@@ -32,5 +32,12 @@ module.exports = function RouterPublic(database, settings) {
     // router.route(`/forget-password`).post(users.ForgetPassword);
     // router.route(`/forget-password-verify`).post(users.ForgetPasswordVerify);
 
-    return router;
+
+	// Get all users endpoint
+	router.route(`/users`).get(users.GetUsersList);
+
+	// Get single user endpoint
+	router.route(`/user/:id`).get(users.GetUserProfile);
+
+	return router;
 };
