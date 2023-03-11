@@ -7,6 +7,8 @@ backend/node_modules/
 # config
 package-lock.json
 
-# local
-drafts/
-misc/
+backend/package-lock.json
+
+# local files
+z_drafts/
+z_misc/

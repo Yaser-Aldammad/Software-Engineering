@@ -1,5 +1,6 @@
 const moment = require(`moment`);
 const UsersModel = require(`./models/UsersModel`);
+
 const ForgetPasswordModel = require("./models/ForgottenPasswordModel");
 const settings = require(`../../server-settings`);
 const mailer = require("../helpers/mailer");
@@ -14,6 +15,7 @@ const controller = {};
  * 
  * @returns result
  */
+
 const validateUserName = async function (name) {
   let result = false;
   const p = UsersModel.findOne({ username: name }).exec();
@@ -26,6 +28,7 @@ const validateUserName = async function (name) {
 };
 
 /**
+
  * 
  * @param {*} req 
  * @param {*} res 
@@ -358,5 +361,6 @@ controller.ForgetPasswordVerify = async function (req, res) {
 //     return res.status(502).json({ success: false, message: "error" });
 //   }
 // };
+
 
 module.exports = controller;

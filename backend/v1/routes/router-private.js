@@ -24,7 +24,6 @@ module.exports = function RouterPrivate(database, settings) {
   router.route('/getQuizItems').get(quizItemsController.getQuizItems);
   router.route('/getQuizItemsByQuizId/:id').get(quizItemsController.getQuizItemsByQuizId);
   router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem);
-
   router.use(authentication.authenticate);
 
 

@@ -17,7 +17,6 @@ passport.use(
     new JwtStrategy(JWToptions, async (req, jwtPayload, done) => {
         try {
             const user = await UsersModel.findOne({_id: jwtPayload.sub})
-
 			if (user) {
 				user.password = undefined;
 				done(null, user, {});
