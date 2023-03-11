@@ -3,6 +3,10 @@
 
 # Node packages
 backend/node_modules/
+
+# config
+package-lock.json
+
 backend/package-lock.json
 
 # local files
