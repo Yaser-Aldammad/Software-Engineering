@@ -2,8 +2,11 @@
 ## General Project Layout
 
 > `Frontend` folder contains titular-related files (assets, design files, views)
+>
 > `Backend` folder contains titular-related files (models, controllers, routes)
+>
 > `doc` folder contains titular-related files (process documentation, meeting minutes, performance reviews)
+>
 > `Kanban (story) board` is located under `Projects` section of repo
 
 ## Team description
@@ -40,6 +43,7 @@
 > **Muhammad Shaheryar (202285690)**
 >
 > _user story:_ [Authentication](https://github.com/MUN-COMP6905/project-cteam/issues/77)
+>
 > _user story:_ [Setup and Manage User Account](https://github.com/MUN-COMP6905/project-cteam/issues/39)
 > _features (code tasks):_ [Login](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [Logout](https://github.com/MUN-COMP6905/project-cteam/issues/40)
 >
