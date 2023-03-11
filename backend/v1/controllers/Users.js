@@ -165,4 +165,5 @@ controller.UpdateUser = async function (req, res) {
 			res.status(500).json({ success: false, message: 'error' });
 		});
 };
+
 module.exports = controller;
