@@ -17,6 +17,8 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
  * summary: retrieves the homepage and renders it to the browser
  */
 app.get("/", (req, res) => {
+
+  
   res.sendFile(path.join(__dirname, "views/", "index.html"));
 });
 

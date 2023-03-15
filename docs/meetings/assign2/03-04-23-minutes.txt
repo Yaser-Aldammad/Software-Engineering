@@ -1,0 +1,14 @@
+Meeting SCRUM Master: Judah
+
+Judah
+	- gave a live demo of how user stories/features/issues should be created on the Kanban board
+	
+
+objectives
+- Pranav and Shaher should finalize pushing the boilerplate code for the FED and BED, respectively 
+- Shaher and Judah will be meeting in the night to create the backend tasks for milestone 2, and assign them to team members
+	- once tasks are on the board, members can view and meet with Shaher to discuss feasibility of taking 	on tasks
+- we still need to clarify once and for all (ideally in an all-hands meeting) the source submission process (branches for user stories/features) and the flow of pushes/pull requests
+	- Prabin and Shaher will be spearheading this
+- team members that have not added their `requested` user story and 2 features spanning from the user story should do so
+- Judah will be adding links to the working drafts for the documentation tasks; all team members are open to contribute to these
