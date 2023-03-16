@@ -7,7 +7,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 8080;
+const axios = require("axios");
 
+app.set("view engine", "ejs");
 // load assets
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
@@ -17,9 +19,24 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
  * summary: retrieves the homepage and renders it to the browser
  */
 app.get("/", (req, res) => {
+  axios
+    .get(
+      "http://localhost:3000/v1/quiz",
 
-  
-  res.sendFile(path.join(__dirname, "views/", "index.html"));
+      {
+        headers: {
+          Authorization: `bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDEyMTJkNDQ1ZjViMTIwMDkxNDNhYWEiLCJpYXQiOjE2Nzg5MDYwNjh9.nRV-BLTIaSScwVsL-xr5oPUvHKmpdu3pT92ujs3Gk6hHSIPOlJ2ZKvkzztUc9ZGqdRcFqKJV4B79xEcxLnV9XA`,
+        },
+      }
+    )
+    .then((response) => {
+      const data = response.data.data.quizzes;
+      console.log(data[0].title);
+      res.render("index", { data: data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 /**

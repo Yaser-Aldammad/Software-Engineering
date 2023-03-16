@@ -105,71 +105,27 @@
         <!-- Quiz cards start  -->
         <div class="d-flex flex-row justify-content-center p-2 flex-wrap">
 
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 1</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author1</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
+            <% data.forEach(function(data){ %>
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= data.title %>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Quiz Type: <%= data.quizType %>
+                        </h6>
+                        <p class="card-text">
+                            <%= data.description %>
+                        </p>
+                        <a href="/<%=data._id%>" class="card-link">Attempt Quiz</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 2</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author2</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 3</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author3</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 4</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author4</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 5</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author5</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 6</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author6</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+                <% }); %>
 
         </div>
-        <!-- Quiz cards end  -->
+
+    </div>
+    <!-- Quiz cards end  -->
     </div>
 
     <script>
