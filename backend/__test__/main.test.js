@@ -147,15 +147,6 @@ describe('Authentication Tests', () => {
   })
 })
 
-/**
- * Test to get all users
- * @function getAllUsersTest
- * @async
- * @param {Object} app - Express app object
- * @param {string} authToken - JWT authorization token
- * @returns {Promise<void>} - A Promise that resolves when the test finishes
- * @throws {Error} - Throws an error if the test fails
- */
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
