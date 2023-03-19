@@ -2,10 +2,12 @@
 .env
 
 # Node packages
-node_modules
+node_modules/
+
+frontend/node_modules/
 
 backend/node_modules/
-frontend/node_modules/
+
 # config
 package-lock.json
 
