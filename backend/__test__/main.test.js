@@ -174,4 +174,26 @@ describe('users test', () => {
 
     expect(response.statusCode).toBe(401)
   })
+
+  it('get user by Id test', async () => {
+    const response = await request(app)
+      .get(`/v1/user/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        username: userCredentials.username,
+        password: userCredentials.password,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.data.first_name).toBe(userCredentials.username)
+    expect(response.body.data.last_name).toBe('test')
+    expect(response.body.data.email).toBe(userCredentials.email)
+  })
+
+  it('invalid user Id', async () => {
+    const response = await request(app).get(
+      `/v1/user/64196a36c51eb8d605d1a7411`
+    )
+
+    expect(response.statusCode).toBe(401)
+  })
 })
