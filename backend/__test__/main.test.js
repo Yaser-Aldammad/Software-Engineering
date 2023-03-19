@@ -35,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/v1", publicRouter());
-app.use("/v1", privateRouter());
+app.use("/v1", privateRouter("", settings));
 
 app.use(() => {
   throw createHttpError(404, "Route not found");
@@ -143,6 +143,20 @@ describe("Authentication Tests", () => {
       password: "invalidUser",
     });
     expect(response.error.status).toBe(500);
+  });
+
+  it("logout user test with Auth token", async () => {
+    const response = await request(app)
+      .get(`/v1/logout`)
+      .set({ Authorization: `Bearer ${authToken}` });
+    expect(response.statusCode).toBe(200);
+    expect(response.body.success).toBe(true);
+  });
+
+  it("logout user test without Auth Token", async () => {
+    const response = await request(app).get(`/v1/logout`);
+    expect(response.statusCode).toBe(401);
+    expect(response.error.text).toBe("Unauthorized");
   });
 });
 
