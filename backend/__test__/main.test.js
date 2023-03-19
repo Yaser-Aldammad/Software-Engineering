@@ -53,11 +53,6 @@ beforeEach(function () {
   jest.setTimeout(10000)
 })
 
-// let userCredentials = {}
-// let authToken
-// let user
-
-
 jest.setTimeout(100000)
 
 it('example test case', async () => {})
