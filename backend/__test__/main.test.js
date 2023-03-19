@@ -121,4 +121,43 @@ describe("Authentication Tests", () => {
     expect(response.body.success).toBe(false);
     expect(response.body.message).toBe("That username already exists");
   });
+
+  it("login valid user test", async () => {
+    const response = await request(app).get(`/v1/login`).send({
+      username: userCredentials.username,
+      password: userCredentials.password,
+    });
+    authToken = response.body.data.token;
+    user = response.body.data.user;
+    expect(response.statusCode).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.message).toBe("Login successful");
+    expect(response.body.data.user.first_name).toBe(userCredentials.username);
+    expect(response.body.data.user.last_name).toBe("test");
+    expect(response.body.data.user.email).toBe(userCredentials.email);
+  });
+
+  it("login invalid user test", async () => {
+    const response = await request(app).get(`/v1/login`).send({
+      username: "invalidUser",
+      password: "invalidUser",
+    });
+    expect(response.error.status).toBe(500);
+  });
+});
+
+describe("User Tests", () => {
+  it("get user by Id test", async () => {
+    const response = await request(app)
+      .get(`/v1//user/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        username: userCredentials.username,
+        password: userCredentials.password,
+      });
+    expect(response.statusCode).toBe(200);
+    expect(response.body.data.first_name).toBe(userCredentials.username);
+    expect(response.body.data.last_name).toBe("test");
+    expect(response.body.data.email).toBe(userCredentials.email);
+  });
 });
