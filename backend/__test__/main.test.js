@@ -69,6 +69,7 @@ describe("Authentication Tests", () => {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
 
+
     var chars = "abcdefghijklmnopqrstuvwxyz1234567890";
     var string = "";
     for (var ii = 0; ii < 15; ii++) {
