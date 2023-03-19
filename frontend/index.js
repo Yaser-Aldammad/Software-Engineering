@@ -31,12 +31,21 @@ app.get("/", (req, res) => {
     )
     .then((response) => {
       const data = response.data.data.quizzes;
-      console.log(data[0].title);
       res.render("index", { data: data });
     })
     .catch((err) => {
       console.log(err);
     });
+});
+
+/**
+ * /quiz:id
+ * method: get
+ * summary: retrieves the seperate quiz for the student
+ */
+app.get("/quiz/:id", (req, res) => {
+  const id = req.params.id;
+  res.render("quiz", { data: id });
 });
 
 /**

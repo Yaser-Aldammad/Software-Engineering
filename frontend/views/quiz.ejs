@@ -60,73 +60,9 @@
     </nav>
     <!-- Navbar ends -->
 
-    <!-- Image carousel starts -->
-    <script>
-        /**
-         * Image Carousel
-         * The image slides will show up after the navigation bar
-         * The slides will get changed automatically after 2 secs
-         */
-    </script>
-    <div class="container-fluid px-0 ">
-        <div id="carouselHome" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../assets/img/indexCarousel1.jpg" class="d-block w-100 img-fluid" alt="indexCarousel1">
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/img/indexCarousel2.jpg" class="d-block w-100 img-fluid" alt="indexCarousel2">
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/img/indexCarousel3.jpg" class="d-block w-100 img-fluid" alt="indexCarousel3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Image carousel ends -->
-
-    <script>
-        /**
-         * Quiz Section
-         * Shows up quiz cards for specific student
-         */
-    </script>
-    <div class="container my-2 p-2">
-        <h1 class="text-center display-1">Lets have a quizz!</h1>
-
-        <!-- Quiz cards start  -->
-        <div class="d-flex flex-row justify-content-center p-2 flex-wrap">
-
-            <% data.forEach(function(data){ %>
-                <div class="card m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= data.title %>
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Quiz Type: <%= data.quizType %>
-                        </h6>
-                        <p class="card-text">
-                            <%= data.description %>
-                        </p>
-                        <a href="/quiz/<%=data._id%>" class="card-link">Attempt Quiz</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <% }); %>
-
-        </div>
-
-    </div>
-    <!-- Quiz cards end  -->
-    </div>
+    <h1>
+        <%= data %>
+    </h1>
 
     <script>
         /**
