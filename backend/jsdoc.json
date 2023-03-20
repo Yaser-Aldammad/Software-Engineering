@@ -1,0 +1,16 @@
+{
+    "source": {
+      "include": ["./v1/controllers","./v1/helpers","./v1/routes","./v1/auth.js","index.js"],
+      "includePattern": ".js$",
+      "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+      "cleverLinks": true,
+      "monospaceLinks": true
+    },
+    "opts": {
+      "recurse": true,
+      "destination": "./docs/"
+    }
+  }

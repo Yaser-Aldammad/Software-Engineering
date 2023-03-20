@@ -1,0 +1,28 @@
+Meeting SCRUM Master: Pranav
+
+Team Roles
+- Team Lead: Shaher
+- Vice Team Lead: Pranav
+- KanBan Board Manager: Prabin
+
+
+Architecture 
+- frontend/backend (2 separate servers)
+- frontend:
+	- react (revised to VanillaJS for now, post-meeting)
+- backend:
+	- expressjs (jwt, passport)
+	- mongodb
+- templating/mockup
+	- Figma
+
+
+objectives
+- everyone
+	- get up to speed with the tech stack
+- Shaher
+	-design basic login/auth and push to git
+- Yaser & Judah
+	- create a mockup/template for the frontend using Figma (or other tool)
+- Prabin
+	- SCRUM Master for next meeting
