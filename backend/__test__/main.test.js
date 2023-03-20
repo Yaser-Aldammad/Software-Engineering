@@ -222,4 +222,11 @@ describe('users test', () => {
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('Success')
   })
+
+  it('invalid user Id', async () => {
+    const response = await request(app).patch(
+      `/v1/user/64196a36c51eb8d605d1a7411`
+    )
+    expect(response.statusCode).toBe(401)
+  })
 })
