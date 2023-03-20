@@ -11,7 +11,6 @@ const session = require(`express-session`)
 const MongoStore = require('connect-mongo')
 const { GetUsersList, UpdateUser } = require('../v1/controllers/Users')
 const usermodel = require(`../v1/controllers/models/UsersModel`)
-const Usermodel = require('../v1/controllers/models/UsersModel')
 
 const testPort = process.env.testPort || settings.server.testPort || 8080
 
@@ -252,6 +251,22 @@ describe('users test', () => {
       .send({
         first_name: UpdateUser.username,
         username: UpdateUser.username + '123',
+        password: UpdateUser.password,
+      })
+    expect(response.statusCode).toBe(500)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('error')
+  })
+
+  it('update user with duplicate email', async () => {
+    const response = await request(app)
+      .patch(`/v1/user/${user.email}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        first_name: UpdateUser.first_name,
+        last_name: UpdateUser.last_name,
+        email: UpdateUser.email,
+        username: UpdateUser.email + '123',
         password: UpdateUser.password,
       })
     expect(response.statusCode).toBe(500)
