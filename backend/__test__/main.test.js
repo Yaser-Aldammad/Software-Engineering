@@ -244,4 +244,18 @@ describe('users test', () => {
     expect(response.body.email).toBe(UpdateUser.email)
     expect(response.body.message).toBe('Success')
   })
+
+  it('update user with duplicate username', async () => {
+    const response = await request(app)
+      .patch(`/v1/user/${user.username}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        first_name: UpdateUser.username,
+        username: UpdateUser.username + '123',
+        password: UpdateUser.password,
+      })
+    expect(response.statusCode).toBe(500)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('error')
+  })
 })
