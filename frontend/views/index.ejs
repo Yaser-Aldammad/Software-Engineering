@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">About</a>
@@ -52,8 +52,10 @@
                     </li>
                 </ul>
                 <div class="d-flex" role="login">
-                    <a href="/login"><button class="btn btn-outline-info mx-2" type="submit">Login</button></a>
-                    <a href="/signup"><button class="btn btn-outline-info mx-2" type="submit">SignUp</button></a>
+                    <a href="/login"><button class="btn btn-outline-info mx-2" type="submit"
+                            id="login">Login</button></a>
+                    <a href="/signup"><button class="btn btn-outline-info mx-2" type="submit"
+                            id="signup">SignUp</button></a>
                 </div>
             </div>
         </div>
@@ -116,7 +118,7 @@
                         <p class="card-text">
                             <%= data.description %>
                         </p>
-                        <a href="/quiz/<%=data._id%>" class="card-link">Attempt Quiz</a>
+                        <a href="/quiz/<%=data._id%>" class="card-link attempt-quiz">Attempt Quiz</a>
                         <a href="#" class="card-link">Another link</a>
                     </div>
                 </div>
