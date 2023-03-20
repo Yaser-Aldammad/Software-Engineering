@@ -278,4 +278,11 @@ describe('users test', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
   })
+
+  it('delete user by invalid id', async () => {
+    const response = await request(app).delete(
+      `/v1/user/64196a36c51eb8d605d1a7411`
+    )
+    expect(response.statusCode).toBe(401)
+  })
 })
