@@ -141,6 +141,7 @@ controller.UpdateUser = async function (req, res) {
       if (user === null) {
         throw `User not found with that ID`
       }
+
       user.first_name = req.body.first_name || user.first_name
       user.last_name = req.body.last_name || user.last_name
       user.username = req.body.username || user.username
@@ -152,6 +153,7 @@ controller.UpdateUser = async function (req, res) {
 
       return await user.save()
     })
+
     .then((user) => {
       res.status(200).json({ success: true, message: 'Success', data: user })
     })

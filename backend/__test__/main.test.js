@@ -9,7 +9,9 @@ const passport = require(`passport`)
 const createHttpError = require('http-errors')
 const session = require(`express-session`)
 const MongoStore = require('connect-mongo')
-const { GetUsersList } = require('../v1/controllers/Users')
+const { GetUsersList, UpdateUser } = require('../v1/controllers/Users')
+const usermodel = require(`../v1/controllers/models/UsersModel`)
+const Usermodel = require('../v1/controllers/models/UsersModel')
 
 const testPort = process.env.testPort || settings.server.testPort || 8080
 
@@ -200,5 +202,24 @@ describe('users test', () => {
     )
 
     expect(response.statusCode).toBe(401)
+  })
+
+  it(`update user by providing valid Id`, async () => {
+    const response = await request(app)
+      .patch(`/v1/user/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        first_name: UpdateUser.first_name,
+        last_name: UpdateUser.last_name,
+        username: UpdateUser.username,
+        password: UpdateUser.password,
+        email: UpdateUser.email,
+        picture: UpdateUser.picture,
+        phoneNo: UpdateUser.phoneNo,
+      })
+
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Success')
   })
 })
