@@ -229,4 +229,19 @@ describe('users test', () => {
     )
     expect(response.statusCode).toBe(401)
   })
+
+  it(`update user by providing unique username and email`, async () => {
+    const response = await request(app)
+      .patch(`/v1/user/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        username: userCredentials.username,
+        email: userCredentials.email,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.username).toBe(UpdateUser.username)
+    expect(response.body.email).toBe(UpdateUser.email)
+    expect(response.body.message).toBe('Success')
+  })
 })
