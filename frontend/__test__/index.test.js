@@ -1,146 +1,63 @@
 /**
- * @file Unit testing of index.ejs file
+ * @file API Unit testing of index.js using JEST
  * @author Pranav Arora <parora@mun.ca>
  */
 
-// loading libraries and HTML files
+// Importing the jest testing library and axios api fetching library
 require("@testing-library/jest-dom/extend-expect");
-const fs = require("fs");
-const path = require("path");
-const testingLibraryDom = require("@testing-library/dom");
-const jsdom = require("jsdom");
+const axios = require("axios");
 
-const html = fs.readFileSync(
-  path.resolve(__dirname, "../views/index.ejs"),
-  "utf8"
-);
+/**
+ * get_quiz
+ * method: GET
+ * summary: API Testing of Quiz Module
+ */
+async function get_quiz() {
+  const res = await axios("http://localhost:3000/v1/quiz", {
+    method: "GET",
+    headers: {
+      Authorization: `bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDEyMTJkNDQ1ZjViMTIwMDkxNDNhYWEiLCJpYXQiOjE2Nzg5MDYwNjh9.nRV-BLTIaSScwVsL-xr5oPUvHKmpdu3pT92ujs3Gk6hHSIPOlJ2ZKvkzztUc9ZGqdRcFqKJV4B79xEcxLnV9XA`,
+    },
+  });
 
-const htmlQuiz = fs.readFileSync(
-  path.resolve(__dirname, "../views/quiz.ejs"),
-  "utf8"
-);
-
-let dom;
-let container;
-let quizDom;
-let quizContainer;
+  return res;
+}
 
 /**
  * JEST unit testing starts
- * file: index.ejs
+ * Test Suite: Frontend Quiz API testing
  */
-describe("index.ejs", () => {
-  beforeEach(() => {
-    dom = new jsdom.JSDOM(html, { runScripts: "dangerously" });
-    container = dom.window.document.body;
+describe("Frontend Quiz API testing", () => {
+  /**
+   * Status Connection:
+   *
+   * Status 200: Connected Successfully to backend
+   * Status 404: Did not connect to the backend
+   */
+  it("Connects to backend with Status 200", () => {
+    get_quiz()
+      .then((data) => {
+        expect(data.status).toEqual(200);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   /**
-   * Navigation bar rendering:
+   * If the Quiz data is being retrieved:
    *
-   * Does NavBar renders on the page
-   * Does the heading 'Quizzy' renders
-   * Is 'Home' link workable
-   * Functionality of Login/Signup Buttons
+   * An array of Quiz data whether empty or non-empty should get retrieved.
+   *
    */
-  it("Renders the navigation bar", () => {
-    expect(container.querySelector("nav")).toBeInTheDocument();
-    expect(
-      testingLibraryDom.getByText(container, "Quizzy")
-    ).toBeInTheDocument();
-    expect(testingLibraryDom.getAllByText(container, "Home")).not.toBeNull();
-  });
-
-  it("Renders the login and signup buttons", () => {
-    expect(container.querySelector("nav button")).toBeInTheDocument();
-    expect(testingLibraryDom.getAllByText(container, "Login")).not.toBeNull();
-    expect(testingLibraryDom.getAllByText(container, "SignUp")).not.toBeNull();
-  });
-
-  /**
-   * Image Static Rendering:
-   *
-   * Testing whether the image is properly being rendered. Testing of:
-   * indexCarousel1
-   * indexCarousel2
-   * indexCarousel3
-   */
-  it("Renders the image from static", () => {
-    expect(container.querySelector("img")).toBeInTheDocument();
-    expect(
-      testingLibraryDom.getAllByAltText(container, "indexCarousel1")
-    ).not.toBeNull();
-    expect(
-      testingLibraryDom.getAllByAltText(container, "indexCarousel2")
-    ).not.toBeNull();
-    expect(
-      testingLibraryDom.getAllByAltText(container, "indexCarousel3")
-    ).not.toBeNull();
-  });
-
-  it("renders a heading element", () => {
-    expect(container.querySelector("h1")).not.toBeNull();
-
-    expect(
-      testingLibraryDom.getByText(container, "Lets have a quizz!")
-    ).toBeInTheDocument();
-  });
-
-  /**Quiz Cards Rendering:
-   *
-   * Does the following in the quiz card renders:
-   * card-title
-   * card-body
-   * card-subtitle
-   * card-link
-   * When clicked on the attempted quiz, does a unique webpage with the quiz object ID renders.
-   */
-  it("Renders the quiz cards", () => {
-    expect(container.querySelector(".card")).not.toBeNull();
-    expect(container.querySelector(".card-body")).not.toBeNull();
-    expect(container.querySelector(".card-title")).not.toBeNull();
-    expect(container.querySelector(".card-subtitle")).not.toBeNull();
-    expect(container.querySelector(".card-text")).not.toBeNull();
-    expect(container.querySelector(".card-link")).not.toBeNull();
-  });
-
-  it("renders a unique quiz when click on attempted quiz", async () => {
-    const button = testingLibraryDom.getByText(container, "Attempt Quiz");
-
-    testingLibraryDom.fireEvent.click(button);
-
-    quizDom = new jsdom.JSDOM(htmlQuiz, { runScripts: "dangerously" });
-    quizContainer = quizDom.window.document.body;
-
-    expect(quizContainer.querySelectorAll("#data")).not.toBeNull();
-  });
-
-  /**
-   * Footer Rendering:
-   *
-   * Footer Rendering will check whether:
-   * Does the footer rendered on the page
-   * Are the given footer links functional
-   * */
-  it("Renders the footer", () => {
-    expect(container.querySelector("footer")).not.toBeNull();
-    expect(
-      testingLibraryDom.getByText(container.querySelector("footer"), "Home")
-    );
-    expect(
-      testingLibraryDom.getByText(container.querySelector("footer"), "Login")
-    );
-    expect(
-      testingLibraryDom.getByText(container.querySelector("footer"), "SignUp")
-    );
-    expect(
-      testingLibraryDom.getByText(container.querySelector("footer"), "Admin")
-    );
-    expect(
-      testingLibraryDom.getByText(
-        container.querySelector("footer"),
-        "GitHub Repo"
-      )
-    );
+  it("Retrieves Quiz Array", () => {
+    get_quiz()
+      .then((data) => {
+        let quizArray = data.data.data.quizzes;
+        expect(quizArray.length).toBeGreaterThanOrEqual(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
