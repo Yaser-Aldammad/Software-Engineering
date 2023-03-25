@@ -1,0 +1,19 @@
+Date and Time: March 14, 2023 5:00PM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Briefly discuss about the frontend path for the Sprint 3
+
+Action items: 
+
+1. Connection of frontend with backend is important. So we have to implement that first.
+2. Get the backend API from the backend team and test it on Postman.
+3. Setup local MongoDB environment. 
+
+Follow-up actions: Think about dividing the frontend features and code tasks between us.
+
+Next meeting: March 16, 5:00 PM Newfoundland Time.
+
+Adjournment: March 14, 2023 5:45 PM Newfoundland time.
+
+Signature: This MoM was approved by Pranav Arora.
