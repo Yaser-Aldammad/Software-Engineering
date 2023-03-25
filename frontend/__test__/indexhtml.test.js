@@ -105,7 +105,7 @@ describe("index.html", () => {
     expect(container.querySelector(".card-link")).not.toBeNull();
   });
 
-  it("renders a unique quiz when click on attempted quiz", async () => {
+  it("renders a unique quiz when click on attempted quiz", () => {
     const button = testingLibraryDom.getByText(container, "Attempt Quiz");
 
     testingLibraryDom.fireEvent.click(button);
