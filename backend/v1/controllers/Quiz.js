@@ -1,3 +1,4 @@
+const mongoose = require(`mongoose`)
 const QuizModel = require('./models/QuizModel')
 const QuizQuestionModel = require('./models/QuizQuestionModel')
 
@@ -52,10 +53,7 @@ controller.GetQuizById = async function (req, res) {
       .exec()
 
     if (quiz === null) {
-      return res.status(404).json({
-        success: false,
-        message: `Quiz with Id ${req.params.quizId} not found in the system.`,
-      })
+      throw Error()
     } else {
       return res.json({
         success: true,
@@ -64,9 +62,9 @@ controller.GetQuizById = async function (req, res) {
       })
     }
   } catch (ex) {
-    return res.status(400).json({
+    return res.status(404).json({
       success: false,
-      message: 'Error while fetching the record.',
+      message: `Quiz with Id ${req.params.quizId} not found in the system.`,
     })
   }
 }
@@ -142,7 +140,7 @@ controller.AddQuiz = async function (req, res) {
   } catch (e) {
     return res.status(400).json({
       success: false,
-      message: e,
+      message: 'Unable to create the quiz.',
     })
   }
 }
@@ -159,8 +157,7 @@ controller.AddQuiz = async function (req, res) {
  */
 controller.UpdateQuiz = async function (req, res) {
   try {
-    const quiz = await QuizModel.findById(req.params.quizId).exec() //Get quiz by id from the database
-    if (!quiz) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.quizId)) {
       //if not present, return response with success flag False
       return res.status(404).json({
         success: false,
@@ -168,6 +165,7 @@ controller.UpdateQuiz = async function (req, res) {
       })
     } else {
       // Updating Quiz in Database
+      const quiz = await QuizModel.findOne({ _id: req.params.quizId })
       const updatedQuiz = await QuizModel.findByIdAndUpdate(
         req.params.quizId,
         {
@@ -214,7 +212,7 @@ controller.DeleteByQuizId = async function (req, res) {
       message: `Quiz deleted successfully`,
     })
   } catch (ex) {
-    return res.status(400).json({
+    return res.status(404).json({
       success: false,
       message: 'Error while deleting the record.',
     })

@@ -176,3 +176,235 @@ describe("User Tests", () => {
     expect(response.body.data.email).toBe(userCredentials.email);
   });
 });
+
+
+/*
+A test block containing tests for Quiz API
+* Tests for Create, Update, Get all, Get by id, and Delete by id endpoints
+*/
+describe('Quiz API Tests', () => {
+  // Variable to store the created quiz which will be used for get, update and delete
+  let createdQuiz
+
+  // #region Tests for Create APIs
+
+  // Test invalid authentication for quiz create api
+  it('quiz create: invalid authentication token', async () => {
+    const response = await request(app)
+      .post(`/v1/quiz`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        title: '',
+        description: 'Testing Quiz Data Add - Description',
+        quizType: 'Quiz type test',
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test quiz create api using invalid data
+  it('quiz create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/quiz`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        title: '',
+        description: 'Testing Quiz Data Add - Description',
+        quizType: 'Quiz type test',
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('Unable to create the quiz.')
+  })
+
+  // Test correct working of quiz create api
+  it('quiz create: valid data', async () => {
+    let title = 'Testing Quiz Data Add - Title'
+    let description = 'Testing Quiz Data Add - Description'
+    let quizType = 'Quiz type test'
+    const response = await request(app)
+      .post(`/v1/quiz`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        title: title,
+        description: description,
+        quizType: quizType,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz created successfully.')
+    expect(response.body.data.quiz.title).toBe(title)
+    expect(response.body.data.quiz.description).toBe(description)
+    expect(response.body.data.quiz.quizType).toBe(quizType)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    createdQuiz = response.body.data.quiz
+  })
+
+  //#endregion
+
+  // #region Tests for Update APIs
+
+  // Test invalid authentication for quiz update api
+  it('quiz update: invalid authentication token', async () => {
+    const response = await request(app)
+      .patch(`/v1/quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        title: '',
+        description: 'Testing Quiz Data - Description',
+        quizType: 'Quiz type test',
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test quiz update api with invalid id
+  it('quiz update: invalid id', async () => {
+    const response = await request(app)
+      .patch(`/v1/quiz/randomid`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        title: ' -EDITED Version',
+        description: 'Testing Quiz Data Add - Description -EDITED Version',
+        quizType: 'Quiz type test -EDITED Version',
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz with Id randomid not found in the system.`
+    )
+  })
+
+  // Test quiz update api with valid id and data
+  it('quiz update: valid id and data', async () => {
+    let title = 'Testing Quiz Data Add - Title - EDITED_VERSION'
+    let description = 'Testing Quiz Data Add - Description - EDITED_VERSION'
+    let quizType = 'Quiz type test - EDITED_VERSION'
+    const response = await request(app)
+      .patch(`/v1/quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        title: title,
+        description: description,
+        quizType: quizType,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz updated successfully.')
+    expect(response.body.data.quiz.title).toBe(title)
+    expect(response.body.data.quiz.description).toBe(description)
+    expect(response.body.data.quiz.quizType).toBe(quizType)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    createdQuiz = response.body.data.quiz
+  })
+
+  //#endregion
+
+  //#region Tests for Get APIs
+
+  // Test invalid authentication for get all quiz api
+  it('get all quizzes: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test correct working of get all quiz api
+  it('get all quizzes: valid', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Successfully fetched all records.')
+    expect(Array.isArray(response.body.data.quizzes)).toBe(true)
+  })
+
+  // Test invalid authentication for get by id quiz api
+  it('get quiz by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz/random_id`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id for get by id quiz api
+  it('get quiz by id: invalid id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz/random_id`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz with Id random_id not found in the system.`
+    )
+  })
+
+  // Test correct working of get by id quiz api
+  it('get quiz by id: valid id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.data.quiz.title).toBe(createdQuiz.title)
+    expect(response.body.data.quiz.description).toBe(createdQuiz.description)
+    expect(response.body.data.quiz.quizType).toBe(createdQuiz.quizType)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      createdQuiz.createdBy.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Successfully fetched the record.')
+  })
+
+  //#endregion
+
+  // #region Tests for Delete APIs
+
+  // Test invalid authentication in delete quiz api
+  it('delete quiz by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .delete(`/v1//quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id in delete quiz api
+  it('delete quiz by id: invalid id', async () => {
+    const response = await request(app)
+      .delete(`/v1//quiz/random_id`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('Error while deleting the record.')
+  })
+
+  // Test correct working of delete quiz api
+  it('delete quiz by id: valid id', async () => {
+    const response = await request(app)
+      .delete(`/v1//quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz deleted successfully')
+  })
+
+  // Test to confirm deletion
+  it('delete quiz by id: confirming the quiz is deleted', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz with Id ${createdQuiz._id} not found in the system.`
+    )
+  })
+
+  //#endregion
+})
