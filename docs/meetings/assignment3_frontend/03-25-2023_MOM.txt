@@ -1,0 +1,29 @@
+Date and Time: March 25, 2023 2:30PM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Status check on the previous meeting agenda
+
+Action items: 
+
+1. Pranav Arora:
+a. Done
+i. indexhtml.test.js: Quiz Webpage Testing. Pull request will be generated today.
+ii. index.test.js: Quiz API testing. Pull request will be generated today.
+b. In progress
+i. loginhtml.test.js: will be done by tomorrow.
+
+2. Balsher Singh:
+a. Done
+i. login.test.js: Login API testing.
+In progress
+i. signuphtml.test.js: will be done by tomorrow.
+ii. signup.test.js: will be done by tomorrow.
+
+Follow-up actions: Status check on the unit tests.
+
+Next meeting: March 26, 4:00 PM Newfoundland Time.
+
+Adjournment: March 25, 2023 3:00 PM Newfoundland time.
+
+Signature: This MoM was approved by Balsher Singh.
