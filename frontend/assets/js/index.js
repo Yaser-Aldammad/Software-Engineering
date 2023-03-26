@@ -1,9 +1,19 @@
+/**
+ * @file Sends backend GET API request and retrieves all quiz data
+ * @author Pranav Arora <parora@mun.ca>
+ */
+
+// redirect if not logged in or signed up
 if (!localStorage.getItem("token")) {
   window.location.replace("./login.html");
 } else {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token"); // gets the token from the localStorage
   console.log(token);
 
+  /**
+   * Makes GET request to backend to fetch the quiz array
+   * @returns response data: Promise
+   */
   async function quiz() {
     const res = await fetch("http://localhost:3000/v1/quiz", {
       method: "GET",
@@ -15,6 +25,9 @@ if (!localStorage.getItem("token")) {
     return res.json();
   }
 
+  /**
+   * Resolves promise and interpolates the data into the webpage dynamically
+   */
   quiz()
     .then((data) => {
       console.log(data.data.quizzes[0]);

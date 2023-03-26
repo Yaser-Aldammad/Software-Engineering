@@ -1,0 +1,20 @@
+Date and Time: March 16, 2023 5:00PM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Dividing the frontend features and tasks.
+
+Action items: 
+
+1. Pranav will focus on the quiz page modifications after introducing frontend-backend connection.
+2. Quiz API GET request will be used to get the data from the DB and rendering it on the webpage.
+3. Balsher will focus on the Login and Signup page modifications after introducing frontend-backend connection.
+4. Balsher would need to store the JWT token when he makes POST request, so that Pranav and retrieve it and use it to show up quiz page.
+
+Follow-up actions: Status report of the tasks that have been assigned in this meeting.
+
+Next meeting: March 19, 1:00 PM Newfoundland Time.
+
+Adjournment: March 16, 2023 6:30 PM Newfoundland time.
+
+Signature: This MoM was approved by Pranav Arora.
