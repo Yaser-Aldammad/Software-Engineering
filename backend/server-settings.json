@@ -1,6 +1,7 @@
 {
   "database": {
-    "connectionString": "mongodb://127.0.0.1:27017/QuizAppDatabase"
+    "connectionString": "mongodb://127.0.0.1:27017/QuizAppDatabase",
+    "testDBconnectionString": "mongodb://127.0.0.1:27017/testQuizAppDatabase"
   },
   "server": {
     "siteURL": "",
@@ -9,6 +10,7 @@
     "signingKey": "QuizAppBackendAPI",
     "secret": "QuizAppXXQuizAppXXPlaceXX",
     "port": 3000,
+    "testPort": 8080,
     "sessionDurationSeconds": 604800,
     "signupWhiteList": [],
     "ssh": {

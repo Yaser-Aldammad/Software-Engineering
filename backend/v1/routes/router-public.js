@@ -17,7 +17,6 @@ module.exports = function RouterPublic(database, settings) {
      * routes GET /login to route to the login pages
      */
     router.get(`/login`, auth.isUserAuthenticated, async (req, res) => {
-        console.log('test')
         res.status(200).json({
             success: true,
             message: "Login successful",
