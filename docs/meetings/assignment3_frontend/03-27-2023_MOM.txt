@@ -1,0 +1,18 @@
+Date and Time: March 27, 2023 3:30PM Newfoundland time
+
+Due to the deadlines of the other assignments and labs of the other courses, the meeting could not be held on 03-26-2022. It was held today.
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Code review and concluding all frontend tasks for Assignment 3.
+
+Action items: 
+
+1. Pranav Arora: All the assigned tasks have been completed. Reviewed the code and merged to master.
+2. Balsher Singh: All the assigned tasks have been completed. Code sent to review to Pranav.
+
+All the necessary docs such as Architecture Code design, Performance Review and Pull Request deadlines have been created.
+
+Adjournment: March 27, 2023 4:30 PM Newfoundland time.
+
+Signature: This MoM was approved by Pranav Arora.
