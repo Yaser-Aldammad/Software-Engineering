@@ -1,3 +1,9 @@
+/**
+ * @file Login form submission and handling
+ * @author Balsher Singh <balshers@mun.ca>
+ * @param {Event} event - The event object representing the form submission
+ */
+
 const form = document.querySelector("#login");
 const errorMessage = document.getElementById('error-message');
 form.addEventListener("submit", async function (event) {
@@ -18,6 +24,12 @@ form.addEventListener("submit", async function (event) {
     });
 });
 
+/**
+ * Sends a GET request with the provided username and password and handles the response
+ * @async
+ * @function
+ * @returns {Promise<Object>} The response object as a JSON object
+ */
 async function handleForm() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;

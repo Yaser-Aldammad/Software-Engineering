@@ -44,9 +44,9 @@ describe("Frontend Login API testing", () => {
   });
 
   /**
-   * If the Login data is being retrieved:
+   * If the login response is being retrieved:
    *
-   * An array of Login data whether empty or non-empty should get retrieved.
+   * Is login for that user successful?
    *
    */
   it("Retrieves Login Success Flag", () => {

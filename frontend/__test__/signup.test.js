@@ -52,9 +52,9 @@ describe("Frontend signup API testing", () => {
   });
 
   /**
-   * If the signup data is being retrieved:
+   * If the signup response is being retrieved:
    *
-   * An array of signup data whether empty or non-empty should get retrieved.
+   * Is signup for that user successful?
    *
    */
   it("Retrieves signup Success Flag", () => {
