@@ -4,8 +4,38 @@
  */
 
 // Importing the jest testing library and axios api fetching library
-require("@testing-library/jest-dom/extend-expect");
+// require("@testing-library/jest-dom/extend-expect");
 const axios = require("axios");
+/**
+ * signup
+ * method: POST
+ * summary: API Testing of signup Module
+ */
+async function signup() {
+  const res = await axios("http://localhost:3000/v1/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      first_name: "quizuser1",
+      last_name: "quizuser1",
+      email: "quizuser1@gmail.com",
+      username: "quizuser1",
+      password: "quizuser1",
+      countryCode: "+1",
+      phoneNo: "9182882011",
+    }),
+  });
+  return res;
+}
+
+var token = "";
+
+beforeAll(async () => {
+  response = await signup();
+  token = response.data.data.token;
+});
 
 /**
  * get_quiz
@@ -16,7 +46,7 @@ async function get_quiz() {
   const res = await axios("http://localhost:3000/v1/quiz", {
     method: "GET",
     headers: {
-      Authorization: `bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDEyMTJkNDQ1ZjViMTIwMDkxNDNhYWEiLCJpYXQiOjE2Nzg5MDYwNjh9.nRV-BLTIaSScwVsL-xr5oPUvHKmpdu3pT92ujs3Gk6hHSIPOlJ2ZKvkzztUc9ZGqdRcFqKJV4B79xEcxLnV9XA`,
+      Authorization: `bearer ${token}`,
     },
   });
 
