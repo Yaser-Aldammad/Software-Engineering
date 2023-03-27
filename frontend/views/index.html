@@ -19,7 +19,7 @@
     </script>
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary bg-gradient" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Quizzy</a>
+            <a class="navbar-brand" href="./index.html">Quizzy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">About</a>
+                        <a class="nav-link" href="./index.html">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -52,8 +52,10 @@
                     </li>
                 </ul>
                 <div class="d-flex" role="login">
-                    <a href="/login"><button class="btn btn-outline-info mx-2" type="submit">Login</button></a>
-                    <a href="/signup"><button class="btn btn-outline-info mx-2" type="submit">SignUp</button></a>
+                    <a href="./login.html"><button class="btn btn-outline-info mx-2" type="submit"
+                            id="login">Login</button></a>
+                    <a href="./signup.html"><button class="btn btn-outline-info mx-2" type="submit"
+                            id="signup">SignUp</button></a>
                 </div>
             </div>
         </div>
@@ -103,73 +105,28 @@
         <h1 class="text-center display-1">Lets have a quizz!</h1>
 
         <!-- Quiz cards start  -->
-        <div class="d-flex flex-row justify-content-center p-2 flex-wrap">
+        <div class="d-flex flex-row justify-content-center p-2 flex-wrap" id="quizCards">
 
-            <div class="card m-2" style="width: 18rem;">
+            <div class="card m-2" style="width: 18rem;" hidden>
                 <div class="card-body">
-                    <h5 class="card-title">Quiz 1</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author1</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+                    <h5 class="card-title">
+                        Card Title
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card Subtitle
+                    </h6>
+                    <p class="card-text">
+                        Card Body
 
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 2</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author2</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
+                    </p>
+                    <a href="./quiz.html" class="card-link attempt-quiz">Attempt Quiz</a>
                 </div>
             </div>
 
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 3</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author3</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 4</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author4</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 5</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author5</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz 6</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Quiz Author: Author6</h6>
-                    <p class="card-text">Some quick Home text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Attempt Quiz</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
 
         </div>
-        <!-- Quiz cards end  -->
+
+    </div>
+    <!-- Quiz cards end  -->
     </div>
 
     <script>
@@ -181,10 +138,10 @@
     <div class="container">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-                <li class="nav-item"><a href="/login" class="nav-link px-2 text-muted">Login</a></li>
-                <li class="nav-item"><a href="/signup" class="nav-link px-2 text-muted">SignUp</a></li>
-                <li class="nav-item"><a href="/admin" class="nav-link px-2 text-muted">Admin</a></li>
+                <li class="nav-item"><a href="./index.html" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="./login.html" class="nav-link px-2 text-muted">Login</a></li>
+                <li class="nav-item"><a href="./signup.html" class="nav-link px-2 text-muted">SignUp</a></li>
+                <li class="nav-item"><a href="./admin.html" class="nav-link px-2 text-muted">Admin</a></li>
                 <li class="nav-item"><a href="https://github.com/MUN-COMP6905/project-cteam"
                         class="nav-link px-2 text-muted">GitHub Repo</a></li>
             </ul>
@@ -196,6 +153,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
+    <script src="../assets/js/index.js"></script>
 </body>
 
 </html>
