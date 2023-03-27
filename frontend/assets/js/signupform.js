@@ -1,3 +1,8 @@
+/**
+ * @file Signup form submission and handling
+ * @author Balsher Singh <balshers@mun.ca>
+ * @param {Event} event - The event object representing the form submission
+ */
 const form = document.querySelector("#signup");
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -12,6 +17,13 @@ form.addEventListener("submit", async function (event) {
       console.error(error);
     });
 });
+
+/**
+ * Sends a POST request to register a new user
+ * @async
+ * @function
+ * @returns {Promise<Object>} The response object as a JSON object
+ */
 
 async function handleForm() {
   const username = document.getElementById("username").value;

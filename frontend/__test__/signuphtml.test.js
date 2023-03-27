@@ -1,5 +1,5 @@
 /**
- * @file Unit testing of index.html webpage
+ * @file Unit testing of signup.html webpage
  * @author Balsher Singh <balshers@mun.ca>
  */
 
@@ -12,6 +12,11 @@ const html = fs.readFileSync(path.resolve(__dirname, '../views/signup.html'), 'u
 const dom = new JSDOM(html);
 const document = dom.window.document;
 
+/**
+ * JEST unit testing starts
+ * file: signup.html
+ * Test Suite: Signup Page testing
+ */
 describe('Signup Form', () => {
   let usernameInput, firstNameInput, lastNameInput, emailInput, passwordInput, phoneInput, countrycodeInput, submitButton, container;
 
@@ -27,6 +32,13 @@ describe('Signup Form', () => {
     submitButton = document.getElementById('submit');
   });
 
+  /**
+   * Navigation bar rendering:
+   *
+   * Does NavBar renders on the page
+   * Does the heading 'Quizzy' renders
+   * Is 'Home' link workable
+   */
   it("Renders the navigation bar", () => {
     expect(container.querySelector("nav")).toBeTruthy();
     expect(
@@ -34,7 +46,14 @@ describe('Signup Form', () => {
     ).toBeTruthy();
     expect(testingLibraryDom.getAllByText(container, "Home")).toBeDefined();
   });
-
+  /**
+   * Signup form rendering:
+   *
+   * Does Signup form renders on the page
+   * Does it have username & password fields
+   * Does it have email, firstname, lastname fields
+   * Does it offer country code and phone feature?
+   */  
   it('should have a form with id "signup"', () => {
     const form = document.getElementById('signup');
     expect(form).toBeDefined();
@@ -67,7 +86,13 @@ describe('Signup Form', () => {
   it('should have a country code input with id "countrycode"', () => {
     expect(countrycodeInput).toBeDefined();
   });
-
+  /**
+   * Footer Rendering:
+   *
+   * Footer Rendering will check whether:
+   * Does the footer rendered on the page
+   * Are the given footer links functional
+   * */
   it("Renders the footer", () => {
     expect(container.querySelector("footer")).toBeDefined();
     expect(
