@@ -166,41 +166,6 @@ describe('Authentication Tests', () => {
   })
 })
 
-describe('users test', () => {
-  it('get all user test, status code 200 and data type of array', async () => {
-    const response = await request(app)
-      .get(`/v1/users/`)
-      .set({ Authorization: `Bearer ${authToken}` })
-
-    expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(true)
-    expect(response.body.data.GetUsersList).toBe(userCredentials.GetUsersList)
-    expect(Array.isArray(response.body.data)).toBe(true)
-    expect(response.body.message).toBe(`users listed successfully`)
-  })
-
-  it('get all users unsuccessful', async () => {
-    const response = await request(app).get('/v1/users/')
-
-    expect(response.statusCode).toBe(401)
-  })
-
-  it('get user by Id test', async () => {
-    const response = await request(app)
-      .get(`/v1/user/${user._id}`)
-      .set({ Authorization: `Bearer ${authToken}` })
-      .send({
-        username: userCredentials.username,
-        password: userCredentials.password,
-      });
-    expect(response.statusCode).toBe(200);
-    expect(response.body.data.first_name).toBe(userCredentials.username);
-    expect(response.body.data.last_name).toBe("test");
-    expect(response.body.data.email).toBe(userCredentials.email);
-  });
-});
-
-
 /*
 A test block containing tests for Quiz API
 * Tests for Create, Update, Get all, Get by id, and Delete by id endpoints
@@ -431,7 +396,33 @@ describe('Quiz API Tests', () => {
 
   //#endregion
 })
-=======
+
+describe('users test', () => {
+  it('get all user test, status code 200 and data type of array', async () => {
+    const response = await request(app)
+      .get(`/v1/users/`)
+      .set({ Authorization: `Bearer ${authToken}` })
+
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.data.GetUsersList).toBe(userCredentials.GetUsersList)
+    expect(Array.isArray(response.body.data)).toBe(true)
+    expect(response.body.message).toBe(`users listed successfully`)
+  })
+
+  it('get all users unsuccessful', async () => {
+    const response = await request(app).get('/v1/users/')
+
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get user by Id test', async () => {
+    const response = await request(app)
+      .get(`/v1/user/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        username: userCredentials.username,
+        password: userCredentials.password,
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.data.first_name).toBe(userCredentials.username)
