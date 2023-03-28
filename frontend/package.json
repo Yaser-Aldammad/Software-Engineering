@@ -1,0 +1,41 @@
+{
+    "dependencies": {
+        "@testing-library/dom": "^9.0.1",
+        "@testing-library/jest-dom": "^5.16.5",
+        "axios": "^1.3.4",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "jsdom": "^21.1.1",
+        "jsonwebtoken": "^9.0.0",
+        "mongoose": "^7.0.0",
+        "node-fetch": "^3.3.1"
+    },
+    "name": "project-cteam",
+    "description": "Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student)",
+    "version": "1.0.0",
+    "main": "serve.js",
+    "directories": {
+        "doc": "doc",
+        "test": "test"
+    },
+    "scripts": {
+        "test": "jest --verbose",
+        "frontend": "npm run lite",
+        "lite": "lite-server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MUN-COMP6905/project-cteam.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MUN-COMP6905/project-cteam/issues"
+    },
+    "homepage": "https://github.com/MUN-COMP6905/project-cteam#readme",
+    "devDependencies": {
+        "jest": "^29.5.0",
+        "lite-server": "^2.6.1",
+        "nodemon": "^2.0.21"
+    }
+}

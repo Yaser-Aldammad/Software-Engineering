@@ -1,0 +1,5 @@
+{
+    "port": 8080,
+    "files": ["../frontend/**/*.{html,htm,css,js}"],
+    "server": { "baseDir": ["./views", "./assets", "./"] }
+  }

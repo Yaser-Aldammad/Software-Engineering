@@ -1,0 +1,21 @@
+Date and Time: March 19, 2023 12:40PM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Disscusion on the previous meeting agenda and Unit testing
+
+Action items: 
+
+1. There is an issue in storing a token in localstorage and retrieve on the quiz page. We have to solve that during this meeting.
+2. The issue has been solved and localstorage can set and get JWT now.
+3. Discussion on Unit testing. Which testing framework to use?
+4. Pranav said to use Mocha testing as we used that in the assignment 1. However, Balsher had a disagreement and suggested to use JEST as the backend is already using jest so there will be consistency throughout the project.
+5. Final Decision: To use JEST in frontend testing as well.
+
+Follow-up actions: Fimiliarize how to use JEST on the webpage testing. Also dividing the unit testing features and code tasks.
+
+Next meeting: March 21, 4:30 PM Newfoundland Time.
+
+Adjournment: March 19, 2023 4:15 PM Newfoundland time.
+
+Signature: This MoM was approved by Balsher Singh.

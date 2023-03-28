@@ -2,6 +2,10 @@
 .env
 
 # Node packages
+node_modules/
+
+frontend/node_modules/
+
 backend/node_modules/
 
 # config
