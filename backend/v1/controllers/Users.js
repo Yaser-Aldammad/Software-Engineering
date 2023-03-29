@@ -69,10 +69,13 @@ controller.AddUser = async function (req, res) {
   })
   promise
     .then((user) => {
+      data = { ...user }
+      data = data._doc
+      delete data.password
       let resp = {
         success: true,
         message: 'User created successfully.',
-        data: { user: user, token: token },
+        data: { user: data, token: token },
       }
       res.json(resp)
     })
@@ -95,7 +98,7 @@ controller.AddUser = async function (req, res) {
  * this function returns the list of all users
  */
 controller.GetUsersList = function (req, res) {
-  UsersModel.find({}, (err, users) => {
+  UsersModel.find({}, { password: 0 }, (err, users) => {
     if (err) {
       res.status(400).json({
         success: false,
@@ -155,7 +158,10 @@ controller.UpdateUser = async function (req, res) {
     })
 
     .then((user) => {
-      res.status(200).json({ success: true, message: 'Success', data: user })
+      data = { ...user }
+      data = data._doc
+      delete data.password
+      res.status(200).json({ success: true, message: 'Success', data: data })
     })
     .catch((ex) => {
       res.status(500).json({ success: false, message: 'error' })
@@ -168,7 +174,7 @@ controller.UpdateUser = async function (req, res) {
  * @param {*} res
  */
 controller.ActivateUser = async function (req, res) {
-  UsersModel.findById(req.params.id)
+  UsersModel.findById(req.params.id, { password: 0 })
     .then(async (user) => {
       if (user === null) {
         throw `User not found with that ID`
@@ -191,7 +197,7 @@ controller.ActivateUser = async function (req, res) {
  * @param {*} res
  */
 controller.DeactivateUser = async function (req, res) {
-  UsersModel.findById(req.params.id)
+  UsersModel.findById(req.params.id, { password: 0 })
     .then(async (user) => {
       if (user === null) {
         throw `User not found with that ID`
@@ -385,7 +391,7 @@ controller.ForgetPasswordVerify = async function (req, res) {
 
 controller.GetUserById = async function (req, res) {
   try {
-    const user = await UsersModel.findById(req.params.id)
+    const user = await UsersModel.findById(req.params.id, { password: 0 })
     if (!user) {
       return res.status(404).json({ success: false, message: 'user not found' })
     }
