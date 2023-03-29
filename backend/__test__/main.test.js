@@ -397,6 +397,273 @@ describe('Quiz API Tests', () => {
   //#endregion
 })
 
+
+/*
+A test block containing tests for QuizItems API
+* Tests for Create, Update, Get, Get all, Get by id, and Delete by id endpoints
+*/
+describe('QuizItems API Tests', () => {
+  // Variable to store the created quiz which will be used for get, update and delete
+  let createdQuizItem
+
+  // #region Tests for Create APIs
+  // persistent properties of quizitem
+  let quiz_id = 'q5'
+  let type = 'q&a'
+  let question = 'what is the answer to life?'
+  let answer = '42'
+
+  // Test invalid authentication for Create QuizItem API
+  it('QuizItem create: invalid authentication token', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        quiz_id: quiz_id,
+        type: type,
+        question: question,
+        answer: answer,
+        // createdBy: ''
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test QuizItem create api using invalid data
+  it('QuizItem create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: '',
+        type: type,
+        question: question,
+        answer: answer,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('Unable to create the QuizItem.')
+  })
+
+  // Test correct working of quiz create api
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz_id,
+        type: type,
+        question: question,
+        answer: answer,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItem created successfully.')
+    expect(response.body.data.quizitem.quiz_id).toBe(quiz_id)
+    expect(response.body.data.quizitem.type).toBe(type)
+    expect(response.body.data.quizitem.question).toBe(question)
+    expect(response.body.data.quizitem.answer).toBe(answer)
+    expect(response.body.data.quizitem.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quizitem.is_deleted).toBe(false)
+    createdQuizItem = response.body.data.quizitem
+  })
+
+  // Test correct working of duplicate QuizItem error
+  it('QuizItem create: Duplicate', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz_id,
+        type: type,
+        question: question,
+        answer: answer,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('That QuizItem already exists; you can either change the question or change the type!')
+  })
+  // #endregion
+
+  // #region Tests for Update QuizItems API
+  // relevant fields for update unit tests
+  let new_quiz_id = 'q6'
+  let new_qi_type = 'mc'
+  let new_qi_answer  = [39, 42, 40, 41]
+
+  // Test invalid authentication for quiz update api
+  it('QuizItem update: invalid authentication token', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        quiz_id: new_quiz_id,
+        type: new_qi_type,
+        answer: new_qi_answer
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test QuizItem update api with invalid id
+  let fake_id = 'fakeid'
+  it('QuizItem update: invalid QuizItem id', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: new_quiz_id,
+        type: new_qi_type,
+        answer: new_qi_answer
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `QuizItem ${fake_id} was not found!`
+    )
+  })
+
+  // Test quiz update api with valid id and data
+  it('QuizItem update: valid id and data', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: new_quiz_id,
+        type: new_qi_type,
+        answer: new_qi_answer
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItem updated successfully.')
+    expect(response.body.data.quizitem.quiz_id).toBe(new_quiz_id)
+    expect(response.body.data.quizitem.type).toBe(new_qi_type)
+    expect(response.body.data.quiz.answer).toBe(new_qi_answer)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    createdQuizItem = response.body.data.quizitem
+  })
+  // #endregion
+
+  // #region Tests for Get APIs
+  // Test invalid authentication for getQuizItem by QuizItem ID 
+  it('Get QuizItem by QuizItem ID: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid QuizItem ID for getQuizItem by QuizItem ID 
+  it('Get QuizItem by QuizItem ID: invalid QuizItem ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `QuizItem ${fake_id} not found!`
+    )
+  })
+
+  // Test correctness of getQuizItem by QuizItem ID
+  it('Get QuizItem by QuizItem ID: valid QuizItem ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.data.quizitem.quiz_id).toBe(createdQuizItem.quiz_id)
+    expect(response.body.data.quizitem.type).toBe(createdQuiz.type)
+    expect(response.body.data.quizitem.question).toBe(createdQuiz.quizType)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      createdQuiz.createdBy.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`QuizItem ${createdQuizItem._id} found!`)
+  })
+  
+  // Test correctness of getQuizItems
+  it('Get all QuizItems', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItems found!')
+    expect(Array.isArray(response.body.data.quizzes)).toBe(true)
+  })
+
+  // Test invalid Quiz ID for getQuizItemsByQuizId
+  it('Get all QuizItems under a Quiz: invalid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItemsByQuizId/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz ${fake_id} not found!`
+    )
+  })
+
+  // Test correctness of getQuizItemsByQuizId
+  it('Get all QuizItems under a Quiz: valid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItemsByQuizId/${quiz_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItems found and retrieved!')
+    expect(Array.isArray(response.body.data.quizitems)).toBe(true)
+  })
+  //#endregion
+
+  // #region Tests for Delete APIs
+  // Test invalid authentication in delete quiz api
+  it('Delete QuizItem by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id of QuizItem delete api
+  it('Delete QuizItem by ID: invalid ID', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`QuizItem ${createdQuizItem.id} not found!`)
+  })
+
+  // Test correct working of QuizItem delete api
+  it('Delete QuizItem by ID: valid id', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`Successfully deleted QuizItem ${req.params.id}!`)
+  })
+
+  // Test to confirm deletion of QuizItem
+  it('Delete QuizItem by ID: confirming the QuizItem is deleted', async () => {
+    const response = await request(app)
+      .get(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `QuizItem ${createdQuizItem._id} not found!`
+    )
+  })
+  //#endregion
+
+})
+
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
