@@ -1,0 +1,33 @@
+Date and Time: March 14, 2023 12:30 Newfoundland time
+
+Scrum Master: Muhammad Shaheryar
+
+Note Taker: Oluwafunmiwo Judah Sholola
+
+Attendees: Oluwafunmiwo Judah Sholola, Prabin Kumar Shrestha, Muhammad Shaheryar, Yaser Aldammad and Pranav Arora
+
+Agenda: First "SCRUM" meeting of the team for assignment 3 sprint.
+
+Action Items:
+
+- First "SCRUM" meeting of the team; the team decided that there will be a separate meeting for frontend and backend team. So this was from the backend side:
+	- we went over the requirements for assign3
+		- unit/regression testing for prior tasks and newly assigned tasks for assign3
+		- task creation/assignment for assign3
+- each member should think up tasks that they would like to work on (may be related to their existing task from Sprint2, or different); consult with Shaher
+- Shaher will create the sample jest test cases, and share with all members
+- in the meanwhile, members can read up on the jest documentation and how to create unit tests for their tasks
+- Discussion on adding a test script:
+	- Pranav and Shaher discussed to have a script that can populate a few documents in all the collections of the MongoDB database.
+	- This will load up a few entries that will be rendered to the frontend.
+	- Discussion of creating use cases dynamically using seed data route.
+	- Providing the testing json data file that can be used to connect REST APIs between frontend and backend.
+
+Adjournment: March 14, 2023 1:00 PM Newfoundland time.
+
+
+
+
+
+
+

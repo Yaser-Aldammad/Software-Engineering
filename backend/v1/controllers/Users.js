@@ -292,6 +292,18 @@ controller.GetUsersAfterDate = function (req, res) {
       res.status(500).json({ success: false, message: 'error' })
     })
 }
+controller.GetUserById = async function (req, res) {
+  try {
+    const user = await UsersModel.findById(req.params.id)
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'user not found' })
+    }
+
+    return res.status(200).json({ success: true, data: user })
+  } catch (ex) {
+    return res.status(502).json({ success: false, message: 'error' })
+  }
+}
 
 /**
  * If a user has forgotten their password then this function will validate the user and
@@ -337,7 +349,6 @@ controller.ForgetPassword = async function (req, res) {
     }
   }
 }
-
 controller.ForgetPasswordVerify = async function (req, res) {
   try {
     const email = req.body.email
