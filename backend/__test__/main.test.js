@@ -64,6 +64,8 @@ let authToken
 let user
 let createdQuiz
 
+
+
 jest.setTimeout(100000)
 
 describe('Authentication Tests', () => {
@@ -226,6 +228,7 @@ describe('Quiz API Tests', () => {
     )
     expect(response.body.data.quiz.is_deleted).toBe(false)
     createdQuiz = response.body.data.quiz
+    quiz = response.body.data.quiz
   })
 
   //#endregion
@@ -599,9 +602,6 @@ describe('feedback tests', () => {
     expect(response.statusCode).toBe(401)
   })
 })
-
-//#endregion
-
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
