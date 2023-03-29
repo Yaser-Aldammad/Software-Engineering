@@ -36,9 +36,11 @@ controller.createQuizItem = async function (req, res) {
       type: req.body.type,
       question: req.body.question,
       answer: req.body.answer,
+      options: req.body.options,
       createdBy: req.user._id,
     }
 
+    // ensure that quizitem (of same question and same type) does not exist already
     if ((await validateQuestion(quizItem.question, quizItem.type)) === false) {
       return res.status(400).json({
         success: false,
@@ -46,6 +48,21 @@ controller.createQuizItem = async function (req, res) {
       })
     }
 
+    // validate properties for multiple choice quizitems
+    if (quizItem.type === 'MC') {    
+      if (typeof quizItem.options === 'undefined') {
+        return res.status(400).json({
+          success: false,
+          message: `You must provide options for multiple choice QuizItems!`,
+        })
+      } else if (quizItem.options.length < 3)
+        return res.status(400).json({
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+        })
+    }
+
+    // create and save quizitem
     const model = new quizItemsModel(quizItem)
     await model.save()
 
@@ -83,9 +100,27 @@ controller.updateQuizItem = async function (req, res) {
       type: req.body.type ?? record.type,
       question: req.body.question ?? record.question,
       answer: req.body.answer ?? record.answer,
+      options: req.body.options ?? record.options,
       createdBy: req.user._id ?? record.createdBy,
     }
 
+    // change in quizitem type; we know that if quizitem was originally (created) 
+    // as type multiple choice, the createQuizItem method will have validated its properties
+    // so we only bother checking (specifically) if the type of the quizitem is being changed to 'MC'
+    if (record.type !== 'MC' && quizItem.type === 'MC') {     
+      if (typeof quizItem.options === 'undefined') {
+        return res.status(400).json({
+          success: false,
+          message: `You must provide options for multiple choice QuizItems!`,
+        })
+      } else if (quizItem.options.length < 3)
+        return res.status(400).json({
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+        })
+    }
+
+    // update and retrieve updated record
     let updatedQuizItem = await quizItemsModel
       .findByIdAndUpdate(req.params.id, quizItem, {
         new: true,
@@ -118,6 +153,7 @@ controller.updateQuizItem = async function (req, res) {
  */
 controller.getQuizItem = async function (req, res) {
   try {
+    // filter by id of request(er)
     const quizItem = await quizItemsModel
       .findById(req.params.id)
       .populate(['quiz_id', 'createdBy'])
@@ -156,6 +192,7 @@ controller.getQuizItem = async function (req, res) {
  */
 controller.getQuizItems = async function (req, res) {
   try {
+    // no 'hard' filter; retrieves all quizitems
     const quizItems = await quizItemsModel
       .find()
       .populate(['quiz_id', 'createdBy'])
@@ -194,6 +231,7 @@ controller.getQuizItems = async function (req, res) {
  */
 controller.getQuizItemsByQuizId = async function (req, res) {
   try {
+    // filters by quiz id
     const quizItems = await quizItemsModel
       .find({ quiz_id: req.params.id })
       .populate(['quiz_id', 'createdBy'])
@@ -225,6 +263,84 @@ controller.getQuizItemsByQuizId = async function (req, res) {
 }
 
 /**
+ * @description: finds and retrieves the QuizItems of type question-and-answer (Q/A)
+ * @param {*} req
+ * @param {*} res
+ * @returns {Object}
+ */
+controller.getQAQuizItems = async function (req, res) {
+  try {
+    // filter by type 'Q/A'
+    const quizItems = await quizItemsModel
+      .find({ type: 'Q/A'})
+      .populate(['quiz_id', 'createdBy'])
+      .exec()
+
+    if (!quizItems) {
+      let resp = {
+        success: false,
+        message: 'Q/A QuizItems not found!',
+      }
+      return res.status(404).json(resp)
+    }
+
+    let resp = {
+      success: true,
+      message: 'Q/A QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
+    }
+    return res.status(200).json(resp)
+  } catch (error) {
+    console.log(error)
+
+    let resp = {
+      success: false,
+      message: `QuizItems not found!`,
+    }
+    res.status(404).json(resp)
+  }
+}
+
+/**
+ * @description: finds and retrieves all QuizItems of type multiple choice (MC)
+ * @param {*} req
+ * @param {*} res
+ * @returns {Object}
+ */
+controller.getMCQuizItems = async function (req, res) {
+  try {
+    // filter by type 'MC'
+    const quizItems = await quizItemsModel
+      .find({ type:  'MC'})
+      .populate(['quiz_id', 'createdBy'])
+      .exec()
+
+    if (!quizItems) {
+      let resp = {
+        success: false,
+        message: 'MC QuizItems not found!',
+      }
+      return res.status(404).json(resp)
+    }
+
+    let resp = {
+      success: true,
+      message: 'MC QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
+    }
+    return res.status(200).json(resp)
+  } catch (error) {
+    console.log(error)
+
+    let resp = {
+      success: false,
+      message: `QuizItems not found!`,
+    }
+    res.status(404).json(resp)
+  }
+}
+
+/**
  * @description: finds and retrieves the corresponding QuizItem from its id, if it exists, then deletes it
  * @param {*} req
  * @param {*} res
@@ -232,6 +348,7 @@ controller.getQuizItemsByQuizId = async function (req, res) {
  */
 controller.deleteQuizItem = async function (req, res) {
   try {
+    // attempts to retrieve quizitem associated with request(er's) quizitem id
     const quizItem = await quizItemsModel
       .findById(req.params.id)
       .populate(['quiz_id', 'createdBy'])
