@@ -1,7 +1,7 @@
 const router = require(`express`).Router()
 const users = require(`../controllers/Users`)
 const quizController = require('../controllers/Quiz')
-const quizItemsController = require('../controllers/QuizQuestions')
+const quizItemsController = require('../controllers/QuizItems')
 const { Router } = require('express')
 const authentication = require('../middleware/validateJWT')
 
@@ -101,19 +101,31 @@ module.exports = function RouterPrivate(database, settings) {
    */
   router.route('/updateQuizItem/:id').patch(quizItemsController.updateQuizItem)
   /**
-   * routes GET /getQuizItem/:id to get quiz item by Id
+   * routes GET /getQuizItem/:id to get quiz item by QuizItem ID
    */
   router.route('/getQuizItem/:id').get(quizItemsController.getQuizItem)
   /**
-   * routes GET /getQuizItems fetch all quizes
+   * routes GET /getQuizItems fetch all quiz items
    */
   router.route('/getQuizItems').get(quizItemsController.getQuizItems)
   /**
-   * routes GET /getQuizItemsByQuizId/:id to qet quiz items by quizId
+   * routes GET /getQuizItemsByQuizId/:id to qet quiz items by Quiz ID
    */
   router
-    .route('/getQuizItemsByQuizId/:id')
-    .get(quizItemsController.getQuizItemsByQuizId)
+  .route('/getQuizItemsByQuizId/:id')
+  .get(quizItemsController.getQuizItemByQuizId)
+  /**
+   * routes GET /getQAQuizItems/:type to get all quest-and-ans quiz items
+   */
+  router
+    .route('/getQAQuizItems/:type')
+    .get(quizItemsController.getQAQuizItems)
+  /**
+   * routes GET /getMCQuizItems/:type to get all multiple choice quiz items
+   */
+  router
+    .route('/getMCQuizItems/:type')
+    .get(quizItemsController.getMCQuizItems)
   /**
    * routes DELETE /deleteQuizItem/:id to delete quizItem
    */

@@ -1,5 +1,5 @@
 const settings = require(`../../server-settings`)
-const quizItemsModel = require('./models/QuizQuestionModel')
+const quizItemsModel = require('./models/QuizItemsModel')
 
 const controller = {}
 
@@ -36,6 +36,7 @@ controller.createQuizItem = async function (req, res) {
       type: req.body.type,
       question: req.body.question,
       answer: req.body.answer,
+      options: req.body.options,
       createdBy: req.user._id,
     }
 
@@ -46,17 +47,30 @@ controller.createQuizItem = async function (req, res) {
       })
     }
 
+    if (quizItem.type === 'mc') {
+      if (typeof quizItem.options === 'undefined') {
+        return res.status(400).json({
+          success: false,
+          message: `You must provide options for multiple choice QuizItems!`,
+        })
+      } else (quizItem.options.length < 3)
+        return res.status(400).json({
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+        })
+    }
+
     const model = new quizItemsModel(quizItem)
     await model.save()
 
-    let question = await quizItemsModel
+    let qi = await quizItemsModel
       .findById(model._id)
       .populate(['quiz_id', 'createdBy'])
       .exec()
 
-    return res.status(200).json({ success: true, data: question })
+    return res.status(200).json({ success: true, data: {quizitem:qi}, message: "QuizItem created successfully."})
   } catch (e) {
-    return res.status(200).json({ success: false, error: e })
+    return res.status(400).json({ success: false, message: 'Unable to create the QuizItem.', error: e})
   }
 }
 
@@ -68,12 +82,13 @@ controller.createQuizItem = async function (req, res) {
  */
 controller.updateQuizItem = async function (req, res) {
   try {
-    const record = await quizItemsModel.findById(req.params.id)
+    id = req.params.id
+    const record = await quizItemsModel.findById(id)
 
     if (!record) {
       let resp = {
         success: false,
-        message: 'QuizItem not found!',
+        message: `QuizItem ${id} was not found!`,
       }
       res.status(404).json(resp)
     }
@@ -83,10 +98,24 @@ controller.updateQuizItem = async function (req, res) {
       type: req.body.type ?? record.type,
       question: req.body.question ?? record.question,
       answer: req.body.answer ?? record.answer,
+      options: req.body.answer ?? record.answer,
       createdBy: req.user._id ?? record.createdBy,
     }
 
-    let updatedQuizItem = await quizItemsModel
+    if (quizItem.type === 'mc') {
+      if (typeof quizItem.options === 'undefined') {
+        return res.status(400).json({
+          success: false,
+          message: `You must provide options for multiple choice QuizItems!`,
+        })
+      } else (quizItem.options.length < 3)
+        return res.status(400).json({
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+        })
+    }
+
+    let updatedQI = await quizItemsModel
       .findByIdAndUpdate(req.params.id, quizItem, {
         new: true,
         useFindAndModify: false,
@@ -96,8 +125,8 @@ controller.updateQuizItem = async function (req, res) {
 
     let resp = {
       success: true,
-      message: 'QuizItem created successfully.',
-      data: { quizItem: updatedQuizItem },
+      message: 'QuizItem updated successfully.',
+      data: { quizitem: updatedQI },
     }
 
     return res.status(200).json(resp)
@@ -126,15 +155,15 @@ controller.getQuizItem = async function (req, res) {
     if (!quizItem) {
       let resp = {
         success: false,
-        message: 'QuizItem not found!',
+        message: `QuizItem ${req.params.id} not found!`,
       }
       return res.status(404).json(resp)
     }
 
     let resp = {
       success: true,
-      message: 'QuizItem found!',
-      data: { quizItem: quizItem },
+      message: `QuizItem ${req.params.id} found!`,
+      data: { quizitem: quizItem },
     }
     return res.status(200).json(resp)
   } catch (error) {
@@ -164,7 +193,7 @@ controller.getQuizItems = async function (req, res) {
     if (!quizItems) {
       let resp = {
         success: false,
-        message: 'QuizItems not found!',
+        message: 'QuizItems not found!',    // fetched, but empty collection
       }
       return res.status(404).json(resp)
     }
@@ -172,15 +201,15 @@ controller.getQuizItems = async function (req, res) {
     let resp = {
       success: true,
       message: 'QuizItems found!',
-      data: { quizItems: quizItems },
+      data: { quizitems: quizItems },
     }
     return res.status(200).json(resp)
   } catch (error) {
-    console.log(error)
+    console.log(error)    // had trouble fetching 
 
     let resp = {
       success: false,
-      message: 'error',
+      message: 'There are no Quizzes available.',
     }
     res.status(400).json(resp)
   }
@@ -209,8 +238,8 @@ controller.getQuizItemsByQuizId = async function (req, res) {
 
     let resp = {
       success: true,
-      message: 'QuizItems found!',
-      data: { quizItems: quizItems },
+      message: 'QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
     }
     return res.status(200).json(resp)
   } catch (error) {
@@ -218,9 +247,85 @@ controller.getQuizItemsByQuizId = async function (req, res) {
 
     let resp = {
       success: false,
-      message: 'Quiz does not exist!',
+      message: `Quiz ${req.params.id} not found!`,
     }
-    res.status(400).json(resp)
+    res.status(404).json(resp)
+  }
+}
+
+/**
+ * @description: finds and retrieves the QuizItems of type question-and-answer (q&a)
+ * @param {*} req
+ * @param {*} res
+ * @returns {Object}
+ */
+controller.getQAQuizItems = async function (req, res) {
+  try {
+    const quizItems = await quizItemsModel
+      .find({ type: 'q&a'})
+      .populate(['quiz_id', 'createdBy'])
+      .exec()
+
+    if (!quizItems) {
+      let resp = {
+        success: false,
+        message: 'Q&A QuizItems not found!',
+      }
+      return res.status(404).json(resp)
+    }
+
+    let resp = {
+      success: true,
+      message: 'Q&A QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
+    }
+    return res.status(200).json(resp)
+  } catch (error) {
+    console.log(error)
+
+    let resp = {
+      success: false,
+      message: `QuizItems not found!`,
+    }
+    res.status(404).json(resp)
+  }
+}
+
+/**
+ * @description: finds and retrieves all QuizItems of type multiple choice (mc)
+ * @param {*} req
+ * @param {*} res
+ * @returns {Object}
+ */
+controller.getMCQuizItems = async function (req, res) {
+  try {
+    const quizItems = await quizItemsModel
+      .find({ type:  'mc'})
+      .populate(['quiz_id', 'createdBy'])
+      .exec()
+
+    if (!quizItems) {
+      let resp = {
+        success: false,
+        message: 'MC QuizItems not found!',
+      }
+      return res.status(404).json(resp)
+    }
+
+    let resp = {
+      success: true,
+      message: 'MC QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
+    }
+    return res.status(200).json(resp)
+  } catch (error) {
+    console.log(error)
+
+    let resp = {
+      success: false,
+      message: `QuizItems not found!`,
+    }
+    res.status(404).json(resp)
   }
 }
 
@@ -240,7 +345,7 @@ controller.deleteQuizItem = async function (req, res) {
     if (!quizItem) {
       let resp = {
         success: false,
-        message: 'QuizItem not found!',
+        message: `QuizItem ${req.params.id} not found!`,
       }
       return res.status(404).json(resp)
     }
@@ -249,8 +354,8 @@ controller.deleteQuizItem = async function (req, res) {
 
     let resp = {
       success: true,
-      message: 'Successfully deleted!',
-      data: { quizItems: quizItem },
+      message: `Successfully deleted QuizItem ${req.params.id}!`,
+      data: { quizitem: quizItem },
     }
     return res.status(200).json(resp)
   } catch (error) {
@@ -259,6 +364,7 @@ controller.deleteQuizItem = async function (req, res) {
     let resp = {
       success: false,
       message: 'error',
+      error: error
     }
     res.status(400).json(resp)
   }
