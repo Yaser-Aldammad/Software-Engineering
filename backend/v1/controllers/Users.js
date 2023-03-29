@@ -286,6 +286,18 @@ controller.GetUsersAfterDate = function (req, res) {
       res.status(500).json({ success: false, message: 'error' })
     })
 }
+controller.GetUserById = async function (req, res) {
+  try {
+    const user = await UsersModel.findById(req.params.id)
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'user not found' })
+    }
+
+    return res.status(200).json({ success: true, data: user })
+  } catch (ex) {
+    return res.status(502).json({ success: false, message: 'error' })
+  }
+}
 
 /**
  * If a user has forgotten their password then this function will validate the user and
@@ -331,85 +343,5 @@ controller.ForgetPassword = async function (req, res) {
     }
   }
 }
-
-controller.ForgetPasswordVerify = async function (req, res) {
-  try {
-    const email = req.body.email
-    const password = req.body.password
-    const code = req.body.code
-
-    if (!email || !password || !code) {
-      return res
-        .status(400)
-        .json({ success: false, message: 'Email, Password & Code is required' })
-    }
-
-    const user = await UsersModel.findOne({ email: req.body.email })
-    if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, message: `We do not have record for ${email}` })
-    }
-
-    const is_code_valid = await ForgetPasswordModel.findOne({
-      code: code,
-      user: user._id,
-    })
-    if (!is_code_valid) {
-      return res.status(400).json({
-        success: false,
-        message: `Your code ${code} is invalid. Please add valid code`,
-      })
-    }
-
-    const update = await UsersModel.findOneAndUpdate(
-      { _id: user._id },
-      { password: password }
-    )
-    if (update) {
-      await ForgetPasswordModel.deleteOne({ _id: is_code_valid._id })
-      return res.status(200).json({
-        success: true,
-        message: 'You are all done. New password has been updated',
-      })
-    } else {
-      return res.status(502).json({
-        success: false,
-        message: 'Something went wrong please try again later',
-      })
-    }
-  } catch (ex) {
-    return res.status(502).json({ success: false, message: 'error' })
-  }
-}
-
-controller.GetUserById = async function (req, res) {
-  try {
-    const user = await UsersModel.findById(req.params.id)
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'user not found' })
-    }
-
-    return res.status(200).json({ success: true, data: user })
-  } catch (ex) {
-    return res.status(502).json({ success: false, message: 'error' })
-  }
-}
-
-// controller.uploadImage = async function (req, res) {
-//   try {
-//     const { path } = req.file;
-//     let data = {
-//       image: `${settings.server.serverURL}/${path.replace(/\\/g, "/")}`
-//     };
-
-//     const user = await UsersModel.findById(req.params.id);
-//     user.picture = data.image;
-//     await user.save();
-//     return res.status(200).json({ success: true, message: "Image uploaded", data: data });
-//   } catch (ex) {
-//     return res.status(502).json({ success: false, message: "error" });
-//   }
-// };
 
 module.exports = controller
