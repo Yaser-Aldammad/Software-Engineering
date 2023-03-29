@@ -56,7 +56,7 @@ controller.createQuizItem = async function (req, res) {
 
     return res.status(200).json({ success: true, data: question })
   } catch (e) {
-    return res.status(200).json({ success: false, error: e })
+    return res.status(400).json({ success: false, error: e })
   }
 }
 
@@ -75,7 +75,7 @@ controller.updateQuizItem = async function (req, res) {
         success: false,
         message: 'QuizItem not found!',
       }
-      res.status(404).json(resp)
+      return res.status(404).json(resp)
     }
 
     const quizItem = {
@@ -96,7 +96,7 @@ controller.updateQuizItem = async function (req, res) {
 
     let resp = {
       success: true,
-      message: 'QuizItem created successfully.',
+      message: 'QuizItem updated successfully.',
       data: { quizItem: updatedQuizItem },
     }
 
@@ -106,7 +106,7 @@ controller.updateQuizItem = async function (req, res) {
       success: false,
       message: error,
     }
-    res.status(400).json(resp)
+    return res.status(400).json(resp)
   }
 }
 
