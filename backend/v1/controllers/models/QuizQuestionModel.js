@@ -6,7 +6,7 @@ const { Schema } = mongoose
 const QuizItems = Schema({
   id: { type: String, generated: true },
   quiz_id: { type: mongoose.Types.ObjectId, ref: 'Quizzes', required: true },
-  type: { type: String, required: true, default: 'q&a' },
+  type: { type: String, required: true, default: 'Q/A' },
   question: { type: String, required: true },
   answer: { type: String, required: true },
   is_deleted: { type: Boolean, default: false },
