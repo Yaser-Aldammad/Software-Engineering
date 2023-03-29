@@ -30,15 +30,22 @@
 >
 > **Pranav Arora (202286040)**
 >
-> _feature:_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page)
+> _feature branch:_ 
+> - **From Assignment 2:** [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page)
 >
-> _code_tasks:_ [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/f-student-page/frontend/views/index.html)
+> - **New:** [f-unit-static](https://github.com/MUN-COMP6905/project-cteam/tree/f-unit-static) 
+>
+> _code_tasks:_ 
+> - **From Assignment 2:** [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
+> - **New:** [index.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/index.test.js), [indexhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/indexhtml.test.js), [loginhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/loginhtml.test.js), [quiz.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/quiz.html)
 >
 > **Balsher Singh (202285114)**
 >
-> _feature:_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile)
+> _feature branch:_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile)
 >
-> _code_tasks:_ [login.html](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/views/login.html), [signup.html](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/views/signup.html)
+> _code_tasks:_ 
+> - **From Assignment 2:** [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
+> - **New:** [login.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/login.test.js), [signup.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signup.test.js), [signuphtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signuphtml.test.js)
 >
 > **Muhammad Shaheryar (202285690)**
 >
@@ -72,9 +79,11 @@
 >
 > **Pranav Arora (202286040)**
 >
-> _user story:_ [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30)
+> _user story:_ [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30), [Quiz Frontend Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/127)
 >
-> _features:_ [Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/31), [Student Page](https://github.com/MUN-COMP6905/project-cteam/issues/32)
+> _features:_ 
+> - **From Assignment 2:** [Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/31), [Student Page](https://github.com/MUN-COMP6905/project-cteam/issues/32), [Frontend-Backend Connection](https://github.com/MUN-COMP6905/project-cteam/issues/125)
+> - **New:** [Frontend Quiz API Testing](https://github.com/MUN-COMP6905/project-cteam/issues/144), [Login Page Component Testing](https://github.com/MUN-COMP6905/project-cteam/issues/146), [Image Render Testing](https://github.com/MUN-COMP6905/project-cteam/issues/132), [NavBar Render Testing](https://github.com/MUN-COMP6905/project-cteam/issues/131), [Footer Render Testing](https://github.com/MUN-COMP6905/project-cteam/issues/134), [Quiz Card Testing](https://github.com/MUN-COMP6905/project-cteam/issues/133)
 >
 > **Balsher Singh (202285114)**
 >
@@ -110,7 +119,7 @@
 >
 > The frontend part of the project renders the webpages on the client. It will be connected with the backend to perform the CRUD operations(Create, Read, Update, Delete) using various REST APIs (GET, POST, PUT, DELETE) respectively, and store them into the MongoDB Database.
 >
-> _All the frontend files are in the folder [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/u-app-ui/frontend)_
+> _All the frontend files are in the folder [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/frontend)_
 >
 > #### Frontend Code Run Instructions
 > To run frontend code, kindly follow the given instructions:
@@ -119,7 +128,20 @@
 >
 > ```git
 > git clone https://github.com/MUN-COMP6905/project-cteam
-> cd .\project-cteam\
+>```
+>
+> - Run the backend server
+>
+>```cmd
+> cd .\project-team\backend
+> npm install
+> npm run watch
+>```
+>
+> - Go to the frontend folder
+>
+>```cmd
+> cd .\project-cteam\frontend
 > ```
 >
 > - Install the dependencies from `package.json`
@@ -134,11 +156,11 @@
 > npm run frontend
 > ```
 >
-> or
-> 
+> - To run the tests, simply run in the frontend folder:
+>
 > ```cmd
-> nodemon frontend/index.js
-> ```
+> npm test
+>```
 >
 > The app will listen to http://localhost:8080
 
@@ -149,9 +171,12 @@
 >    |--u-app-ui (@pranavarora1895 user story)
 >       |--f-student-page
 >       |--f-student-profile
+>    |--u-unittest-quizfront
+>       |--f-unit-static
 >    |--u-admin-ui (@balshersingh10 user story)
 >       |--f-db-bridge
 >       |--f-admin-access
+>    |--u-unittest-profilefront
 > ```
 
 ## Attributions
@@ -183,7 +208,25 @@
 >   - Copyright free image library
 >   - Downloaded copyright free images and used them to our webpages.
 >
-> ### Backend
+> 6. JSDOM
+>   - Source - https://github.com/jsdom/jsdom
+>   - Webpage Testing library
+>   - Creates a headless browser to test the webpage templates. Works along with JEST.
+>
+> 7. JEST
+>   - Source - https://jestjs.io/
+>   - Unit Testing library
+>   - Used for unit and API testing
+>
+> 8. Lite-server
+>   - Source - https://www.npmjs.com/package/lite-server
+>   - Light-weight development only server
+>   - Used for developement and testing the frontend.
+>
+
+---
+
+### Backend
 - Creating RESTful APIs: Express is often used to create RESTful APIs that can
   be consumed by frontend applications or mobile apps. It provides features like
   routing, middleware, and error handling that make it easy to build and
