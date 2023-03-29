@@ -40,6 +40,7 @@ controller.createQuizItem = async function (req, res) {
       createdBy: req.user._id,
     }
 
+    // ensure that quizitem (of same question and same type) does not exist already
     if ((await validateQuestion(quizItem.question, quizItem.type)) === false) {
       return res.status(400).json({
         success: false,
@@ -47,7 +48,8 @@ controller.createQuizItem = async function (req, res) {
       })
     }
 
-    if (record.type !== 'mc' && quizItem.type === 'mc') {     // change in quizitem type
+    // validate properties for multiple choice quizitems
+    if (quizItem.type === 'MC') {    
       if (typeof quizItem.options === 'undefined') {
         return res.status(400).json({
           success: false,
@@ -60,6 +62,7 @@ controller.createQuizItem = async function (req, res) {
         })
     }
 
+    // create and save quizitem
     const model = new quizItemsModel(quizItem)
     await model.save()
 
@@ -101,7 +104,10 @@ controller.updateQuizItem = async function (req, res) {
       createdBy: req.user._id ?? record.createdBy,
     }
 
-    if (record.type !== 'mc' && quizItem.type === 'mc') {     // change in quizitem type
+    // change in quizitem type; we know that if quizitem was originally (created) 
+    // as type multiple choice, the createQuizItem method will have validated its properties
+    // so we only bother checking (specifically) if the type of the quizitem is being changed to 'MC'
+    if (record.type !== 'MC' && quizItem.type === 'MC') {     
       if (typeof quizItem.options === 'undefined') {
         return res.status(400).json({
           success: false,
@@ -114,6 +120,7 @@ controller.updateQuizItem = async function (req, res) {
         })
     }
 
+    // update and retrieve updated record
     let updatedQuizItem = await quizItemsModel
       .findByIdAndUpdate(req.params.id, quizItem, {
         new: true,
@@ -146,6 +153,7 @@ controller.updateQuizItem = async function (req, res) {
  */
 controller.getQuizItem = async function (req, res) {
   try {
+    // filter by id of request(er)
     const quizItem = await quizItemsModel
       .findById(req.params.id)
       .populate(['quiz_id', 'createdBy'])
@@ -184,6 +192,7 @@ controller.getQuizItem = async function (req, res) {
  */
 controller.getQuizItems = async function (req, res) {
   try {
+    // no 'hard' filter; retrieves all quizitems
     const quizItems = await quizItemsModel
       .find()
       .populate(['quiz_id', 'createdBy'])
@@ -222,6 +231,7 @@ controller.getQuizItems = async function (req, res) {
  */
 controller.getQuizItemsByQuizId = async function (req, res) {
   try {
+    // filters by quiz id
     const quizItems = await quizItemsModel
       .find({ quiz_id: req.params.id })
       .populate(['quiz_id', 'createdBy'])
@@ -260,6 +270,7 @@ controller.getQuizItemsByQuizId = async function (req, res) {
  */
 controller.getQAQuizItems = async function (req, res) {
   try {
+    // filter by type 'Q/A'
     const quizItems = await quizItemsModel
       .find({ type: 'Q/A'})
       .populate(['quiz_id', 'createdBy'])
@@ -298,6 +309,7 @@ controller.getQAQuizItems = async function (req, res) {
  */
 controller.getMCQuizItems = async function (req, res) {
   try {
+    // filter by type 'MC'
     const quizItems = await quizItemsModel
       .find({ type:  'MC'})
       .populate(['quiz_id', 'createdBy'])
@@ -336,6 +348,7 @@ controller.getMCQuizItems = async function (req, res) {
  */
 controller.deleteQuizItem = async function (req, res) {
   try {
+    // attempts to retrieve quizitem associated with request(er's) quizitem id
     const quizItem = await quizItemsModel
       .findById(req.params.id)
       .populate(['quiz_id', 'createdBy'])
