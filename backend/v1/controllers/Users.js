@@ -343,5 +343,54 @@ controller.ForgetPassword = async function (req, res) {
     }
   }
 }
+controller.ForgetPasswordVerify = async function (req, res) {
+  try {
+    const email = req.body.email
+    const password = req.body.password
+    const code = req.body.code
 
+    if (!email || !password || !code) {
+      return res
+        .status(400)
+        .json({ success: false, message: 'Email, Password & Code is required' })
+    }
+
+    const user = await UsersModel.findOne({ email: req.body.email })
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: `We do not have record for ${email}` })
+    }
+
+    const is_code_valid = await ForgetPasswordModel.findOne({
+      code: code,
+      user: user._id,
+    })
+    if (!is_code_valid) {
+      return res.status(400).json({
+        success: false,
+        message: `Your code ${code} is invalid. Please add valid code`,
+      })
+    }
+
+    const update = await UsersModel.findOneAndUpdate(
+      { _id: user._id },
+      { password: password }
+    )
+    if (update) {
+      await ForgetPasswordModel.deleteOne({ _id: is_code_valid._id })
+      return res.status(200).json({
+        success: true,
+        message: 'You are all done. New password has been updated',
+      })
+    } else {
+      return res.status(502).json({
+        success: false,
+        message: 'Something went wrong please try again later',
+      })
+    }
+  } catch (ex) {
+    return res.status(502).json({ success: false, message: 'error' })
+  }
+}
 module.exports = controller
