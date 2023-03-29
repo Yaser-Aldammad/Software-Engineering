@@ -62,6 +62,7 @@ beforeEach(function () {
 let userCredentials = {}
 let authToken
 let user
+let createdQuiz
 
 jest.setTimeout(100000)
 
@@ -171,9 +172,6 @@ A test block containing tests for Quiz API
 * Tests for Create, Update, Get all, Get by id, and Delete by id endpoints
 */
 describe('Quiz API Tests', () => {
-  // Variable to store the created quiz which will be used for get, update and delete
-  let createdQuiz
-
   // #region Tests for Create APIs
 
   // Test invalid authentication for quiz create api
@@ -397,6 +395,213 @@ describe('Quiz API Tests', () => {
   //#endregion
 })
 
+// #region Tests for user APIs
+describe('feedback tests', () => {
+  let feedback
+  it('create feedback success', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        description: 'test description',
+        quizId: createdQuiz._id,
+      })
+    feedback = response.body.data
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('create feedback invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: createdQuiz._id,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('create feedback invalid Auth token', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        description: 'test description',
+        quizId: createdQuiz._id,
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get feedback by id success', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get feedback by invalid id', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/jhbchasj`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('get feedback by id not found', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('get feedback by id with invalid Auth token', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get all feedback', async () => {
+    const response = await request(app)
+      .get(`/v1/feedbacks`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get all feedback invalid auth token', async () => {
+    const response = await request(app)
+      .get(`/v1/feedbacks`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('soft delete feedback by id success', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('soft delete feedback by id invalid Id', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/hsddjhabs`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('soft delete feedback by id not found', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('soft delete feedback by id invalid auth token', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('update feedback by id success', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('update feedback by id invalid Id', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/sdasd`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('update feedback by id not found', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('update feedback by id invalid token', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('parmanent delete feedback by id success', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('parmanent delete feedback by invalid id', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/hbhbjnn`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('parmanent delete feedback by id not found', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('parmanent delete feedback by id invalid auth token', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get feedbacks by userId success', async () => {
+    const response = await request(app)
+      .get(`/v1/userId/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get feedbacks by userId invalid auth tokens', async () => {
+    const response = await request(app)
+      .get(`/v1/userId/feedback`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+})
+
+//#endregion
+
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
@@ -517,3 +722,5 @@ describe('users test', () => {
     expect(response.statusCode).toBe(401)
   })
 })
+
+//#endregion

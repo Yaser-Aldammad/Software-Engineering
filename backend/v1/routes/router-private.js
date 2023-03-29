@@ -2,6 +2,8 @@ const router = require(`express`).Router()
 const users = require(`../controllers/Users`)
 const quizController = require('../controllers/Quiz')
 const quizItemsController = require('../controllers/QuizQuestions')
+const feedbackController = require('../controllers/Feedback')
+
 const { Router } = require('express')
 const authentication = require('../middleware/validateJWT')
 
@@ -119,6 +121,46 @@ module.exports = function RouterPrivate(database, settings) {
    */
   router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem)
   //#end region
+
+  //#region Feedback
+
+  /**
+   * routes POST /feedback to get add feedback
+   */
+  router.route(`/feedback`).post(feedbackController.AddUserFeedback)
+  /**
+   * routes PATCH /feedback/:id to update feedback
+   */
+  router.route(`/feedback/:id`).patch(feedbackController.UpdateUserFeedback)
+  /**
+   * routes DELETE /feedback/:id to delete feedback
+   */
+  router
+    .route(`/feedback/:id`)
+    .delete(feedbackController.DeleteUserFeedbackById)
+  /**
+   * routes DELETE /feedback/softdelete/:id to delete feedback
+   */
+  router
+    .route(`/feedback/softdelete/:id`)
+    .delete(feedbackController.SoftDeleteUserFeedbackById)
+
+  /**
+   * routes GET /feedback/:id to get feedback by id
+   */
+  router.route(`/feedback/:id`).get(feedbackController.GetUserFeedbackById)
+  /**
+   * routes GET /feedbacks to get all feedbacks
+   */
+  router.route(`/feedbacks`).get(feedbackController.GetAllUserFeedbacks)
+  /**
+   * routes GET /user/feedbacks to get feedbacks of current user
+   */
+  router
+    .route(`/userId/feedback`)
+    .get(feedbackController.GetUserFeedbacksByUserId)
+
+  //#endregion
 
   return router
 }
