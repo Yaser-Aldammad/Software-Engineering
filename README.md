@@ -87,9 +87,11 @@
 >
 > **Balsher Singh (202285114)**
 >
-> _user story:_ [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50)
+> _user story:_ [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50), 
 >
-> _features:_ [Admin Page UI](https://github.com/MUN-COMP6905/project-cteam/issues/51), [Database bridge Frontend to Backend](https://github.com/MUN-COMP6905/project-cteam/issues/52)
+> _features:_ 
+> - **From Assignment 2:** [Extention of Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/136)
+> - **New:** [FED Signup API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/142), [FED Login API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/140), [Signup Webpage unit testing](https://github.com/MUN-COMP6905/project-cteam/issues/143)
 >
 > **Muhammad Shaheryar (202285690)**
 >
