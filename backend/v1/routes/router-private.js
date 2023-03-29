@@ -1,6 +1,7 @@
 const router = require(`express`).Router()
 const users = require(`../controllers/Users`)
 const quizController = require('../controllers/Quiz')
+const quizHistoryController = require('../controllers/QuizHistory')
 const quizItemsController = require('../controllers/QuizQuestions')
 const { Router } = require('express')
 const authentication = require('../middleware/validateJWT')
@@ -119,6 +120,31 @@ module.exports = function RouterPrivate(database, settings) {
    */
   router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem)
   //#end region
+
+  //#region Quiz History
+
+  /**
+   * routes POST /quizhistory to add quiz history
+   */
+  router.route(`/quizhistory`).post(quizHistoryController.AddQuizHistory)
+  /**
+   * routes PATCH /quiz/:quizHistoryId to delete quiz history
+   */
+  router.route(`/quizhistory/:quizHistoryId`).patch(quizHistoryController.UpdateQuizHistory)
+  /**
+   * routes DELETE /quiz/:quizHistoryId to delete quiz history
+   */
+  router.route(`/quizhistory/:quizHistoryId`).delete(quizHistoryController.DeleteByQuizHistoryId)
+  /**
+   * routes GET /quizhistory/:quizHistoryId to get quiz history by quizHistoryId
+   */
+  router.route(`/quizhistory/:quizHistoryId`).get(quizHistoryController.GetQuizHistoryById)
+  /**
+   * routes GET /quizhistory to get all quiz histories
+   */
+  router.route(`/quizhistory`).get(quizHistoryController.GetAllQuizHistory)
+
+  //#endregion
 
   return router
 }

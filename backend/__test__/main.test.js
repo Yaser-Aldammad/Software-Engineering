@@ -397,6 +397,281 @@ describe('Quiz API Tests', () => {
   //#endregion
 })
 
+
+/*
+A test block containing tests for Quiz History API
+* Tests for Create, Update, Get all, Get by id, and Delete by id endpoints
+*/
+describe('Quiz History API Tests', () => {
+  // Variable to store the created quiz which will be used for creating quiz history
+  let createdQuiz
+  // Variable to store the created quiz history which will be used for get and delete
+  let createdQuizHistory
+
+  // Creating Quiz for data to test Quiz History
+
+  // Test correct working of quiz create api
+  it('quiz history: creating quiz for quiz history testing', async () => {
+    let title = 'Testing Quiz Data Add - Title'
+    let description = 'Testing Quiz Data Add - Description'
+    let quizType = 'Quiz type test'
+    const response = await request(app)
+      .post(`/v1/quiz`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        title: title,
+        description: description,
+        quizType: quizType,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz created successfully.')
+    expect(response.body.data.quiz.title).toBe(title)
+    expect(response.body.data.quiz.description).toBe(description)
+    expect(response.body.data.quiz.quizType).toBe(quizType)
+    expect(response.body.data.quiz.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quiz.is_deleted).toBe(false)
+    createdQuiz = response.body.data.quiz
+  })
+
+  //#endregion
+
+  // #region Tests for Create APIs
+
+  // Test invalid authentication for quiz history create api
+  it('quiz history create: invalid authentication token', async () => {
+    const response = await request(app)
+      .post(`/v1/quizhistory`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        quizId: 1,
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test quiz history create api using invalid data
+  it('quiz history create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/quizhistory`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: null,
+        score: 5,
+        feedback: 'Feed back',
+        isCompleted: true,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('Unable to create the quiz history.')
+  })
+
+  // Test correct working of quiz history create api
+  it('quiz history create: valid data', async () => {
+    let score = 5
+    let feedback = 'Feedback Testing for QUIZ HISTORY'
+    let isCompleted = true
+    const response = await request(app)
+      .post(`/v1/quizhistory`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: createdQuiz._id,
+        score: score,
+        feedback: feedback,
+        isCompleted: isCompleted,
+      })
+    expect(response.body.message).toBe('Quiz history created successfully.')
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.data.quizHistory.quizId).toBe(createdQuiz._id)
+    expect(response.body.data.quizHistory.score).toBe(score)
+    expect(response.body.data.quizHistory.feedback).toBe(feedback)
+    expect(response.body.data.quizHistory.isCompleted).toBe(isCompleted)
+    expect(response.body.data.quizHistory.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quizHistory.is_deleted).toBe(false)
+    createdQuizHistory = response.body.data.quizHistory
+  })
+
+  //#endregion
+
+  // #region Tests for Update APIs
+
+  // Test invalid authentication for quiz history update api
+  it('quiz history update: invalid authentication token', async () => {
+    const response = await request(app)
+      .patch(`/v1/quizhistory/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        score: '',
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test quiz history update api with invalid id
+  it('quiz history update: invalid id', async () => {
+    const response = await request(app)
+      .patch(`/v1/quizhistory/randomid`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: createdQuiz._id,
+        score: 1,
+        feedback: "feedback",
+        isCompleted: true,
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz history with Id randomid not found in the system.`
+    )
+  })
+
+  // Test quiz history update api with valid id and data
+  it('quiz history update: valid id and data', async () => {
+    let score = 6
+    let feedback = 'Feedback Testing for QUIZ HISTORY - EDITED VERSION'
+    let isCompleted = false
+    const response = await request(app)
+      .patch(`/v1/quizhistory/${createdQuizHistory._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: createdQuiz._id,
+        score: score,
+        feedback: feedback,
+        isCompleted: isCompleted,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz history updated successfully.')
+    expect(response.body.data.quizHistory.quizId).toBe(createdQuiz._id)
+    expect(response.body.data.quizHistory.score).toBe(score)
+    expect(response.body.data.quizHistory.feedback).toBe(feedback)
+    expect(response.body.data.quizHistory.isCompleted).toBe(isCompleted)
+    expect(response.body.data.quizHistory.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quizHistory.is_deleted).toBe(false)
+    createdQuizHistory = response.body.data.quizHistory
+  })
+
+  //#endregion
+
+  //#region Tests for Get APIs
+
+  // Test invalid authentication for get all quiz history api
+  it('get all quiz histories: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test correct working of get all quiz history api
+  it('get all quiz histories: valid', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Successfully fetched all records.')
+    expect(Array.isArray(response.body.data.quizHistories)).toBe(true)
+  })
+
+  // Test invalid authentication for get by id quiz history api
+  it('get quiz history by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory/random_id`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id for get by id quiz history api
+  it('get quiz history by id: invalid id', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory/random_id`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz History with Id random_id not found in the system.`
+    )
+  })
+
+  // Test correct working of get by id quiz history api
+  it('get quiz history by id: valid id', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory/${createdQuizHistory._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.data.quizHistory._id).toBe(createdQuizHistory._id)
+    expect(response.body.data.quizHistory.quizId).toBe(
+      createdQuizHistory.quizId
+    )
+    expect(response.body.data.quizHistory.score).toBe(createdQuizHistory.score)
+    expect(response.body.data.quizHistory.isCompleted).toBe(
+      createdQuizHistory.isCompleted
+    )
+    expect(response.body.data.quizHistory.feedback).toBe(
+      createdQuizHistory.feedback
+    )
+    expect(response.body.data.quizHistory.createdBy.username).toBe(
+      userCredentials.username
+    )
+    expect(response.body.data.quizHistory.is_deleted).toBe(false)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Successfully fetched the record.')
+  })
+
+  //#endregion
+
+  // #region Tests for Delete APIs
+
+  // Test invalid authentication in delete quiz history api
+  it('delete quiz history by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .delete(`/v1//quizhistory/${createdQuizHistory._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id in delete quiz history api
+  it('delete quiz history by id: invalid id', async () => {
+    const response = await request(app)
+      .delete(`/v1//quizhistory/random_id`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('Error while deleting the record.')
+  })
+
+  // Test correct working of delete quiz history api
+  it('delete quiz history by id: valid id', async () => {
+    const response = await request(app)
+      .delete(`/v1//quizhistory/${createdQuizHistory._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Quiz history deleted successfully')
+  })
+
+  // Test to confirm deletion
+  it('delete quiz history by id: confirming the quiz history is deleted', async () => {
+    const response = await request(app)
+      .get(`/v1//quizhistory/${createdQuizHistory._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      `Quiz History with Id ${createdQuizHistory._id} not found in the system.`
+    )
+  })
+
+  //#endregion
+})
+
+
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
