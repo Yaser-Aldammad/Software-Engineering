@@ -1,0 +1,25 @@
+Date and Time: March 17, 2023 11:30 Newfoundland time
+
+Scrum Master: Oluwafunmiwo Judah Sholola
+
+Note Taker: Pranav Arora
+
+Attendees: Oluwafunmiwo Judah Sholola, Prabin Kumar Shrestha, and Pranav Arora
+
+Agenda: Follup meeting for the progress in frontend and backend.
+
+Action Items:
+
+- Pranav gave a live demo of the current state of integration of FED and BED
+	- demo'd creation of a quiz, addition to the site, and opening a quiz
+- Pranav and Prabin discussed possible revisions to the git flow, but decided on retaining the current system as it reduces potential conflicts with inter-dependent user stories/features (across FED and BED)				
+
+- all members will meet and discuss the feasibility of each of our created/generated `requested` user stories/features for implementation/retention in the Product Backlog
+- for BED, members should think up tasks that they would like to work on (may be related to their existing task from Sprint2, their created userstory/features or something entirely different); consult with Shaher
+- as Pranav suggested, a member can take up the task of creating a script that can populate a few entries in all the collections of the MongoDB database at the start of running the Quiz App
+	- this will be separate from temporary entries created during the unit/regression testing (those will be cleaned up after the tests to keep the system in the same state as before the unit testing)
+- Pranav and Balsher will be investigating how to create unit test cases for the FE, and will continue their efforts in integrating the FED and BED
+- Shaher is working on the sample jest test cases, and share with all members
+- in the meanwhile, members can read up on the jest documentation and how to create unit tests for their tasks
+
+Adjournment: March 17, 2023 12:00 PM Newfoundland time.
