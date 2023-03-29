@@ -169,6 +169,31 @@ controller.UpdateQuizHistory = async function (req, res) {
  * @param {Object} res - Express response object containing the response to send back to the client.
  * @returns {Object} Returns a JSON object containing a success flag and a message.
  */
+controller.DeletePermanentlyByQuizHistoryId = async function (req, res) {
+  try {
+    await QuizHistoryModel.deleteOne({ _id: req.params.quizHistoryId }) //deleting by id from database
+    return res.json({
+      success: true,
+      message: `Quiz history deleted successfully`,
+    })
+  } catch (ex) {
+    return res.status(404).json({
+      success: false,
+      message: 'Error while deleting the record.',
+    })
+  }
+}
+
+/**
+ * An async function that receives a request object and a response object.
+ * The function deletes the quiz history from the database.
+ * The function returns a response with a success flag and a message.
+ * @function
+ * @async
+ * @param {Object} req - Express request object containing the quizHistoryId params.
+ * @param {Object} res - Express response object containing the response to send back to the client.
+ * @returns {Object} Returns a JSON object containing a success flag and a message.
+ */
 controller.DeleteByQuizHistoryId = async function (req, res) {
   try {
     const quiz = await QuizHistoryModel.findById(

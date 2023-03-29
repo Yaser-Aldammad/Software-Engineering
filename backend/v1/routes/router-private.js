@@ -132,6 +132,10 @@ module.exports = function RouterPrivate(database, settings) {
    */
   router.route(`/quizhistory/:quizHistoryId`).patch(quizHistoryController.UpdateQuizHistory)
   /**
+   * routes DELETE /quiz/:quizHistoryId to delete quiz history permanently
+   */
+  router.route(`/quizhistory/parmanent/:quizHistoryId`).delete(quizHistoryController.DeletePermanentlyByQuizHistoryId)
+  /**
    * routes DELETE /quiz/:quizHistoryId to delete quiz history
    */
   router.route(`/quizhistory/:quizHistoryId`).delete(quizHistoryController.DeleteByQuizHistoryId)
