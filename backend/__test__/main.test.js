@@ -422,7 +422,7 @@ describe('QuizItems API Tests', () => {
     expect(response.statusCode).toBe(401)
   })
 
-  // Test QuizItem create api using invalid data
+  // Test QuizItem create api for Q/A using invalid data
   it('QuizItem create: invalid data', async () => {
     const response = await request(app)
       .post(`/v1/createQuizItem`)
@@ -436,7 +436,7 @@ describe('QuizItems API Tests', () => {
     expect(response.body.success).toBe(false)
   })
 
-  // Test correct working of quiz create api
+  // Test correct working of quiz create api for Q/A
   it('QuizItem create: valid data', async () => {
     const response = await request(app)
       .post(`/v1/createQuizItem`)
@@ -469,6 +469,52 @@ describe('QuizItems API Tests', () => {
     expect(response.body.message).toBe(
       'That QuizItem already exists; you can either change the question or change the type!'
     )
+  })
+
+  // Test QuizItem create api for MC using invalid data (missing options)
+  it('QuizItem create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: '',
+        type: 'MC',
+        answer: 'one',
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`You must provide options for multiple choice QuizItems!`)
+  })
+
+  // Test QuizItem create api for MC using invalid data (length(options) < 3)
+  it('MC QuizItem create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: '',
+        type: 'MC',
+        answer: 'one',
+        options: ['one', 'two']
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`Length of options for multiple choice QuizItems must be greater than 2!`)
+  })
+  
+  // Test QuizItem create api for MC using valid data (length(options) >= 3)
+  it('MC QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: '',
+        type: 'MC',
+        answer: 'one',
+        options: ['one', 'two', 'three']
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
   })
   // #endregion
 
@@ -553,6 +599,14 @@ describe('QuizItems API Tests', () => {
     expect(response.body.message).toBe(`QuizItem found!`)
   })
 
+  // Test invalid authentication for getQuizItems
+  it('Get all QuizItems: invalid authentication', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
   // Test correctness of getQuizItems
   it('Get all QuizItems', async () => {
     const response = await request(app)
@@ -562,6 +616,15 @@ describe('QuizItems API Tests', () => {
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('QuizItems found!')
     expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+
+  //Test invalid authentication for getQuizItemsByQuizId
+  it('Get all QuizItems under a Quiz: invalid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItemsByQuizId/${quiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    console.log(response.body)
+    expect(response.statusCode).toBe(401)
   })
 
   //Test invalid Quiz ID for getQuizItemsByQuizId
@@ -583,6 +646,46 @@ describe('QuizItems API Tests', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('QuizItems found!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+
+  //Test invalid authentication for getQAQuizItems
+  it('Get all QuizItems under a Quiz: invalid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQAQuizItems}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    console.log(response.body)
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test correctness of getQAQuizItems
+  it('Get all QuizItems under a Quiz: valid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQAQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QA QuizItems found and retrieved!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+
+  //Test invalid authentication for getMCQuizItems
+  it('Get all QuizItems under a Quiz: invalid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getMCQuizItems}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    console.log(response.body)
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test correctness of getMCQuizItems
+  it('Get all QuizItems under a Quiz: valid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getMCQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('MC QuizItems found and retrieved!')
     expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
   //#endregion
