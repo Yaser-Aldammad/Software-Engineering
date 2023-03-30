@@ -32,10 +32,7 @@
 >
 > - **Assignment 2:** 
 >
-> _feature:_ 
-> [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page)
->
-> _code_tasks:_ [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
+> _features (code_tasks):_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page), [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
 >
 > - **Assignment 3:**
 >
@@ -49,11 +46,11 @@
 >
 > - **Assignment 2:**
 >
-> _feature (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
+> _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
 >
 > - **Assignment 3:**
 >
-> _feature (unit testing):_ [FED Signup API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/142), [FED Login API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/140), [Signup Webpage unit testing](https://github.com/MUN-COMP6905/project-cteam/issues/143)
+> _features (unit testing):_ [FED Signup API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/142), [FED Login API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/140), [Signup Webpage unit testing](https://github.com/MUN-COMP6905/project-cteam/issues/143)
 >
 > _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [login.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/login.test.js), [signup.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signup.test.js), [signuphtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signuphtml.test.js)
 >
@@ -75,7 +72,7 @@
 >
 > _user story:_ [Unit Tests for Auth APIs](https://github.com/MUN-COMP6905/project-cteam/issues/101)
 > 
-> _features (code tasks):_ [Signup Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/105), [Login Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/106), [Logout Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/128)
+> _features (unit testing):_ [Signup Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/105), [Login Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/106), [Logout Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/128)
 >
 > _user story:_ [User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/171)
 >
@@ -95,7 +92,7 @@
 
 > _user story:_ [Unit Tests for Quiz APIs](https://github.com/MUN-COMP6905/project-cteam/issues/113)
 >
-> _features (code tasks):_ [Create Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/114), [Update Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/115), [Delete Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/116), [Get All Quizzes Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/117), [Get Quiz by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/118)
+> _features (unit testing):_ [Create Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/114), [Update Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/115), [Delete Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/116), [Get All Quizzes Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/117), [Get Quiz by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/118)
 > 
 > _user story:_ [Quiz History Implementation](https://github.com/MUN-COMP6905/project-cteam/issues/162)
 >
@@ -113,7 +110,7 @@
 >
 > _user story:_ [Unit Tests for User APIs](https://github.com/MUN-COMP6905/project-cteam/issues/129)
 >
-> _features (code tasks):_ [Update User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/109), [Get All Users Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/111), [Get User by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/pull/110), [Delete User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/112) 
+> _features (unit testing):_ [Update User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/109), [Get All Users Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/111), [Get User by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/pull/110), [Delete User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/112) 
 >
 > _user story:_ [Email Notification](https://github.com/MUN-COMP6905/project-cteam/issues/156)
 >
@@ -131,7 +128,7 @@
 >
 > _user story:_ [Unit Tests for Quiz Questions APIs](https://github.com/MUN-COMP6905/project-cteam/issues/119)
 >
-> _features (code tasks):_ [Create Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/120), [Update Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Get all Questions Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/123), [Get Questions by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/124)
+> _features (unit testing):_ [Create Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/120), [Update Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Get all Questions Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/123), [Get Questions by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/124)
 >
 > _user story:_ [Quiz Question Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/152)
 >
