@@ -2,12 +2,16 @@
 ## General Project Layout
 
 > `Frontend` folder contains titular-related files (assets, design files, views)
->
+>   
 > `Backend` folder contains titular-related files (models, controllers, routes)
 >
 > `doc` folder contains titular-related files (process documentation, meeting minutes, performance reviews)
 >
 > `Kanban (story) board` is located under `Projects` section of repo
+>
+> `Frontend\__test__` folder contains unit tests for frontend
+>
+> `Backend\__test__` folder contains unit tests for backend
 
 ## Team description
 
