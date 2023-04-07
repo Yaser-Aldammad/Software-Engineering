@@ -1,5 +1,5 @@
 /**
- * @file API Unit testing of signupform.js using JEST
+ * @file API Unit testing of admin.js using JEST
  * @author Balsher Singh <balshers@mun.ca>
  */
 
@@ -8,9 +8,9 @@
 const axios = require("axios");
 
 /**
- * signup
+ * admin
  * method: POST
- * summary: API Testing of signup Module
+ * summary: API Testing of Admin Module
  */
 async function signup() {
     const res = await axios("http://localhost:3000/v1/signup", {
@@ -51,7 +51,7 @@ async function add_quiz() {
 
 /**
  * JEST unit testing starts
- * Test Suite: Frontend signup API testing
+ * Test Suite: Frontend Admin API testing
  */
 
 var token = "";
@@ -76,9 +76,9 @@ describe("Frontend Admin API testing", () => {
   });
 
   /**
-   * If the signup response is being retrieved:
+   * If the admin add_quiz response is being retrieved:
    *
-   * Is signup for that user successful?
+   * Is add_quiz for that user successful?
    *
    */
   it("Retrieves Quiz Add Success Flag", async () => {
