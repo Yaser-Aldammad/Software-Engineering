@@ -28,7 +28,7 @@ let quizContainer;
 /**
  * JEST unit testing starts
  * file: admin.html
- * Test Suite: Index Page testing
+ * Test Suite: Admin Page testing
  */
 describe("admin.html", () => {
   beforeEach(() => {
