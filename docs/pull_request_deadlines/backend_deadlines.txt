@@ -1,0 +1,65 @@
+Name : Setup Jest for Unit Testing#100
+Link :https://github.com/MUN-COMP6905/project-cteam/pull/103
+Assignees : Muhammad-Shaheryar
+Finished : March 19, 2023 08:05 AM
+Deadline : March 19, 2023 11:59 PM
+
+Name: Unit Tests for Auth APIs#101
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/107
+Assignees : Muhammad-Shaheryar
+Finished : March 19, 2023 10:33 AM
+Deadline : March 20, 2023 11:59 PM
+
+Name: Unit Tests for User APIs#108
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/129
+Assignees : Yaser-Aldammad
+Finished : March 19, 2023 10:42 AM
+Deadline : March 20, 2023 11:59 PM
+
+Name: Unit Tests for Quiz APIs#113
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/147 
+Assignees : prabinKshrestha
+Finished : March 26, 2023 07:22 PM
+Deadline : March 26, 2023 11:59 PM
+
+Name: Unit Tests for Quiz APIs#113
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/151 
+Assignees : prabinKshrestha
+Finished : March 28, 2023 04:48 AM
+Deadline : March 28, 2023 11:59 PM
+
+Name: Email Notification#156
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/159
+Assignees : Yaser-Aldammad
+Finished : March 29, 2023 08:13 PM
+Deadline : March 29, 2023 11:59 PM
+
+Name: Remove Password Property#160
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/161
+Assignees : Muhammad-Shaheryar
+Finished : March 29, 2023 08:19 PM
+Deadline : March 29, 2023 11:59 PM
+
+Name: Quiz History Implementation#162
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/170
+Assignees : prabinKshrestha
+Finished : March 29, 2023 08:24 PM
+Deadline : March 29, 2023 11:59 PM
+
+Name: Unit Tests for Quiz Question APIs#119
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/163
+Assignees : JCK07115 
+Finished : March 29, 2023 08:30 PM
+Deadline : March 29, 2023 11:59 PM
+
+Name: Quiz Question Sub types#152
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/165
+Assignees : JCK07115 
+Finished : March 29, 2023 08:31 PM
+Deadline : March 29, 2023 11:59 PM
+
+Name: user Feedback#171
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/178
+Assignees : Muhammad-Shaheryar
+Finished : March 29, 2023 08:39 PM
+Deadline : March 29, 2023 11:59 PM

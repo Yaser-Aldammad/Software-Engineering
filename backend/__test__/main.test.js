@@ -62,6 +62,7 @@ beforeEach(function () {
 let userCredentials = {}
 let authToken
 let user
+let createdQuiz
 
 jest.setTimeout(100000)
 
@@ -171,9 +172,6 @@ A test block containing tests for Quiz API
 * Tests for Create, Update, Get all, Get by id, and Delete by id endpoints
 */
 describe('Quiz API Tests', () => {
-  // Variable to store the created quiz which will be used for get, update and delete
-  let createdQuiz
-
   // #region Tests for Create APIs
 
   // Test invalid authentication for quiz create api
@@ -228,6 +226,7 @@ describe('Quiz API Tests', () => {
     )
     expect(response.body.data.quiz.is_deleted).toBe(false)
     createdQuiz = response.body.data.quiz
+    quiz = response.body.data.quiz
   })
 
   //#endregion
@@ -447,6 +446,93 @@ describe('Quiz History API Tests', () => {
       .set({ Authorization: `Bearer ${authToken}test` })
       .send({
         quizId: 1,
+/*
+A test block containing tests for QuizItems API
+* Tests for Create, Update, Get, Get all, Get by id, and Delete by id endpoints
+*/
+describe('QuizItems API Tests', () => {
+  // Variable to store the created quiz which will be used for get, update and delete
+  let createdQuizItem
+
+  // #region Tests for Create APIs
+  // Test invalid authentication for Create QuizItem API
+  it('QuizItem create: invalid authentication token', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        quiz_id: '',
+        type: 'Q/A',
+        question: 'test question',
+        answer: 'test',
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test QuizItem create api using invalid data
+  it('QuizItem create: invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: '',
+        type: 'Q/A',
+        answer: 'test anwser',
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  // Test correct working of quiz create api
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'Q/A',
+        question: user.username,
+        answer: '42',
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    createdQuizItem = response.body.data
+  })
+
+  // Test correct working of duplicate QuizItem error
+  it('QuizItem create: Duplicate', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'Q/A',
+        question: user.username,
+        answer: '42',
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(
+      'That QuizItem already exists; you can either change the question or change the type!'
+    )
+  })
+  // #endregion
+
+  // #region Tests for Update QuizItems API
+  // relevant fields for update unit tests
+  let new_quiz_id = 'q6'
+  let new_qi_type = 'mc'
+  let new_qi_answer = 'test anwser'
+
+  // Test invalid authentication for quiz update api
+  it('QuizItem update: invalid authentication token', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        quiz_id: new_quiz_id,
+        type: new_qi_type,
+        answer: new_qi_answer,
       })
     expect(response.statusCode).toBe(401)
   })
@@ -564,6 +650,206 @@ describe('Quiz History API Tests', () => {
   it('get all quiz histories: invalid authentication token', async () => {
     const response = await request(app)
       .get(`/v1//quizhistory`)
+
+  // Test QuizItem update api with invalid id
+  let fake_id = '62a35e4f39d32119b8432caa'
+  it('QuizItem update: invalid QuizItem id', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: new_quiz_id,
+        type: new_qi_type,
+        answer: new_qi_answer,
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`QuizItem not found!`)
+  })
+
+  // Test quiz update api with valid id and data
+  it('QuizItem update: valid id and data', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: new_qi_type,
+        answer: new_qi_answer,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItem updated successfully.')
+  })
+  // #endregion
+
+  // #region Tests for Get APIs
+  // Test invalid authentication for getQuizItem by QuizItem ID
+  it('Get QuizItem by QuizItem ID: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid QuizItem ID for getQuizItem by QuizItem ID
+  it('Get QuizItem by QuizItem ID: invalid QuizItem ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`QuizItem not found!`)
+  })
+
+  // Test correctness of getQuizItem by QuizItem ID
+  it('Get QuizItem by QuizItem ID: valid QuizItem ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`QuizItem found!`)
+  })
+
+  // Test correctness of getQuizItems
+  it('Get all QuizItems', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItems found!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+
+  //Test invalid Quiz ID for getQuizItemsByQuizId
+  it('Get all QuizItems under a Quiz: invalid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItemsByQuizId/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    console.log(response.body)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.data.quizItems).toHaveLength(0)
+  })
+
+  // Test correctness of getQuizItemsByQuizId
+  it('Get all QuizItems under a Quiz: valid Quiz ID', async () => {
+    const response = await request(app)
+      .get(`/v1/getQuizItemsByQuizId/${quiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItems found!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+  //#endregion
+
+  // #region Tests for Delete APIs
+  // Test invalid authentication in delete quiz api
+  it('Delete QuizItem by id: invalid authentication token', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid id of QuizItem delete api
+  it('Delete QuizItem by ID: invalid ID', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${fake_id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`QuizItem not found!`)
+  })
+
+  // Test correct working of QuizItem delete api
+  it('Delete QuizItem by ID: valid id', async () => {
+    const response = await request(app)
+      .delete(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`Successfully deleted!`)
+  })
+
+  // Test to confirm deletion of QuizItem
+  it('Delete QuizItem by ID: confirming the QuizItem is deleted', async () => {
+    const response = await request(app)
+      .get(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+  })
+  //#endregion
+})
+
+// #region Tests for user APIs
+describe('feedback tests', () => {
+  let feedback
+  it('create feedback success', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        description: 'test description',
+        quizId: createdQuiz._id,
+      })
+    feedback = response.body.data
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('create feedback invalid data', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quizId: createdQuiz._id,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('create feedback invalid Auth token', async () => {
+    const response = await request(app)
+      .post(`/v1/feedback`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        description: 'test description',
+        quizId: createdQuiz._id,
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get feedback by id success', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get feedback by invalid id', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/jhbchasj`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('get feedback by id not found', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('get feedback by id with invalid Auth token', async () => {
+    const response = await request(app)
+      .get(`/v1/feedback/6424089651495dd0071d1e1a`)
       .set({ Authorization: `Bearer ${authToken}test` })
     expect(response.statusCode).toBe(401)
   })
@@ -583,6 +869,18 @@ describe('Quiz History API Tests', () => {
   it('get quiz history by id: invalid authentication token', async () => {
     const response = await request(app)
       .get(`/v1//quizhistory/random_id`)
+
+  it('get all feedback', async () => {
+    const response = await request(app)
+      .get(`/v1/feedbacks`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get all feedback invalid auth token', async () => {
+    const response = await request(app)
+      .get(`/v1/feedbacks`)
       .set({ Authorization: `Bearer ${authToken}test` })
     expect(response.statusCode).toBe(401)
   })
@@ -672,6 +970,126 @@ describe('Quiz History API Tests', () => {
 })
 
 
+  it('soft delete feedback by id success', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('soft delete feedback by id invalid Id', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/hsddjhabs`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('soft delete feedback by id not found', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('soft delete feedback by id invalid auth token', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/softdelete/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('update feedback by id success', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('update feedback by id invalid Id', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/sdasd`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('update feedback by id not found', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('update feedback by id invalid token', async () => {
+    const response = await request(app)
+      .patch(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+      .send({
+        is_deleted: false,
+      })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('parmanent delete feedback by id success', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('parmanent delete feedback by invalid id', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/hbhbjnn`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('parmanent delete feedback by id not found', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/6424089651495dd0071d1e1a`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+  })
+
+  it('parmanent delete feedback by id invalid auth token', async () => {
+    const response = await request(app)
+      .delete(`/v1/feedback/${feedback._id}`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  it('get feedbacks by userId success', async () => {
+    const response = await request(app)
+      .get(`/v1/userId/feedback`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+  })
+
+  it('get feedbacks by userId invalid auth tokens', async () => {
+    const response = await request(app)
+      .get(`/v1/userId/feedback`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+})
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {
     const response = await request(app)
@@ -792,3 +1210,5 @@ describe('users test', () => {
     expect(response.statusCode).toBe(401)
   })
 })
+
+//#endregion

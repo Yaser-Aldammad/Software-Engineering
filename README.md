@@ -2,12 +2,16 @@
 ## General Project Layout
 
 > `Frontend` folder contains titular-related files (assets, design files, views)
->
+>   
 > `Backend` folder contains titular-related files (models, controllers, routes)
 >
 > `doc` folder contains titular-related files (process documentation, meeting minutes, performance reviews)
 >
 > `Kanban (story) board` is located under `Projects` section of repo
+>
+> `Frontend\__test__` folder contains unit tests for frontend
+>
+> `Backend\__test__` folder contains unit tests for backend
 
 ## Team description
 
@@ -30,17 +34,35 @@
 >
 > **Pranav Arora (202286040)**
 >
-> _feature:_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page)
+> - **Assignment 2:** 
 >
-> _code_tasks:_ [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/f-student-page/frontend/views/index.html)
+> _features (code_tasks):_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page), [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
+>
+> - **Assignment 3:**
+>
+> _user story:_ [Unit Test For Quiz Page Components](https://github.com/MUN-COMP6905/project-cteam/issues/127), [f-unit-static](https://github.com/MUN-COMP6905/project-cteam/tree/f-unit-static)
+>
+> _features (unit testing):_  [NavBar Render Testing](https://github.com/MUN-COMP6905/project-cteam/issues/131), [Static Image Rendering Testing](https://github.com/MUN-COMP6905/project-cteam/issues/132), [Quiz Card Rendering Testing](https://github.com/MUN-COMP6905/project-cteam/issues/133), [Footer Rendering Testing](https://github.com/MUN-COMP6905/project-cteam/issues/134), [Frontend Quiz API Testing](https://github.com/MUN-COMP6905/project-cteam/issues/144), [Login Page Component Testing](https://github.com/MUN-COMP6905/project-cteam/issues/146)
+>
+> _features (code_tasks):_ [index.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/index.test.js), [indexhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/indexhtml.test.js), [loginhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/loginhtml.test.js), [quiz.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/quiz.html), [Frontend-Backend Connection](https://github.com/MUN-COMP6905/project-cteam/issues/125)
 >
 > **Balsher Singh (202285114)**
 >
-> _feature:_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile)
+> - **Assignment 2:**
 >
-> _code_tasks:_ [login.html](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/views/login.html), [signup.html](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/views/signup.html)
+> _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
+>
+> - **Assignment 3:**
+>
+> _features (unit testing):_ [FED Signup API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/142), [FED Login API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/140), [Signup Webpage unit testing](https://github.com/MUN-COMP6905/project-cteam/issues/143)
+>
+> _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [login.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/login.test.js), [signup.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signup.test.js), [signuphtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signuphtml.test.js)
+>
+> _feature (code tasks):_ [Extension of Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/136)
 >
 > **Muhammad Shaheryar (202285690)**
+>
+> - **Assignment 2:**
 >
 > _user story:_ [Authentication](https://github.com/MUN-COMP6905/project-cteam/issues/77)
 >
@@ -48,30 +70,81 @@
 >
 > _features (code tasks):_ [Login](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [Logout](https://github.com/MUN-COMP6905/project-cteam/issues/40)
 >
+> - **Assignment 3:**
+>
+> _user story:_ [Setup Jest for Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/100)
+>
+> _user story:_ [Unit Tests for Auth APIs](https://github.com/MUN-COMP6905/project-cteam/issues/101)
+> 
+> _features (unit testing):_ [Signup Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/105), [Login Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/106), [Logout Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/128)
+>
+> _user story:_ [User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/171)
+>
+> _features (code tasks):_ [Get/Get All User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/175), [Delete User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/174), [Update User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/173), [Create User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/172), [Get Feedback by UserID](https://github.com/MUN-COMP6905/project-cteam/issues/180)
+
+> _user story:_ [Remove Password Property](https://github.com/MUN-COMP6905/project-cteam/issues/160)
+>
 > **Prabin Kumar Shrestha (202291331)**
+>
+> - **Assignment 2:**
 >
 > _user story:_ [Quiz API's](https://github.com/MUN-COMP6905/project-cteam/issues/42)
 >
 > _features (code tasks):_ [Create Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/43), [Update Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/44), [Get Quiz and Quizzes](https://github.com/MUN-COMP6905/project-cteam/issues/46), [Delete Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/45) 
 >
+> - **Assignment 3:**
+
+> _user story:_ [Unit Tests for Quiz APIs](https://github.com/MUN-COMP6905/project-cteam/issues/113)
+>
+> _features (unit testing):_ [Create Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/114), [Update Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/115), [Delete Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/116), [Get All Quizzes Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/117), [Get Quiz by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/118)
+> 
+> _user story:_ [Quiz History Implementation](https://github.com/MUN-COMP6905/project-cteam/issues/162)
+>
+> _features (code tasks):_ [Get and Get All Quiz Histories](https://github.com/MUN-COMP6905/project-cteam/issues/169), [Delete Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/168), [Update Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/167), [Create Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/166)
+> 
 > **Yaser Aldammad (202246203)**
+>
+> - **Assignment 2:**
 >
 > _user story:_ [User API's](https://github.com/MUN-COMP6905/project-cteam/issues/34)
 >
 > _features (code tasks):_ [Create User](https://github.com/MUN-COMP6905/project-cteam/issues/35), [Update User](https://github.com/MUN-COMP6905/project-cteam/issues/36), [Get User and Get Users](https://github.com/MUN-COMP6905/project-cteam/pull/86), [Delete User](https://github.com/MUN-COMP6905/project-cteam/issues/37)
 >
+> - **Assignment 3:**
+>
+> _user story:_ [Unit Tests for User APIs](https://github.com/MUN-COMP6905/project-cteam/issues/129)
+>
+> _features (unit testing):_ [Update User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/109), [Get All Users Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/111), [Get User by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/pull/110), [Delete User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/112) 
+>
+> _user story:_ [Email Notification](https://github.com/MUN-COMP6905/project-cteam/issues/156)
+>
+> _features (code tasks):_ [Forget Password](https://github.com/MUN-COMP6905/project-cteam/issues/157), [Forget Password Verify](https://github.com/MUN-COMP6905/project-cteam/issues/158)
+>
 > **Oluwafunmiwo Judah Sholola (202287158)**
+>
+> - **Assignment 2:**
 >
 > _user story:_ [QuizItem API's](https://github.com/MUN-COMP6905/project-cteam/issues/61)
 >
 > _features (code tasks):_ [Create QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/62), [Update QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/63), [Get QuizItem, Get QuizItem by Quiz ID, Get QuizItems](https://github.com/MUN-COMP6905/project-cteam/issues/64), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/65)
-
+>
+> - **Assignment 3:**
+>
+> _user story:_ [Unit Tests for Quiz Questions APIs](https://github.com/MUN-COMP6905/project-cteam/issues/119)
+>
+> _features (unit testing):_ [Create Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/120), [Update Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Get all Questions Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/123), [Get Questions by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/124)
+>
+> _user story:_ [Quiz Question Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/152)
+>
+> _features (code tasks):_ [Modify Existing QUiz Question APIs for Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/153), [Get MCQs Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/154), [Get Q/A Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/155)
+>
 > ### **Individual Requested/Generated User Stories & Features**
 >
 > Below are the user stories and 2 stemming features created by each team member, and to be considered for implementation in future sprints.
 >
 > **Pranav Arora (202286040)**
 >
+> - **Assignment 2:**
 > _user story:_ [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30)
 >
 > _features:_ [Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/31), [Student Page](https://github.com/MUN-COMP6905/project-cteam/issues/32)
@@ -110,7 +183,7 @@
 >
 > The frontend part of the project renders the webpages on the client. It will be connected with the backend to perform the CRUD operations(Create, Read, Update, Delete) using various REST APIs (GET, POST, PUT, DELETE) respectively, and store them into the MongoDB Database.
 >
-> _All the frontend files are in the folder [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/u-app-ui/frontend)_
+> _All the frontend files are in the folder [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/frontend)_
 >
 > #### Frontend Code Run Instructions
 > To run frontend code, kindly follow the given instructions:
@@ -119,7 +192,20 @@
 >
 > ```git
 > git clone https://github.com/MUN-COMP6905/project-cteam
-> cd .\project-cteam\
+>```
+>
+> - Run the backend server
+>
+>```cmd
+> cd .\project-team\backend
+> npm install
+> npm run watch
+>```
+>
+> - Go to the frontend folder
+>
+>```cmd
+> cd .\project-cteam\frontend
 > ```
 >
 > - Install the dependencies from `package.json`
@@ -134,11 +220,11 @@
 > npm run frontend
 > ```
 >
-> or
-> 
+> - To run the tests, simply run in the frontend folder:
+>
 > ```cmd
-> nodemon frontend/index.js
-> ```
+> npm test
+>```
 >
 > The app will listen to http://localhost:8080
 
@@ -149,9 +235,12 @@
 >    |--u-app-ui (@pranavarora1895 user story)
 >       |--f-student-page
 >       |--f-student-profile
+>    |--u-unittest-quizfront
+>       |--f-unit-static
 >    |--u-admin-ui (@balshersingh10 user story)
 >       |--f-db-bridge
 >       |--f-admin-access
+>    |--u-unittest-profilefront
 > ```
 
 ## Attributions
@@ -183,7 +272,25 @@
 >   - Copyright free image library
 >   - Downloaded copyright free images and used them to our webpages.
 >
-> ### Backend
+> 6. JSDOM
+>   - Source - https://github.com/jsdom/jsdom
+>   - Webpage Testing library
+>   - Creates a headless browser to test the webpage templates. Works along with JEST.
+>
+> 7. JEST
+>   - Source - https://jestjs.io/
+>   - Unit Testing library
+>   - Used for unit and API testing
+>
+> 8. Lite-server
+>   - Source - https://www.npmjs.com/package/lite-server
+>   - Light-weight development only server
+>   - Used for developement and testing the frontend.
+>
+
+---
+
+### Backend
 - Creating RESTful APIs: Express is often used to create RESTful APIs that can
   be consumed by frontend applications or mobile apps. It provides features like
   routing, middleware, and error handling that make it easy to build and

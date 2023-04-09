@@ -13,7 +13,9 @@ form.addEventListener("submit", async function (event) {
       console.log(data);
       if (typeof data.success !== 'undefined' && data.success) {
         localStorage.setItem("token", data.data.token);
+        localStorage.setItem("objectid",data.data.user._id);
         console.log(localStorage.getItem("token"));
+        console.log(localStorage.getItem("objectid"));
         window.location.replace("./index.html");
       } else {
         errorMessage.textContent = 'Username or password incorrect';
