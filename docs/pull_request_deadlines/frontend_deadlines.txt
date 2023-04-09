@@ -45,3 +45,35 @@ Link : https://github.com/MUN-COMP6905/project-cteam/pull/149
 Assignees : @balshersingh10, @pranavarora1895
 Finished : March 27, 2023 4:31 PM
 Deadline : March 27, 2023 11:59 PM
+
+------------------------------------------------------------------------------------
+
+Name: Add admin ui page
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/186
+Assignees : @pranavarora1895
+Finished : April 6, 2023 12:45 PM
+Deadline : April 6, 2023 11:59 PM
+
+Name: F admin page test
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/188
+Assignees : @pranavarora1895
+Finished : April 6, 2023 12:47 PM
+Deadline : April 6, 2023 11:59 PM
+
+Name: Add Admin API functionality in frontend
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/190
+Assignees : @balshersingh10
+Finished : April 7, 2023 1:40 PM
+Deadline : April 7, 2023 11:59 PM
+
+Name: F db bridge test
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/193
+Assignees : @balshersingh10
+Finished : April 7, 2023 1:58 PM
+Deadline : April 7, 2023 11:59 PM
+
+Name: Merge Frontend Admin functionalities for Assignment 4
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/198
+Assignees : @balshersingh10, @pranavarora1895
+Finished : April 8, 2023 8:16 PM
+Deadline : April 8, 2023 11:59 PM
