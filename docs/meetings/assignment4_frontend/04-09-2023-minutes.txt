@@ -1,0 +1,15 @@
+Date and Time: April 09, 2023 9:00AM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Alternative frontend architecture
+
+Action items: 
+
+Pranav and Balsher decided to choose React as the frontend alternative architecture. It is a component based decoupled architecture that is beneficial for conducting unit tests as well. Will add the Quiz app design in React. Alternate architecture was documented before and in this meeting, the review of the document was conducted.
+
+Follow-up actions: Performance Review.
+
+Adjournment: April 09, 2023 10:00 PM Newfoundland time.
+
+Signature: These minutes were approved by Pranav Arora.

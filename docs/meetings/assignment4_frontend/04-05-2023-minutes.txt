@@ -1,0 +1,29 @@
+Date and Time: April 05, 2023 9:00PM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Discussion and division of frontend tasks for assignment 4
+
+Action items: 
+
+After user profile and the Quiz section, we need to design the Admin Panel as it was mentioned in the previous sprints by Balsher.
+
+Division of tasks:
+
+1. Pranav Arora
+
+i. admin.html - HTML design page where the admin can add the quiz and get all the quizzes that they made.
+ii. adminhtml.test.js - Unit testing of admin html page to check if all the components are properly working.
+
+2. Balsher Singh
+
+i. admin.js - Logic and API data flow from backend to admin frontend will be designed in it.
+ii. admin.test.js - Unit testing of APIs would be conducted.
+
+Follow-up actions: Taking time constraints, we need to develop admin section quickly. Would meet again to check the status of the tasks.
+
+Next meeting: April 06, 10:00 AM Newfoundland Time.
+
+Adjournment: April 05, 2023 10:00 PM Newfoundland time.
+
+Signature: These minutes were approved by Pranav Arora.

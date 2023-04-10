@@ -1,0 +1,17 @@
+Date and Time: April 06, 2023 10:10AM Newfoundland time
+
+Attendees: (Frontend Team) Pranav Arora & Balsher Singh
+
+Agenda: Fixing bugs and test cases for the admin section.
+
+Action items: 
+
+Balsher faced some issues while writing the unit tests for admin.js. Pranav and Balsher tried to solve it and the test cases passed.
+
+Follow-up actions: Code Review and pr to master.
+
+Next meeting: April 08, 12:00 PM Newfoundland Time.
+
+Adjournment: April 06, 2023 12:00 PM Newfoundland time.
+
+Signature: These minutes were approved by Balsher Singh.
