@@ -6,12 +6,10 @@ _Instructions for installing are not correct. Have to be in subfolder to install
 
 _Backend unit tests hang after passing - there seems to be an async problem to be resolved_
 
-_No access to performance reviews. Could not find code reviews._
-
 _You are missing a clear statement of what I am suppossed to see when I run the project. What is the overall state of the project product right now???_
 
 
-Total: (74/100)
+Total: (89/100)
 
 
 Team submission evaluation will be based on the following:
@@ -23,8 +21,7 @@ Team submission evaluation will be based on the following:
 
 * Evaluation components will include:
   * (10/10%) Are the SCRUM meetings documented and all decisions documented properly and reflected in the Kanban Board and the issue tracker? Are decisions recorded in manner that provides for validation and traceability?
-  * (0/10%) Are progress (individual tasks), performance (how did the team members perform) and code reviews conducted and documented, including the following:
-  _I could not find these code reviews or access the perf reviews_
+  * (10/10%) Are progress (individual tasks), performance (how did the team members perform) and code reviews conducted and documented, including the following:
     * This should be the primary agenda of the end-of-sprint SCRUM meeting.
     * Each code task has been code reviewed explicitly
     * Each team member has been performance reviewed explicitly (identify them)
@@ -36,8 +33,7 @@ Team submission evaluation will be based on the following:
     * (5/5%) Scrummaster and notetaker roles properly conducted and circulated among team members
     * (0/5%) Current architecture and technology base (languages, modules, packages, tools) for project design described (including diagrams where needed) 
     _I saw something extensive front end, not so much for back end. Where is the docs for backend architecture?_
-    * (0/5%) pull request deadlines and process and other workflow elements (git workflow) described and enforced for all team members
-    _I don't see them stated anywhere. Did I miss it?_
+    * (5/5%) pull request deadlines and process and other workflow elements (git workflow) described and enforced for all team members
     * (3/5%) code review standards clear and identified (possibly using a checklist) encapsulating principles from lecture materials (DRY, SOLID, etc.) updated and enforced by review
     _You don;t include programming principles as far as I can see. Fix this._
     * (25/25%) documentation, Kanban Board and issue tracker
