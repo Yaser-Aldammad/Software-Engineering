@@ -1,0 +1,33 @@
+Date and Time: April 03, 2023 11:00AM Newfoundland time
+
+Attendees: Prabin, Yaser, Shaheryar, Judah, Balsher, Pranav
+
+Agenda: Discussion and division of backend tasks for assignment 4
+
+Action items: 
+
+Although we had not yet received feedback from the prior assignment, we discussed the alternative grading options, and what might be best for the team. We went over the requirements for assignment 4, specifically the high-level overview of what the alternate architecture might entail. 
+
+Based on the success of the separate group meetings (BED and FED) from the previous sprint, we agreed to adopt a similar approach for the final sprint (especially with exams coming up and other projects being wrapped up).
+
+
+Division of tasks:
+
+All Team Members:
+Documentation team (Judah and Prabin) will initiate the alternate architecture Kanban issue/task, while team leads will lay the foundation of the alternate architecture. All team members will contribute in some way to the document (in actual writeup, suggestions, and/or reviews).
+
+BED 
+1. Prabin
+Meet and work with Team Lead (Shaheryar) to come up with final (set of) coding tasks related to Quiz module; write regression tests for new tasks
+
+2. Yaser
+Meet and work with Team Lead (Shaheryar) to come up with final (set of) coding tasks related to User Account Mgmt module; write regression tests for new tasks
+
+
+4. Judah 
+Meet and work with Team Lead (Shaheryar) to come up with final (set of) coding tasks related to QuizItem module; write regression tests for new tasks
+
+3. Shaheryar
+Come up with final (set of) coding tasks related to User module; write regression tests for new tasks
+
+Signature: These minutes were approved by Judah Sholola.
