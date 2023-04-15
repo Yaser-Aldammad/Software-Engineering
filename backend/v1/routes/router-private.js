@@ -121,19 +121,19 @@ module.exports = function RouterPrivate(database, settings) {
      * routes GET /getQAQuizItems/:type to get all quest-and-ans (Q/A) quiz items
      */
   router
-  .route('/getQAQuizItems/:type')
+  .route('/getQAQuizItems/')
   .get(quizItemsController.getQAQuizItems)
   /**
   * routes GET /getMCQuizItems/:type to get all multiple choice (M/C) quiz items
   */
   router
-  .route('/getMCQuizItems/:type')
+  .route('/getMCQuizItems/')
   .get(quizItemsController.getMCQuizItems)
   /**
   * routes GET /getSATAQuizItems/:type to get all multiple choice (SATA) quiz items
   */
   router
-  .route('/getSATAQuizItems/:type')
+  .route('/getSATAQuizItems/')
   .get(quizItemsController.getSATAQuizItems)
   /**
    * routes DELETE /deleteQuizItem/:id to delete quizItem
