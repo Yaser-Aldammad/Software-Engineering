@@ -130,6 +130,12 @@ module.exports = function RouterPrivate(database, settings) {
   .route('/getMCQuizItems/:type')
   .get(quizItemsController.getMCQuizItems)
   /**
+  * routes GET /getSATAQuizItems/:type to get all multiple choice (SATA) quiz items
+  */
+  router
+  .route('/getSATAQuizItems/:type')
+  .get(quizItemsController.getSATAQuizItems)
+  /**
    * routes DELETE /deleteQuizItem/:id to delete quizItem
    */
   router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem)
