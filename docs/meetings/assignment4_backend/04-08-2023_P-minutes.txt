@@ -1,0 +1,8 @@
+Date: April 08, 2023 
+
+Attendees: Prabin, Shaheryar
+
+Agenda: Discussing and assigning new coding tasks; quiz leaderboard api, and implementation of test cases for them.
+
+
+Signature: These minutes were approved by Judah Sholola.

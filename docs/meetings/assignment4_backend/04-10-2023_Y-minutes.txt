@@ -1,0 +1,10 @@
+Date: April 10, 2023
+
+Attendees: Yaser, Shaheryar
+
+Agenda: Discussing functionality and implementation of user's roles.
+1. Admin has the access of all routes
+2. Teacher can create, retrieve, update, delete 'Quiz', 'QuizQuestions',
+3. Students can retrieve and submit quiz and also can retrieve his own progress or results.
+
+Signature: These minutes were approved by Judah Sholola.

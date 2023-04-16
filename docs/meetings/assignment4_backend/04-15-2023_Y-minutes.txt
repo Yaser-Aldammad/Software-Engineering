@@ -1,0 +1,8 @@
+Date: April 15, 2023
+
+Attendees: Yaser, Shaheryar
+
+Agenda: applying user's roles functions and creating unit tests
+
+
+Signature: These minutes were approved by Judah Sholola.
