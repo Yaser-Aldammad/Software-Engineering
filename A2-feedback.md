@@ -3,7 +3,7 @@
 ### General Comments
 _Good job! The meetings documentation could be improved by following a general tempalte and including decisions and conclusions of the meeting._
 
-_Overall: 80/100%_
+_Overall: 97/100%_
 
 ### Scheme
 * Evaluation components will include:
@@ -19,7 +19,7 @@ _Overall: 80/100%_
         * The process should be clear and concise, allowing the opportunity for the individual to respond to specific problems. (a full page of criticism is too long.)
         * Issues that arise from code review are noted in the board.
 
-    * (45/50%) Are the appropriate process elements established, followed and documented
+    * (50/50%) Are the appropriate process elements established, followed and documented
         * (0/5%) pull request deadlines and process and other workflow elements (git workflow) described so a team member can follow them
         _I don't see a pull request deadline, and the details of pull request reviews are unclear._
         _Please <mark>do not delete</mark> your branches, they are useful for marking purposes.
