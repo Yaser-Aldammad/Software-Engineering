@@ -1,0 +1,10 @@
+Date: April 10, 2023
+
+Attendees: Judah, Shaheryar
+
+Agenda: Discussing additional QuizItem functionality
+1. Adding select-all-that-apply (SATA) question types
+2. Filter by SATA questions
+3. Unit tests
+
+Signature: These minutes were approved by Judah Sholola.
