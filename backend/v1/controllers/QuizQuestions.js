@@ -166,9 +166,9 @@ controller.updateQuizItem = async function (req, res) {
       createdBy: req.user._id ?? record.createdBy,
     }
 
-    // change in quizitem type; we know that if quizitem was originally (created) 
-    // as type multiple choice, the createQuizItem method will have validated its properties
-    // so we only bother checking (specifically) if the type of the quizitem is being changed to 'MC'
+    // change in quizitem type; we know that if quizitem was originally (created) as type 
+    // MC or SATA, the createQuizItem method will have validated its properties so we only 
+    // bother checking (specifically) if the type of the quizitem is being changed to 'MC' or 'SATA'
     if (record.type !== 'MC' && (quizItem.type === 'MC' || quizItem.type === 'SATA')) {    
       valOpts = await validateMCandSATA(quizItem.options)
       if (valOpts === '-1') {                 // options field was not passed in

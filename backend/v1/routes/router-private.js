@@ -118,19 +118,19 @@ module.exports = function RouterPrivate(database, settings) {
     .route('/getQuizItemsByQuizId/:id')
     .get(quizItemsController.getQuizItemsByQuizId)
   /**
-     * routes GET /getQAQuizItems/:type to get all quest-and-ans (Q/A) quiz items
+     * routes GET /getQAQuizItems/ to get all quest-and-ans (Q/A) quiz items
      */
   router
   .route('/getQAQuizItems/')
   .get(quizItemsController.getQAQuizItems)
   /**
-  * routes GET /getMCQuizItems/:type to get all multiple choice (M/C) quiz items
+  * routes GET /getMCQuizItems/ to get all multiple choice (M/C) quiz items
   */
   router
   .route('/getMCQuizItems/')
   .get(quizItemsController.getMCQuizItems)
   /**
-  * routes GET /getSATAQuizItems/:type to get all multiple choice (SATA) quiz items
+  * routes GET /getSATAQuizItems/ to get all multiple choice (SATA) quiz items
   */
   router
   .route('/getSATAQuizItems/')
