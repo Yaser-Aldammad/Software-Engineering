@@ -73,7 +73,7 @@ module.exports = function RouterPrivate(database, settings) {
   /**
    * Route to get quizzes between start and end time
    */
-  //router.get('/quizzes/time', quizController.GetQuizesBtTime)
+  router.get('/quizzes/time', quizController.GetQuizesBtTime)
 
   //#endregion
 
