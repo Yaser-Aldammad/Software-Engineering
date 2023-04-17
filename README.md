@@ -28,16 +28,17 @@
 > **Team Member:** Yaser Aldammad  [@Yaser-Aldammad ](https://github.com/@Yaser-Aldammad)
 >
 > **Team Member:** Oluwafunmiwo Judah Sholola [@JCK07115](https://github.com/@JCK07115)
-
+>
+> ### **Current State of The Project**
+>
 > ### **Individual Coding Tasks**
 > Below are the features and their relevant code tasks that each team member worked on. This will be helpful while evaluating the individual code tasks.
 >
 > **Pranav Arora (202286040)**
 >
-> - **Assignment 2:** 
+> - **Assignment 4:**
 >
-> _features (code_tasks):_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page), [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
->
+>  _ features (code tasks  and unit testing):_ [Admin Panel: Admin Page UI](https://github.com/MUN-COMP6905/project-cteam/issues/51), [Admin Panel UI Ttest](https://github.com/MUN-COMP6905/project-cteam/issues/187)
 > - **Assignment 3:**
 >
 > _user story:_ [Unit Test For Quiz Page Components](https://github.com/MUN-COMP6905/project-cteam/issues/127), [f-unit-static](https://github.com/MUN-COMP6905/project-cteam/tree/f-unit-static)
@@ -46,11 +47,15 @@
 >
 > _features (code_tasks):_ [index.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/index.test.js), [indexhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/indexhtml.test.js), [loginhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/loginhtml.test.js), [quiz.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/quiz.html), [Frontend-Backend Connection](https://github.com/MUN-COMP6905/project-cteam/issues/125)
 >
+> - **Assignment 2:** 
+>
+> _features (code_tasks):_ [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page), [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js), [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
+>
 > **Balsher Singh (202285114)**
 >
-> - **Assignment 2:**
+> - **Assignment 4:**
 >
-> _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
+>  _ features (code tasks  and unit testing):_ [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50), [Admin Panel: Database bridge Frontend to Backend](https://github.com/MUN-COMP6905/project-cteam/issues/52), [Admin Panel Frontend API Ttest](https://github.com/MUN-COMP6905/project-cteam/issues/191)
 >
 > - **Assignment 3:**
 >
@@ -60,15 +65,15 @@
 >
 > _feature (code tasks):_ [Extension of Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/136)
 >
-> **Muhammad Shaheryar (202285690)**
->
 > - **Assignment 2:**
 >
-> _user story:_ [Authentication](https://github.com/MUN-COMP6905/project-cteam/issues/77)
+> _features (code tasks):_ [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile), [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js), [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
 >
-> _user story:_ [Setup and Manage User Account](https://github.com/MUN-COMP6905/project-cteam/issues/39)
+> **Muhammad Shaheryar (202285690)**
 >
-> _features (code tasks):_ [Login](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [Logout](https://github.com/MUN-COMP6905/project-cteam/issues/40)
+> - **Assignment 4:**
+>
+>  _ features (code tasks  and unit testing):_ [Quiz Scheduling and Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/97), [Quiz Scheduling & Suggestions: User Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/88), [Quiz Scheduling & Suggestions: Quiz Timer](https://github.com/MUN-COMP6905/project-cteam/issues/88)
 >
 > - **Assignment 3:**
 >
@@ -81,19 +86,25 @@
 > _user story:_ [User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/171)
 >
 > _features (code tasks):_ [Get/Get All User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/175), [Delete User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/174), [Update User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/173), [Create User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/172), [Get Feedback by UserID](https://github.com/MUN-COMP6905/project-cteam/issues/180)
-
-> _user story:_ [Remove Password Property](https://github.com/MUN-COMP6905/project-cteam/issues/160)
 >
-> **Prabin Kumar Shrestha (202291331)**
+> _user story:_ [Remove Password Property](https://github.com/MUN-COMP6905/project-cteam/issues/160)
 >
 > - **Assignment 2:**
 >
-> _user story:_ [Quiz API's](https://github.com/MUN-COMP6905/project-cteam/issues/42)
+> _user story:_ [Authentication](https://github.com/MUN-COMP6905/project-cteam/issues/77)
 >
-> _features (code tasks):_ [Create Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/43), [Update Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/44), [Get Quiz and Quizzes](https://github.com/MUN-COMP6905/project-cteam/issues/46), [Delete Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/45) 
+> _user story:_ [Setup and Manage User Account](https://github.com/MUN-COMP6905/project-cteam/issues/39)
+>
+> _features (code tasks):_ [Login](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js), [Logout](https://github.com/MUN-COMP6905/project-cteam/issues/40)
+> 
+> **Prabin Kumar Shrestha (202291331)**
+>
+> - **Assignment 4:**
+> 
+>  _ features (code tasks  and unit testing):_ [Quiz Leaderboard](https://github.com/MUN-COMP6905/project-cteam/issues/200), [Get top ten scorers by quizId](https://github.com/MUN-COMP6905/project-cteam/issues/206), [Get user rank by userId](https://github.com/MUN-COMP6905/project-cteam/issues/202), [Get all scorers in descending order by quizId](https://github.com/MUN-COMP6905/project-cteam/issues/203)
 >
 > - **Assignment 3:**
-
+>
 > _user story:_ [Unit Tests for Quiz APIs](https://github.com/MUN-COMP6905/project-cteam/issues/113)
 >
 > _features (unit testing):_ [Create Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/114), [Update Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/115), [Delete Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/116), [Get All Quizzes Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/117), [Get Quiz by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/118)
@@ -102,13 +113,17 @@
 >
 > _features (code tasks):_ [Get and Get All Quiz Histories](https://github.com/MUN-COMP6905/project-cteam/issues/169), [Delete Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/168), [Update Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/167), [Create Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/166)
 > 
-> **Yaser Aldammad (202246203)**
->
 > - **Assignment 2:**
 >
-> _user story:_ [User API's](https://github.com/MUN-COMP6905/project-cteam/issues/34)
+> _user story:_ [Quiz API's](https://github.com/MUN-COMP6905/project-cteam/issues/42)
 >
-> _features (code tasks):_ [Create User](https://github.com/MUN-COMP6905/project-cteam/issues/35), [Update User](https://github.com/MUN-COMP6905/project-cteam/issues/36), [Get User and Get Users](https://github.com/MUN-COMP6905/project-cteam/pull/86), [Delete User](https://github.com/MUN-COMP6905/project-cteam/issues/37)
+> _features (code tasks):_ [Create Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/43), [Update Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/44), [Get Quiz and Quizzes](https://github.com/MUN-COMP6905/project-cteam/issues/46), [Delete Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/45) 
+>
+> **Yaser Aldammad (202246203)**
+>
+> - **Assignment 4:**
+> 
+>  _ features (code tasks  and unit testing):_ [User Roles Middleware](https://github.com/MUN-COMP6905/project-cteam/issues/194), [Create User Roles Middleware](https://github.com/MUN-COMP6905/project-cteam/issues/195), [Add UserRole middleware into private routes](https://github.com/MUN-COMP6905/project-cteam/issues/196), [Unit Tests for User Role](https://github.com/MUN-COMP6905/project-cteam/issues/197)
 >
 > - **Assignment 3:**
 >
@@ -120,13 +135,17 @@
 >
 > _features (code tasks):_ [Forget Password](https://github.com/MUN-COMP6905/project-cteam/issues/157), [Forget Password Verify](https://github.com/MUN-COMP6905/project-cteam/issues/158)
 >
-> **Oluwafunmiwo Judah Sholola (202287158)**
->
 > - **Assignment 2:**
 >
-> _user story:_ [QuizItem API's](https://github.com/MUN-COMP6905/project-cteam/issues/61)
+> _user story:_ [User API's](https://github.com/MUN-COMP6905/project-cteam/issues/34)
 >
-> _features (code tasks):_ [Create QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/62), [Update QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/63), [Get QuizItem, Get QuizItem by Quiz ID, Get QuizItems](https://github.com/MUN-COMP6905/project-cteam/issues/64), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/65)
+> _features (code tasks):_ [Create User](https://github.com/MUN-COMP6905/project-cteam/issues/35), [Update User](https://github.com/MUN-COMP6905/project-cteam/issues/36), [Get User and Get Users](https://github.com/MUN-COMP6905/project-cteam/pull/86), [Delete User](https://github.com/MUN-COMP6905/project-cteam/issues/37)
+>
+> **Oluwafunmiwo Judah Sholola (202287158)**
+>
+> - **Assignment 4:**
+>
+>  _ features (code tasks  and unit testing):_ [Refactoring of QuizItems for SATA and MC type Quiz Questions](https://github.com/MUN-COMP6905/project-cteam/issues/209), [add validation method for options field of MC/SATA question type](https://github.com/MUN-COMP6905/project-cteam/issues/210), [add validation methods for answers field of SATA question type](https://github.com/MUN-COMP6905/project-cteam/issues/211), [Unit Tests for SATA QuizItem type](https://github.com/MUN-COMP6905/project-cteam/issues/214)
 >
 > - **Assignment 3:**
 >
@@ -134,6 +153,12 @@
 >
 > _features (unit testing):_ [Create Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/120), [Update Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/121), [Get all Questions Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/123), [Get Questions by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/124)
 >
+> - **Assignment 2:**
+>
+> _user story:_ [QuizItem API's](https://github.com/MUN-COMP6905/project-cteam/issues/61)
+>
+> _features (code tasks):_ [Create QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/62), [Update QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/63), [Get QuizItem, Get QuizItem by Quiz ID, Get QuizItems](https://github.com/MUN-COMP6905/project-cteam/issues/64), [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/65)
+
 > _user story:_ [Quiz Question Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/152)
 >
 > _features (code tasks):_ [Modify Existing QUiz Question APIs for Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/153), [Get MCQs Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/154), [Get Q/A Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/155)
