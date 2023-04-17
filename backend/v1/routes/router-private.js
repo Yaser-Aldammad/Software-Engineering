@@ -70,6 +70,10 @@ module.exports = function RouterPrivate(database, settings) {
   router
     .route(`/quizWithQuestions/:id`)
     .get(quizController.GetQuizWithQuestionById)
+  /**
+   * Route to get quizzes between start and end time
+   */
+  //router.get('/quizzes/time', quizController.GetQuizesBtTime)
 
   //#endregion
 
@@ -118,23 +122,18 @@ module.exports = function RouterPrivate(database, settings) {
     .route('/getQuizItemsByQuizId/:id')
     .get(quizItemsController.getQuizItemsByQuizId)
   /**
-     * routes GET /getQAQuizItems/:type to get all quest-and-ans (Q/A) quiz items
-     */
-  router
-  .route('/getQAQuizItems/:type')
-  .get(quizItemsController.getQAQuizItems)
+   * routes GET /getQAQuizItems/:type to get all quest-and-ans (Q/A) quiz items
+   */
+  router.route('/getQAQuizItems/:type').get(quizItemsController.getQAQuizItems)
   /**
-  * routes GET /getMCQuizItems/:type to get all multiple choice (M/C) quiz items
-  */
-  router
-  .route('/getMCQuizItems/:type')
-  .get(quizItemsController.getMCQuizItems)
+   * routes GET /getMCQuizItems/:type to get all multiple choice (M/C) quiz items
+   */
+  router.route('/getMCQuizItems/:type').get(quizItemsController.getMCQuizItems)
   /**
    * routes DELETE /deleteQuizItem/:id to delete quizItem
    */
   router.route('/deleteQuizItem/:id').delete(quizItemsController.deleteQuizItem)
   //#end region
-
 
   //#region Quiz History
 
@@ -145,25 +144,32 @@ module.exports = function RouterPrivate(database, settings) {
   /**
    * routes PATCH /quiz/:quizHistoryId to delete quiz history
    */
-  router.route(`/quizhistory/:quizHistoryId`).patch(quizHistoryController.UpdateQuizHistory)
+  router
+    .route(`/quizhistory/:quizHistoryId`)
+    .patch(quizHistoryController.UpdateQuizHistory)
   /**
    * routes DELETE /quiz/:quizHistoryId to delete quiz history permanently
    */
-  router.route(`/quizhistory/parmanent/:quizHistoryId`).delete(quizHistoryController.DeletePermanentlyByQuizHistoryId)
+  router
+    .route(`/quizhistory/parmanent/:quizHistoryId`)
+    .delete(quizHistoryController.DeletePermanentlyByQuizHistoryId)
   /**
    * routes DELETE /quiz/:quizHistoryId to delete quiz history
    */
-  router.route(`/quizhistory/:quizHistoryId`).delete(quizHistoryController.DeleteByQuizHistoryId)
+  router
+    .route(`/quizhistory/:quizHistoryId`)
+    .delete(quizHistoryController.DeleteByQuizHistoryId)
   /**
    * routes GET /quizhistory/:quizHistoryId to get quiz history by quizHistoryId
    */
-  router.route(`/quizhistory/:quizHistoryId`).get(quizHistoryController.GetQuizHistoryById)
+  router
+    .route(`/quizhistory/:quizHistoryId`)
+    .get(quizHistoryController.GetQuizHistoryById)
   /**
    * routes GET /quizhistory to get all quiz histories
    */
   router.route(`/quizhistory`).get(quizHistoryController.GetAllQuizHistory)
   //#endregion
-
 
   //#region Feedback
 
@@ -202,7 +208,6 @@ module.exports = function RouterPrivate(database, settings) {
   router
     .route(`/userId/feedback`)
     .get(feedbackController.GetUserFeedbacksByUserId)
-
 
   //#endregion
 
