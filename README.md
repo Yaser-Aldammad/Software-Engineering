@@ -510,17 +510,18 @@
 <!-- Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student) -->
 
 > ### Common
+>
 > 1. ExpressJS
 >
 > - Source - https://expressjs.com/
-> - JavaScript framework that is used for frontend development
-> - Initiated the server and created the routes to different pages
+> - JavaScript framework that is used for frontend and backend development
+> - Initiated the server and created the routes to different pages and apis
 >
 > 2. JSDOCs
 >
 > - Source - https://jsdoc.app/
 > - JS documentation tool
-> - It helped us to document frontend APIs and HTML components
+> - It helped us to document backend and frontend APIs, and HTML components
 >
 > 3. JEST
 >
@@ -529,6 +530,12 @@
 > - Used for unit and API testing
 
 > ### Backend
+>
+> 1. MongoDB
+>
+> - Source - https://www.mongodb.com/
+> - NoSQL Database
+> - We used MongoDB to store the data.
 
 > ### Frontend
 >
@@ -558,10 +565,8 @@
 > - Creates a headless browser to test the webpage templates. Works along with
 >   JEST.
 >
-5. Lite-server
+> 5. Lite-server
 >
 > - Source - https://www.npmjs.com/package/lite-server
 > - Light-weight development only server
 > - Used for developement and testing the frontend.
-
----
