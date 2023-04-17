@@ -24,6 +24,45 @@ const validateQuestion = async function (question, type) {
 }
 
 /**
+ * @desc: validates the options field of MC and SATA QuizItems; ensures that it is passed in, and that it meets a
+ *        minimum size
+ * @param {*} question
+ * @param {*} type
+ * @returns {Boolean} true:  if question does not exist
+ *          false: if question exists
+ */
+const validateMCandSATA = async function (options) {
+  if (typeof options === 'undefined') {           // options field must not pass in
+    return '-1'
+  } else if (options.length < 3) {                // options is of length 0-2 (not really multiple choice)
+    return '-2'
+  }
+}
+
+/**
+ * @desc: validates the (exclusive) answers  field of SATA QuizItems; ensures that it is passed in, that it meets a
+ *        certain size (0-size of available options), and most importantly that the provided answers are within the
+ *        list of available options (works even if answers is an empty list; that is none of the options is correct
+ *        or should be selected by the quiz-taker)
+ * @param {*} question
+ * @param {*} type
+ * @returns {Boolean} true:  if question does not exist
+ *          false: if question exists
+ */
+const validateSATA = async function(options, answers) {
+  if (typeof answers === 'undefined') {           // answers field was not passed in
+    return '-1'
+  } else if (answers.length > options.length) {   // set of possible answers is more than available options
+    return '-2'
+  } 
+  optsSet = new Set(options)
+  if (answers.every(ans => optsSet.has(ans))) {   // there's an answer not in the list of available options
+    return '-3'
+  }
+
+}
+
+/**
  * @desc: creates a new QuizItem, after validating that it (combination of question and type) does not already exist
  * @param {*} req
  * @param {*} res
@@ -44,22 +83,45 @@ controller.createQuizItem = async function (req, res) {
     if ((await validateQuestion(quizItem.question, quizItem.type)) === false) {
       return res.status(400).json({
         success: false,
-        message: `That QuizItem already exists; you can either change the question or change the type!`,
+        message: `That QuizItem already exists; you can either change the question or change the type!`
       })
     }
 
-    // validate properties for multiple choice quizitems
-    if (quizItem.type === 'MC') {    
-      if (typeof quizItem.options === 'undefined') {
+    // validate properties for MC and SATA quizitems
+    if (quizItem.type === 'MC' || quizItem.type === 'SATA') {   
+      valOpts = await validateMCandSATA(quizItem.options)
+      if (valOpts === '-1') {                 // options field was not passed in
         return res.status(400).json({
           success: false,
-          message: `You must provide options for multiple choice QuizItems!`,
+          message: `You must provide options for multiple choice QuizItems!`
         })
-      } else if (quizItem.options.length < 3)
+      } else if (valOpts === '-2') {          // length of options is between 0-2
+        return res.status(400).json({         
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`
+        })
+      }
+    }
+    
+    // validate SATA QuizItem types
+    if (quizItem.type === 'SATA') {
+      valSATA = await validateSATA(quizItem.options, quizItem.answers)
+      if (valSATA === '-1') {                 // answers field was not passed in
         return res.status(400).json({
           success: false,
-          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+          message: `You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!`,
         })
+      } else if (valSATA === '-2') {          // set of possible answers is more than available options
+        return res.status(400).json({
+          success: false,
+          message: `Set of answers for select-all-that-apply QuizItems cannot be more than the available options!`
+        })
+      } else if (valSATA === '-3') {          // there's an answer not in the list of available options
+        return res.status(400).json({
+          success: false,
+          message: `One of the provided answers is NOT in the list of available options!`
+        })
+      }
     }
 
     // create and save quizitem
@@ -104,20 +166,43 @@ controller.updateQuizItem = async function (req, res) {
       createdBy: req.user._id ?? record.createdBy,
     }
 
-    // change in quizitem type; we know that if quizitem was originally (created) 
-    // as type multiple choice, the createQuizItem method will have validated its properties
-    // so we only bother checking (specifically) if the type of the quizitem is being changed to 'MC'
-    if (record.type !== 'MC' && quizItem.type === 'MC') {     
-      if (typeof quizItem.options === 'undefined') {
+    // change in quizitem type; we know that if quizitem was originally (created) as type 
+    // MC or SATA, the createQuizItem method will have validated its properties so we only 
+    // bother checking (specifically) if the type of the quizitem is being changed to 'MC' or 'SATA'
+    if (record.type !== 'MC' && (quizItem.type === 'MC' || quizItem.type === 'SATA')) {    
+      valOpts = await validateMCandSATA(quizItem.options)
+      if (valOpts === '-1') {                 // options field was not passed in
         return res.status(400).json({
           success: false,
-          message: `You must provide options for multiple choice QuizItems!`,
+          message: `You must provide options for multiple choice QuizItems!`
         })
-      } else if (quizItem.options.length < 3)
+      } else if (valOpts === '-2') {          // length of options is between 0-2
+        return res.status(400).json({         
+          success: false,
+          message: `Length of options for multiple choice QuizItems must be greater than 2!`
+        })
+      }
+    }
+
+    // additional validation if updating QuizItem to SATA
+    if (record.type !== 'MC' && quizItem.type === 'SATA') {    
+      valSATA = await validateSATA(quizItem.options, quizItem.answers)
+      if (valSATA === '-1') {                 // answers field was not passed in
         return res.status(400).json({
           success: false,
-          message: `Length of options for multiple choice QuizItems must be greater than 2!`,
+          message: `You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!`,
         })
+      } else if (valSATA === '-2') {          // set of possible answers is more than available options
+        return res.status(400).json({
+          success: false,
+          message: `Set of answers for select-all-that-apply QuizItems cannot be more than the available options!`
+        })
+      } else if (valSATA === '-3') {          // there's an answer not in the list of available options
+        return res.status(400).json({
+          success: false,
+          message: `One of the provided answers is NOT in the list of available options!`
+        })
+      }
     }
 
     // update and retrieve updated record
@@ -326,6 +411,45 @@ controller.getMCQuizItems = async function (req, res) {
     let resp = {
       success: true,
       message: 'MC QuizItems found and retrieved!',
+      data: { quizitems: quizItems },
+    }
+    return res.status(200).json(resp)
+  } catch (error) {
+    console.log(error)
+
+    let resp = {
+      success: false,
+      message: `QuizItems not found!`,
+    }
+    res.status(404).json(resp)
+  }
+}
+
+/**
+ * @description: finds and retrieves all QuizItems of type select-all-that-apply (SATA)
+ * @param {*} req
+ * @param {*} res
+ * @returns {Object}
+ */
+controller.getSATAQuizItems = async function (req, res) {
+  try {
+    // filter by type 'MC'
+    const quizItems = await quizItemsModel
+      .find({ type:  'SATA'})
+      .populate(['quiz_id', 'createdBy'])
+      .exec()
+
+    if (!quizItems) {
+      let resp = {
+        success: false,
+        message: 'SATA QuizItems not found!',
+      }
+      return res.status(404).json(resp)
+    }
+
+    let resp = {
+      success: true,
+      message: 'SATA QuizItems found and retrieved!',
       data: { quizitems: quizItems },
     }
     return res.status(200).json(resp)

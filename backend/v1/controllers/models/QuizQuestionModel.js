@@ -9,7 +9,8 @@ const QuizItems = Schema({
   type: { type: String, required: true, default: 'Q/A' },
   question: { type: String, required: true },
   answer: { type: String, required: true },
-  options: [{ type: String, required: false }],
+  options: [{ type: String, required: false }],           // for MC & SATA
+  answers: [{ type: String, required: false }],           // for SATA
   is_deleted: { type: Boolean, default: false },
   createdBy: { type: mongoose.Types.ObjectId, ref: 'Users', required: true },
   created: { type: Date, default: Date.now },
