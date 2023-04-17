@@ -15,6 +15,10 @@
 >
 > `Backend\__test__` folder contains unit tests for backend
 
+## Demo
+
+> Frontend Demo: [▶️frontend_code_demo](https://drive.google.com/file/d/17evZn_4QlNyzeO2o0fDwJCVSr6PUTURd/view?usp=share_link)
+
 ## Team description
 
 > ### **Frontend**
@@ -50,9 +54,12 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _features (code tasks and unit testing):_
+>
+> **Code Tasks:** [admin.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/admin.html), [adminhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/adminhtml.test.js)
+>
 > [Admin Panel: Admin Page UI](https://github.com/MUN-COMP6905/project-cteam/issues/51),
-> [Admin Panel UI Ttest](https://github.com/MUN-COMP6905/project-cteam/issues/187)
+> [Admin Panel UI test](https://github.com/MUN-COMP6905/project-cteam/issues/187)
 >
 > - **Assignment 3:**
 >
@@ -86,7 +93,10 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _features (code tasks and unit testing):_
+>
+> **Code Tasks:** [admin.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/admin.js), [admin.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/admin.test.js)
+>
 > [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50),
 > [Admin Panel: Database bridge Frontend to Backend](https://github.com/MUN-COMP6905/project-cteam/issues/52),
 > [Admin Panel Frontend API Ttest](https://github.com/MUN-COMP6905/project-cteam/issues/191)
