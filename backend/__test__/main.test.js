@@ -1423,3 +1423,28 @@ describe(`isTeacher middleware`, () => {
     expect(response.statusCode).toBe(404)
   })
 })
+// isStudent user role
+describe(`isStudent middleware`, () => {
+  let studentUser
+  let nonStudentUser
+  studentUser = Usermodel.findOne({ role: `Student` })
+  nonStudentUser = Usermodel.findOne({ role: { $ne: 'Student' } })
+
+  it('Deny access for non-users', async () => {
+    const response = await request(app)
+      .get(`/student/profile`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${nonStudentUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+  it('Deny access for non-student user', async () => {
+    const response = await request(app)
+      .get(`/student/profile`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${studentUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+})
+//#endregion
