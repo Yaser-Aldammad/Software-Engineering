@@ -290,7 +290,8 @@
 >
 > **Pranav Arora (202286040)**
 >
-> - **Assignment 2:** > _user story:_
+> - **Assignment 2:** 
+> _user story:_
 >   [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30)
 >
 > _features:_
@@ -344,7 +345,7 @@
 ## Project Description
 
 > ### Backend
-
+>
 >Creating RESTful APIs: Express is often used to create RESTful APIs that can be consumed by frontend applications or mobile apps. It provides features like  routing, middleware, and error handling that make it easy to build and maintain APIs.
 >In an MVC architecture with Express.js, the application can be structured as follows:
 > - Model: This represents the data and business logic of the application. It
@@ -390,7 +391,7 @@
 > ```
 >
 > The app will listen to http://localhost:3000
-
+>
 >#### API Documentation
 >- Base URL: The base URL for all endpoints is: http://localhost:3000/v1
 >- Authentication: QuizApp uses JWT(JSON Web Tokens) and Passport to authenticate
@@ -433,9 +434,8 @@
 >}
 >```
 
-
 > ### Frontend
-
+>
 > The frontend part of the project renders the webpages on the client. It will
 > be connected with the backend to perform the CRUD operations(Create, Read,
 > Update, Delete) using various REST APIs (GET, POST, PUT, DELETE) respectively,
@@ -443,7 +443,7 @@
 >
 > _All the frontend files are in the folder
 > [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/frontend)_
-
+>
 > #### Frontend Code Run Instructions
 >
 > To run frontend code, kindly follow the given instructions:
