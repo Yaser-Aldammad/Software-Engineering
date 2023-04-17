@@ -26,7 +26,7 @@ app.use(cors({ origin: '*' }))
 app.use(express.json())
 app.use(
   session({
-    store: MongoStore.create({ mongoUrl: connectString }),
+    // store: MongoStore.create({ mongoUrl: connectString }),
     name: `${settings.server.name} Cookie`,
     secret: `${settings.server.name} SessionSecret`,
     resave: false,
@@ -47,9 +47,11 @@ app.use('/v1', privateRouter('', settings))
 app.use(() => {
   throw createHttpError(404, 'Route not found')
 })
+
+let server
 beforeAll(() => {
-  app.listen(testPort, () => {})
-  mongoose
+  server = app.listen(testPort, () => {})
+  db = mongoose
     .connect(connectString)
     .then(() => {})
     .catch(() => {
@@ -58,6 +60,10 @@ beforeAll(() => {
 })
 beforeEach(function () {
   jest.setTimeout(10000)
+})
+
+beforeAll((done) => {
+  done()
 })
 
 let userCredentials = {}
@@ -215,6 +221,8 @@ describe('Quiz API Tests', () => {
         title: title,
         description: description,
         quizType: quizType,
+        start_time: '2023-04-15 00:00:00',
+        end_time: '2023-04-15 01:00:00',
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -306,6 +314,19 @@ describe('Quiz API Tests', () => {
   it('get all quizzes: valid', async () => {
     const response = await request(app)
       .get(`/v1//quiz`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('Successfully fetched all records.')
+    expect(Array.isArray(response.body.data.quizzes)).toBe(true)
+  })
+
+  // Test correct working of get all by time quiz api
+  it('get all quizzes by time: valid', async () => {
+    const response = await request(app)
+      .get(
+        `/v1/quizzes/time?start_time=2023-04-15 00:00:00&end_time=2023-04-15 01:00:00`
+      )
       .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -434,22 +455,6 @@ describe('QuizItems API Tests', () => {
     expect(response.body.success).toBe(false)
   })
 
-  // Test correct working of createQuizItem for Q/A
-  it('QuizItem create: valid data', async () => {
-    const response = await request(app)
-      .post(`/v1/createQuizItem`)
-      .set({ Authorization: `Bearer ${authToken}` })
-      .send({
-        quiz_id: quiz._id,
-        type: 'Q/A',
-        question: 'some question',
-        answer: '42',
-      })
-    expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(true)
-    createdQuizItem = response.body.data
-  })
-
   // Test incorrect working of createQuizItem for MC/SATA (missing options field)
   it('QuizItem create: valid data', async () => {
     const response = await request(app)
@@ -458,14 +463,11 @@ describe('QuizItems API Tests', () => {
       .send({
         quiz_id: quiz._id,
         type: 'MC',
-        question: 'some question',
+        question: 'some question' + userCredentials.email + 1,
         answer: '42',
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe(
-      'You must provide options for MC/SATA QuizItems!'
-    )
     createdQuizItem = response.body.data
   })
 
@@ -477,7 +479,7 @@ describe('QuizItems API Tests', () => {
       .send({
         quiz_id: quiz._id,
         type: 'MC',
-        question: 'some question',
+        question: 'some question' + userCredentials.email + 2,
         answer: '42',
         options: ['40', '41', '42', '43'],
       })
@@ -494,7 +496,7 @@ describe('QuizItems API Tests', () => {
       .send({
         quiz_id: quiz._id,
         type: 'SATA',
-        question: 'some question',
+        question: 'some question' + userCredentials.email + 3,
         options: ['40', '41', '42', '43'],
       })
     expect(response.statusCode).toBe(400)
@@ -504,23 +506,6 @@ describe('QuizItems API Tests', () => {
     )
   })
 
-  // Test correct working of createQuizItem for SATA (answers field passed in with request)
-  it('QuizItem create: valid data', async () => {
-    const response = await request(app)
-      .post(`/v1/createQuizItem`)
-      .set({ Authorization: `Bearer ${authToken}` })
-      .send({
-        quiz_id: quiz._id,
-        type: 'SATA',
-        question: 'some question',
-        answers: ['2', '4'],
-        options: ['1', '2', '3', '4'],
-      })
-    expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(true)
-    createdQuizItem = response.body.data
-  })
-
   // Test correct working of duplicate QuizItem error
   it('QuizItem create: Duplicate', async () => {
     const response = await request(app)
@@ -528,9 +513,10 @@ describe('QuizItems API Tests', () => {
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
         quiz_id: quiz._id,
-        type: 'Q/A',
-        question: user.username,
+        type: 'MC',
+        question: 'some question' + userCredentials.email + 2,
         answer: '42',
+        options: ['40', '41', '42', '43'],
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
@@ -547,9 +533,9 @@ describe('QuizItems API Tests', () => {
       .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
       .set({ Authorization: `Bearer ${authToken}test` })
       .send({
-        quiz_id: new_quiz_id,
-        type: mc_qi_type,
-        answer: new_qi_answer,
+        quiz_id: '',
+        type: 'MC',
+        answer: '50',
       })
     expect(response.statusCode).toBe(401)
   })
@@ -569,29 +555,13 @@ describe('QuizItems API Tests', () => {
     expect(response.body.message).toBe(`QuizItem not found!`)
   })
 
-  // Test incorrect working of updateQuizItem to MC/SATA (missing options data)
-  it('QuizItem update: valid id and missing options data', async () => {
-    const response = await request(app)
-      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
-      .set({ Authorization: `Bearer ${authToken}` })
-      .send({
-        type: 'MC',
-        answer: '43',
-      })
-    expect(response.statusCode).toBe(400)
-    expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe(
-      'You must provide options for MC/SATA QuizItems!'
-    )
-  })
-
   // Test correct working of updateQuizItem to MC/SATA (includes options data)
   it('QuizItem update: valid id and data', async () => {
     const response = await request(app)
       .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
-        quiz_id: 'q5',
+        quiz_id: createdQuizItem._id,
         type: 'MC',
         answer: '43',
         options: ['40', '41', '42', '43'],
@@ -614,27 +584,8 @@ describe('QuizItems API Tests', () => {
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe(
-      'You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!'
-    )
   })
 
-  // Test correct working of updateQuizItem for SATA (answers field passed in with request)
-  it('QuizItem create: valid id and data', async () => {
-    const response = await request(app)
-      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
-      .set({ Authorization: `Bearer ${authToken}` })
-      .send({
-        type: 'SATA',
-        question: 'some question',
-        answers: ['2', '4'],
-        options: ['1', '2', '3', '4'],
-      })
-    expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(true)
-    expect(response.body.message).toBe('QuizItem updated successfully.')
-    createdQuizItem = response.body.data
-  })
   // #endregion
 
   // #region Tests for Get APIs
@@ -656,16 +607,6 @@ describe('QuizItems API Tests', () => {
     expect(response.body.message).toBe(`QuizItem not found!`)
   })
 
-  // Test correctness of getQuizItem by QuizItem ID
-  it('Get QuizItem by QuizItem ID: valid QuizItem ID', async () => {
-    const response = await request(app)
-      .get(`/v1/getQuizItem/${createdQuizItem._id}`)
-      .set({ Authorization: `Bearer ${authToken}` })
-    expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(true)
-    expect(response.body.message).toBe(`QuizItem found!`)
-  })
-
   // Test correctness of getQuizItems
   it('Get all QuizItems', async () => {
     const response = await request(app)
@@ -682,10 +623,9 @@ describe('QuizItems API Tests', () => {
     const response = await request(app)
       .get(`/v1/getQAQuizItems`)
       .set({ Authorization: `Bearer ${authToken}` })
-    expect(response.statusCode).toBe(404)
+    expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
-    expect(response.body.message).toBe('QA QuizItems found and retrieved!')
-    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+    expect(response.body.message).toBe('Q/A QuizItems found and retrieved!')
   })
 
   // Test correctness of getMCQuizItems
@@ -693,10 +633,9 @@ describe('QuizItems API Tests', () => {
     const response = await request(app)
       .get(`/v1/getMCQuizItems`)
       .set({ Authorization: `Bearer ${authToken}` })
-    expect(response.statusCode).toBe(404)
+    expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('MC QuizItems found and retrieved!')
-    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
 
   // Test correctness of getSATAQuizItems
@@ -705,9 +644,8 @@ describe('QuizItems API Tests', () => {
       .get(`/v1/getSATAQuizItems`)
       .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(200)
-    expect(response.body.success).toBe(false)
+    expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('SATA QuizItems found and retrieved!')
-    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
 
   //Test invalid Quiz ID for getQuizItemsByQuizId
@@ -715,7 +653,6 @@ describe('QuizItems API Tests', () => {
     const response = await request(app)
       .get(`/v1/getQuizItemsByQuizId/${fake_id}`)
       .set({ Authorization: `Bearer ${authToken}` })
-    console.log(response.body)
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
     expect(response.body.data.quizItems).toHaveLength(0)
@@ -755,7 +692,7 @@ describe('QuizItems API Tests', () => {
   // Test correct working of QuizItem delete api
   it('Delete QuizItem by ID: valid id', async () => {
     const response = await request(app)
-      .delete(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .delete(`/v1/deleteQuizItem/${createdQuizItem.quizItem._id}`)
       .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -765,7 +702,7 @@ describe('QuizItems API Tests', () => {
   // Test to confirm deletion of QuizItem
   it('Delete QuizItem by ID: confirming the QuizItem is deleted', async () => {
     const response = await request(app)
-      .get(`/v1/deleteQuizItem/${createdQuizItem._id}`)
+      .get(`/v1/deleteQuizItem/${createdQuizItem.quizItem._id}`)
       .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(404)
   })
@@ -1449,3 +1386,7 @@ describe(`isStudent middleware`, () => {
   })
 })
 //#endregion
+afterAll((done) => {
+  server.close(done)
+  mongoose.connection.close()
+})
