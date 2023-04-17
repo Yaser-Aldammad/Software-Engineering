@@ -1399,3 +1399,27 @@ describe(`isAdmin middleware`, () => {
     expect(response.statusCode).toBe(404)
   })
 })
+// isTeacher user role
+describe(`isTeacher middleware`, () => {
+  let teacherUser
+  let nonTeacherUser
+  teacherUser = Usermodel.findOne({ role: `Teacher` })
+  nonTeacherUser = Usermodel.findOne({ role: { $ne: 'Teacher' } })
+
+  it('Deny access for non-users', async () => {
+    const response = await request(app)
+      .get(`/teacher/courses`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${nonTeacherUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+  it('Deny access for non-teacher user', async () => {
+    const response = await request(app)
+      .get(`/teacher/courses`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${teacherUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+})
