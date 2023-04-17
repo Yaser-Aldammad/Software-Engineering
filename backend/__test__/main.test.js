@@ -9,6 +9,7 @@ const passport = require(`passport`)
 const createHttpError = require('http-errors')
 const session = require(`express-session`)
 const MongoStore = require('connect-mongo')
+const Usermodel = require(`../v1/controllers/models/UsersModel`)
 const {
   GetUsersList,
   UpdateUser,

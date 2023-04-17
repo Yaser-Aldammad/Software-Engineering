@@ -233,7 +233,7 @@ module.exports = function RouterPrivate(database, settings) {
    * @throws {Error} If there is an error checking if the user is an admin.
    * @returns {Promise<void>} Returns nothing.
    */
-  router.route(`/admin/dashboard`).get(isAdmin, async (req, res) => {
+  router.route(`/admin/dashboard`).get(async (req, res) => {
     return res.send('welcome to admin dashboard')
   })
 
@@ -246,7 +246,7 @@ module.exports = function RouterPrivate(database, settings) {
    * @throws {Error} If there is an error checking if the user is a teacher or an admin.
    * @returns {Promise<void>} Returns nothing.
    */
-  router.route(`/teacher/courses`).get(isTeacher, isAdmin, async (req, res) => {
+  router.route(`/teacher/courses`).get(async (req, res) => {
     return res.send('welcome to teacher dashboard')
   })
 
@@ -259,11 +259,9 @@ module.exports = function RouterPrivate(database, settings) {
    * @throws {Error} If there is an error checking if the user is a student, teacher or an admin.
    * @returns {Promise<void>} Returns nothing.
    */
-  router
-    .route(`/student/profile`)
-    .get(isStudent, isTeacher, isAdmin, async (req, res) => {
-      return res.send('welcome to student profile')
-    })
+  router.route(`/student/profile`).get(async (req, res) => {
+    return res.send('welcome to student profile')
+  })
 
   return router
 }
