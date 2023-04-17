@@ -5,7 +5,7 @@ const { Schema } = mongoose
 
 /**
  * A schema for Quiz with the following properties
- * title , quizType, description, createdBy, created, updated, and is_deleted (if a quiz is deleted)
+ * title, quizType, description, createdBy, created, updated, is_deleted (if a quiz is deleted), start_time (optional), end_time (optional)
  */
 const Quizzes = Schema({
   title: { type: String, required: true },
@@ -15,6 +15,8 @@ const Quizzes = Schema({
   is_deleted: { type: Boolean, default: false },
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
+  start_time: { type: Date, default: null },
+  end_time: { type: Date, default: null },
 })
 
 Quizzes.pre(`save`, function (callback) {

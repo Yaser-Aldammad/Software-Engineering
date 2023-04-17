@@ -1,6 +1,7 @@
 const mongoose = require(`mongoose`)
 const QuizModel = require('./models/QuizModel')
 const QuizQuestionModel = require('./models/QuizQuestionModel')
+const moment = require('moment')
 
 /**
  * An object representing the controller.
@@ -122,12 +123,22 @@ controller.GetQuizWithQuestionById = async function (req, res) {
  */
 controller.AddQuiz = async function (req, res) {
   try {
+    let startTime, endTime
+    if (req.body.start_time) {
+      startTime = moment(req.body.start_time, 'YYYY-MM-DD HH:mm:ss').toDate()
+    }
+
+    if (req.body.end_time) {
+      endTime = moment(req.body.end_time, 'YYYY-MM-DD HH:mm:ss').toDate()
+    }
     // adding quiz into database
     let quiz = await new QuizModel({
       title: req.body.title,
       quizType: req.body.quizType,
       description: req.body.description,
       createdBy: req.user._id,
+      start_time: startTime,
+      end_time: endTime,
     }).save()
 
     quiz = await QuizModel.findById(quiz._id).populate(['createdBy']).exec()
@@ -141,6 +152,45 @@ controller.AddQuiz = async function (req, res) {
     return res.status(400).json({
       success: false,
       message: 'Unable to create the quiz.',
+    })
+  }
+}
+
+/**
+ * An async function that receives a request object and a response object.
+ * The function returns quizzes based on start and end time
+ * The function returns a response with a success flag, a message, and a data (for successful response).
+ * @function
+ * @async
+ * @param {Object} req - Express request object with start_time and end_time in query parameters.
+ * @param {Object} res - Express response object containing the response to send back to the client.
+ * @returns {Object} Returns a JSON object containing a success flag, a message, and data.
+ */
+controller.GetQuizesBtTime = async function (req, res) {
+  try {
+    const startTime = moment(
+      req.query.start_time,
+      'YYYY-MM-DD HH:mm:ss'
+    ).toDate()
+    const endTime = moment(req.query.end_time, 'YYYY-MM-DD HH:mm:ss').toDate()
+
+    const quizzes = await QuizModel.find({
+      is_deleted: false,
+      start_time: { $gte: startTime },
+      end_time: { $lte: endTime },
+    })
+      .populate(['createdBy'])
+      .exec()
+
+    return res.json({
+      success: true,
+      message: 'Successfully fetched all records.',
+      data: { quizzes: quizzes },
+    })
+  } catch {
+    return res.status(400).json({
+      success: false,
+      message: 'Error while fetching records.',
     })
   }
 }
@@ -174,6 +224,8 @@ controller.UpdateQuiz = async function (req, res) {
           description: req.body.description ?? quiz.description,
           is_deleted: req.body.is_deleted ?? quiz.is_deleted,
           createdBy: req.user.id ?? quiz.createdBy,
+          start_time: req.body.start_time ?? quiz.start_time,
+          end_time: req.body.end_time ?? quiz.end_time,
         },
         { new: true, useFindAndModify: false }
       )
