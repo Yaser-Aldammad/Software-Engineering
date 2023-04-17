@@ -462,7 +462,9 @@ describe('QuizItems API Tests', () => {
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe('You must provide options for MC/SATA QuizItems!')
+    expect(response.body.message).toBe(
+      'You must provide options for MC/SATA QuizItems!'
+    )
     createdQuizItem = response.body.data
   })
 
@@ -476,7 +478,7 @@ describe('QuizItems API Tests', () => {
         type: 'MC',
         question: 'some question',
         answer: '42',
-        options: ['40', '41', '42', '43']
+        options: ['40', '41', '42', '43'],
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -492,11 +494,13 @@ describe('QuizItems API Tests', () => {
         quiz_id: quiz._id,
         type: 'SATA',
         question: 'some question',
-        options: ['40', '41', '42', '43']
+        options: ['40', '41', '42', '43'],
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe('You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!')
+    expect(response.body.message).toBe(
+      'You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!'
+    )
   })
 
   // Test correct working of createQuizItem for SATA (answers field passed in with request)
@@ -509,7 +513,7 @@ describe('QuizItems API Tests', () => {
         type: 'SATA',
         question: 'some question',
         answers: ['2', '4'],
-        options: ['1', '2', '3', '4']
+        options: ['1', '2', '3', '4'],
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -557,7 +561,7 @@ describe('QuizItems API Tests', () => {
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
         type: 'MC',
-        answer: '43'
+        answer: '43',
       })
     expect(response.statusCode).toBe(404)
     expect(response.body.success).toBe(false)
@@ -571,11 +575,13 @@ describe('QuizItems API Tests', () => {
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
         type: 'MC',
-        answer: '43'
+        answer: '43',
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe('You must provide options for MC/SATA QuizItems!')
+    expect(response.body.message).toBe(
+      'You must provide options for MC/SATA QuizItems!'
+    )
   })
 
   // Test correct working of updateQuizItem to MC/SATA (includes options data)
@@ -587,7 +593,7 @@ describe('QuizItems API Tests', () => {
         quiz_id: 'q5',
         type: 'MC',
         answer: '43',
-        options: ['40', '41', '42', '43']
+        options: ['40', '41', '42', '43'],
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -603,11 +609,13 @@ describe('QuizItems API Tests', () => {
       .send({
         type: 'SATA',
         question: 'some question',
-        options: ['1', '2', '3', '4']
+        options: ['1', '2', '3', '4'],
       })
     expect(response.statusCode).toBe(400)
     expect(response.body.success).toBe(false)
-    expect(response.body.message).toBe('You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!')
+    expect(response.body.message).toBe(
+      'You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!'
+    )
   })
 
   // Test correct working of updateQuizItem for SATA (answers field passed in with request)
@@ -619,7 +627,7 @@ describe('QuizItems API Tests', () => {
         type: 'SATA',
         question: 'some question',
         answers: ['2', '4'],
-        options: ['1', '2', '3', '4']
+        options: ['1', '2', '3', '4'],
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -678,23 +686,23 @@ describe('QuizItems API Tests', () => {
     expect(response.body.message).toBe('QA QuizItems found and retrieved!')
     expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
-  
+
   // Test correctness of getMCQuizItems
   it('Get MC QuizItems', async () => {
     const response = await request(app)
-    .get(`/v1/getMCQuizItems`)
-    .set({ Authorization: `Bearer ${authToken}` })
+      .get(`/v1/getMCQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(404)
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('MC QuizItems found and retrieved!')
     expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
-  
+
   // Test correctness of getSATAQuizItems
   it('Get SATA QuizItems', async () => {
     const response = await request(app)
-    .get(`/v1/getSATAQuizItems`)
-    .set({ Authorization: `Bearer ${authToken}` })
+      .get(`/v1/getSATAQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(false)
     expect(response.body.message).toBe('SATA QuizItems found and retrieved!')
@@ -1364,4 +1372,79 @@ describe('users test', () => {
   })
 })
 
+//#endregion
+
+//#region test for userRole
+// isAdmin user role
+describe(`isAdmin middleware`, () => {
+  let adminUser
+  let nonAdminUser
+  adminUser = Usermodel.findOne({ role: `Admin` })
+  nonAdminUser = Usermodel.findOne({ role: { $ne: 'Admin' } })
+
+  it('Deny access for non-users', async () => {
+    const response = await request(app)
+      .get(`/admin/dashboard`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${nonAdminUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+  it('Deny access for non-admin user', async () => {
+    const response = await request(app)
+      .get(`/admin/dashboard`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${adminUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+})
+// isTeacher user role
+describe(`isTeacher middleware`, () => {
+  let teacherUser
+  let nonTeacherUser
+  teacherUser = Usermodel.findOne({ role: `Teacher` })
+  nonTeacherUser = Usermodel.findOne({ role: { $ne: 'Teacher' } })
+
+  it('Deny access for non-users', async () => {
+    const response = await request(app)
+      .get(`/teacher/courses`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${nonTeacherUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+  it('Deny access for non-teacher user', async () => {
+    const response = await request(app)
+      .get(`/teacher/courses`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${teacherUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+})
+// isStudent user role
+describe(`isStudent middleware`, () => {
+  let studentUser
+  let nonStudentUser
+  studentUser = Usermodel.findOne({ role: `Student` })
+  nonStudentUser = Usermodel.findOne({ role: { $ne: 'Student' } })
+
+  it('Deny access for non-users', async () => {
+    const response = await request(app)
+      .get(`/student/profile`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${nonStudentUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+  it('Deny access for non-student user', async () => {
+    const response = await request(app)
+      .get(`/student/profile`)
+      .set(`Accept`, `application/json`)
+      .set({ Authorization: `Bearer ${studentUser.authToken}` })
+
+    expect(response.statusCode).toBe(404)
+  })
+})
 //#endregion
