@@ -282,7 +282,7 @@
 > [Modify Existing QUiz Question APIs for Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/153),
 > [Get MCQs Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/154),
 > [Get Q/A Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/155)
->
+
 > ### **Individual Requested/Generated User Stories & Features**
 >
 > Below are the user stories and 2 stemming features created by each team
@@ -345,6 +345,22 @@
 
 > ### Backend
 
+>Creating RESTful APIs: Express is often used to create RESTful APIs that can be consumed by frontend applications or mobile apps. It provides features like  routing, middleware, and error handling that make it easy to build and maintain APIs.
+>In an MVC architecture with Express.js, the application can be structured as follows:
+> - Model: This represents the data and business logic of the application. It
+    includes data access, validation, and processing. You can use libraries like
+    Mongoose or Sequelize to define and interact with the database.
+> - View: This represents the user interface of the application. It includes the
+    HTML, CSS, and JavaScript files that the user sees and interacts with. You
+    can use templates like EJS, Pug, or Handlebars to render dynamic HTML.
+> - Controller: This acts as an intermediary between the model and view. It
+    receives user requests, processes them, and updates the model and view
+    accordingly. You can define controller functions using Express.js routing
+    and middleware functions.
+>
+> _All the backend files are in the folder
+> [backend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/backend)_
+
 > #### Backend Code Run Instructions
 >
 >- Clone this repository
@@ -374,20 +390,6 @@
 > ```
 >
 > The app will listen to http://localhost:3000
-
->#### Usage
->- Creating RESTful APIs: Express is often used to create RESTful APIs that can be consumed by frontend applications or mobile apps. It provides features like  routing, middleware, and error handling that make it easy to build and maintain APIs.
->- In an MVC architecture with Express.js, the application can be structured as follows:
->   - Model: This represents the data and business logic of the application. It
-    includes data access, validation, and processing. You can use libraries like
-    Mongoose or Sequelize to define and interact with the database.
->   - View: This represents the user interface of the application. It includes the
-    HTML, CSS, and JavaScript files that the user sees and interacts with. You
-    can use templates like EJS, Pug, or Handlebars to render dynamic HTML.
->   - Controller: This acts as an intermediary between the model and view. It
-    receives user requests, processes them, and updates the model and view
-    accordingly. You can define controller functions using Express.js routing
-    and middleware functions.
 
 >#### API Documentation
 >- Base URL: The base URL for all endpoints is: http://localhost:3000/v1
@@ -433,7 +435,7 @@
 
 
 > ### Frontend
->
+
 > The frontend part of the project renders the webpages on the client. It will
 > be connected with the backend to perform the CRUD operations(Create, Read,
 > Update, Delete) using various REST APIs (GET, POST, PUT, DELETE) respectively,
@@ -441,7 +443,7 @@
 >
 > _All the frontend files are in the folder
 > [frontend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/frontend)_
->
+
 > #### Frontend Code Run Instructions
 >
 > To run frontend code, kindly follow the given instructions:
