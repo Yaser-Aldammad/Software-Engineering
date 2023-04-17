@@ -509,6 +509,27 @@
 
 <!-- Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student) -->
 
+> ### Common
+> 1. ExpressJS
+>
+> - Source - https://expressjs.com/
+> - JavaScript framework that is used for frontend development
+> - Initiated the server and created the routes to different pages
+>
+> 2. JSDOCs
+>
+> - Source - https://jsdoc.app/
+> - JS documentation tool
+> - It helped us to document frontend APIs and HTML components
+>
+> 3. JEST
+>
+> - Source - https://jestjs.io/
+> - Unit Testing library
+> - Used for unit and API testing
+
+> ### Backend
+
 > ### Frontend
 >
 > 1. BootStrap
@@ -518,60 +539,29 @@
 > - It helped us in generating the starter templates for the webpages on which
 >   we developed our HTML template code.
 >
-> 2. ExpressJS
->
-> - Source - https://expressjs.com/
-> - JavaScript framework that is used for frontend development
-> - Initiated the server and created the routes to different pages
->
-> 3. Figma
+> 2. Figma
 >
 > - Source - https://www.figma.com/
 > - Webpage design tool
 > - It helped us to create better designs for the frontend webpages
 >
-> 4. JSDOCs
->
-> - Source - https://jsdoc.app/
-> - JS documentation tool
-> - It helped us to document frontend APIs and HTML components
->
-> 5. Pexels
+> 3. Pexels
 >
 > - Source - https://www.pexels.com/
 > - Copyright free image library
 > - Downloaded copyright free images and used them to our webpages.
 >
-> 6. JSDOM
+> 4. JSDOM
 >
 > - Source - https://github.com/jsdom/jsdom
 > - Webpage Testing library
 > - Creates a headless browser to test the webpage templates. Works along with
 >   JEST.
 >
-> 7. JEST
->
-> - Source - https://jestjs.io/
-> - Unit Testing library
-> - Used for unit and API testing
->
-> 8. Lite-server
+5. Lite-server
 >
 > - Source - https://www.npmjs.com/package/lite-server
 > - Light-weight development only server
 > - Used for developement and testing the frontend.
 
 ---
-
-
-## Unit Testing
-
-- Jest is setup to write test cases for QuizApp
-
-## Contributing
-
-- Software Engineering Group C
-- To install the required packages:
-  - npm install jest supertest
-- Run the Jest test:
-  - npm test
