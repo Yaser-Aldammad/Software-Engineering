@@ -250,5 +250,20 @@ module.exports = function RouterPrivate(database, settings) {
     return res.send('welcome to teacher dashboard')
   })
 
+  /**
+   * GET request handler for the student profile route.
+   * @async
+   * @function
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @throws {Error} If there is an error checking if the user is a student, teacher or an admin.
+   * @returns {Promise<void>} Returns nothing.
+   */
+  router
+    .route(`/student/profile`)
+    .get(isStudent, isTeacher, isAdmin, async (req, res) => {
+      return res.send('welcome to student profile')
+    })
+
   return router
 }
