@@ -1,0 +1,11 @@
+Date: April 03, 2023
+
+Attendees: Yaser, Shaheryar
+
+Agenda: Discussing and assigning new coding tasks; create user roles in middleware function. Three types of users included:
+1. Admin
+2. Teacher
+3. Student
+
+
+Signature: These minutes were approved by Judah Sholola.

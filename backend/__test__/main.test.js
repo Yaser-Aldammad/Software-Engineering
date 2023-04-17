@@ -433,7 +433,7 @@ describe('QuizItems API Tests', () => {
     expect(response.body.success).toBe(false)
   })
 
-  // Test correct working of quiz create api
+  // Test correct working of createQuizItem for Q/A
   it('QuizItem create: valid data', async () => {
     const response = await request(app)
       .post(`/v1/createQuizItem`)
@@ -441,8 +441,75 @@ describe('QuizItems API Tests', () => {
       .send({
         quiz_id: quiz._id,
         type: 'Q/A',
-        question: user.username,
+        question: 'some question',
         answer: '42',
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    createdQuizItem = response.body.data
+  })
+
+  // Test incorrect working of createQuizItem for MC/SATA (missing options field)
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'MC',
+        question: 'some question',
+        answer: '42',
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('You must provide options for MC/SATA QuizItems!')
+    createdQuizItem = response.body.data
+  })
+
+  // Test correct working of createQuizItem for MC/SATA (options field passed in with request)
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'MC',
+        question: 'some question',
+        answer: '42',
+        options: ['40', '41', '42', '43']
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    createdQuizItem = response.body.data
+  })
+
+  // Test incorrect working of createQuizItem for SATA (missing answers field)
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'SATA',
+        question: 'some question',
+        options: ['40', '41', '42', '43']
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!')
+  })
+
+  // Test correct working of createQuizItem for SATA (answers field passed in with request)
+  it('QuizItem create: valid data', async () => {
+    const response = await request(app)
+      .post(`/v1/createQuizItem`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        quiz_id: quiz._id,
+        type: 'SATA',
+        question: 'some question',
+        answers: ['2', '4'],
+        options: ['1', '2', '3', '4']
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
@@ -469,11 +536,6 @@ describe('QuizItems API Tests', () => {
   // #endregion
 
   // #region Tests for Update QuizItems API
-  // relevant fields for update unit tests
-  let new_quiz_id = 'q6'
-  let new_qi_type = 'mc'
-  let new_qi_answer = 'test anwser'
-
   // Test invalid authentication for quiz update api
   it('QuizItem update: invalid authentication token', async () => {
     const response = await request(app)
@@ -481,41 +543,88 @@ describe('QuizItems API Tests', () => {
       .set({ Authorization: `Bearer ${authToken}test` })
       .send({
         quiz_id: new_quiz_id,
-        type: new_qi_type,
+        type: mc_qi_type,
         answer: new_qi_answer,
       })
     expect(response.statusCode).toBe(401)
   })
 
-  // Test QuizItem update api with invalid id
+  // Test updateQuizItem with invalid id
   let fake_id = '62a35e4f39d32119b8432caa'
   it('QuizItem update: invalid QuizItem id', async () => {
     const response = await request(app)
       .patch(`/v1/updateQuizItem/${fake_id}`)
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
-        quiz_id: new_quiz_id,
-        type: new_qi_type,
-        answer: new_qi_answer,
+        type: 'MC',
+        answer: '43'
       })
     expect(response.statusCode).toBe(404)
     expect(response.body.success).toBe(false)
     expect(response.body.message).toBe(`QuizItem not found!`)
   })
 
-  // Test quiz update api with valid id and data
+  // Test incorrect working of updateQuizItem to MC/SATA (missing options data)
+  it('QuizItem update: valid id and missing options data', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        type: 'MC',
+        answer: '43'
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('You must provide options for MC/SATA QuizItems!')
+  })
+
+  // Test correct working of updateQuizItem to MC/SATA (includes options data)
   it('QuizItem update: valid id and data', async () => {
     const response = await request(app)
       .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
       .set({ Authorization: `Bearer ${authToken}` })
       .send({
-        quiz_id: quiz._id,
-        type: new_qi_type,
-        answer: new_qi_answer,
+        quiz_id: 'q5',
+        type: 'MC',
+        answer: '43',
+        options: ['40', '41', '42', '43']
       })
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('QuizItem updated successfully.')
+    createdQuizItem = response.body.data
+  })
+
+  // Test incorrect working of updateQuizItem to SATA (missing answers data)
+  it('QuizItem update: valid id and missing answers data', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        type: 'SATA',
+        question: 'some question',
+        options: ['1', '2', '3', '4']
+      })
+    expect(response.statusCode).toBe(400)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('You must provide a set of answers (0 - size of options) for select-all-that-apply QuizItems!')
+  })
+
+  // Test correct working of updateQuizItem for SATA (answers field passed in with request)
+  it('QuizItem create: valid id and data', async () => {
+    const response = await request(app)
+      .patch(`/v1/updateQuizItem/${createdQuizItem._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+      .send({
+        type: 'SATA',
+        question: 'some question',
+        answers: ['2', '4'],
+        options: ['1', '2', '3', '4']
+      })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QuizItem updated successfully.')
+    createdQuizItem = response.body.data
   })
   // #endregion
 
@@ -556,6 +665,39 @@ describe('QuizItems API Tests', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body.success).toBe(true)
     expect(response.body.message).toBe('QuizItems found!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+
+  // Test correctness of getQAQuizItems
+  it('Get Q/A QuizItems', async () => {
+    const response = await request(app)
+      .get(`/v1/getQAQuizItems`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('QA QuizItems found and retrieved!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+  
+  // Test correctness of getMCQuizItems
+  it('Get MC QuizItems', async () => {
+    const response = await request(app)
+    .get(`/v1/getMCQuizItems`)
+    .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe('MC QuizItems found and retrieved!')
+    expect(Array.isArray(response.body.data.quizItems)).toBe(true)
+  })
+  
+  // Test correctness of getSATAQuizItems
+  it('Get SATA QuizItems', async () => {
+    const response = await request(app)
+    .get(`/v1/getSATAQuizItems`)
+    .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe('SATA QuizItems found and retrieved!')
     expect(Array.isArray(response.body.data.quizItems)).toBe(true)
   })
 
