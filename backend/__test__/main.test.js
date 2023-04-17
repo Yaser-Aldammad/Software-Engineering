@@ -1100,6 +1100,130 @@ describe('Quiz History API Tests', () => {
   //#endregion
 })
 
+
+
+/*
+A test block containing tests for Quiz Leaderboard API
+* Tests for 
+          Get All Scorers By Quiz Id In Descending Order,
+          Get Top 10 Scorers By QuizId In Descending Order,
+          Get User Rank By User Id And Quiz Id,
+
+endpoints
+*/
+describe('Quiz Leaderboard API Tests', () => {
+  //#region Tests for Get All Scorers By QuizId In Descending Order
+
+  // Test invalid authentication for Get All Scorers By QuizId In Descending Order
+  it('get all scorers by quiz id in descending order: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/scorers/1`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid quiz id for Get All Scorers By QuizId In Descending Order
+  it('get all scorers by quiz id in descending order: invalid quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/scorers/123`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`Quiz with Id 123 not found in the system.`)
+  })
+
+  // Test correct working of Get All Scorers By QuizId In Descending Order
+  it('get all scorers by quiz id in descending order: valid quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/scorers/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`Successfully fetched all records.`)
+    expect(Array.isArray(response.body.data.scorers)).toBe(true)
+  })
+
+  //#endregion
+
+  //#region Tests for Get Top 10 Scorers By QuizId In Descending Order
+
+  // Test invalid authentication for Get Top 10 Scorers By QuizId In Descending Order
+  it('get top 10 scorers by quiz id in descending order: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/top-10-scorers/1`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid quiz id for Get Top 10 Scorers By QuizId In Descending Order
+  it('get top 10 scorers by quiz id in descending order: invalid quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/top-10-scorers/123`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`Quiz with Id 123 not found in the system.`)
+  })
+
+  // Test correct working of Get Top 10 Scorers By QuizId In Descending Order
+  it('get top 10 scorers by quiz id in descending order: valid quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/top-10-scorers/${createdQuiz._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`Successfully fetched all records.`)
+    expect(Array.isArray(response.body.data.scorers)).toBe(true)
+    expect(response.body.data.scorers.length <= 10).toBe(true)
+  })
+
+  //#endregion
+
+  
+  //#region Tests for Get User Rank By User Id And Quiz Id
+
+  // Test invalid authentication for Get User Rank By User Id And Quiz Id
+  it('get user rank by user id and quiz id: invalid authentication token', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/rank/1/2`)
+      .set({ Authorization: `Bearer ${authToken}test` })
+    expect(response.statusCode).toBe(401)
+  })
+
+  // Test invalid quiz id for Get User Rank By User Id And Quiz Id
+  it('get user rank by user id and quiz id: invalid quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/rank/123/456`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`Quiz with Id 123 not found in the system.`)
+  })
+
+  // Test invalid quiz id for Get User Rank By User Id And Quiz Id
+  it('get user rank by user id and quiz id: invalid user id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/rank/${createdQuiz._id}/456`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(404)
+    expect(response.body.success).toBe(false)
+    expect(response.body.message).toBe(`User with Id 456 not found in the system.`)
+  })
+
+  // Test correct working of Get User Rank By User Id And Quiz Id
+  it('get user rank by user id and quiz id: valid user id and quiz id', async () => {
+    const response = await request(app)
+      .get(`/v1//quiz-leaderboard/rank/${createdQuiz._id}/${user._id}`)
+      .set({ Authorization: `Bearer ${authToken}` })
+    expect(response.statusCode).toBe(200)
+    expect(response.body.success).toBe(true)
+    expect(response.body.message).toBe(`Successfully fetched rank.`)
+    expect(Number.isInteger(response.body.data)).toBe(true)
+  })
+
+  //#endregion
+})
+
 // Test cases for user APIs
 describe('users test', () => {
   it('get all user test, status code 200 and data type of array', async () => {

@@ -165,6 +165,23 @@ module.exports = function RouterPrivate(database, settings) {
   //#endregion
 
 
+  //#region Quiz Leaderboard
+
+  /**
+   * routes GET /quiz-leaderboard/scorers to get all scoreres by quiz id in descending order
+   */
+  router.route(`/quiz-leaderboard/scorers/:quizId`).get(quizLeaderboardController.GetAllScorersByQuizIdInDescendingOrder)
+  /**
+   * routes GET /quiz-leaderboard/top-10-scorers/:quizId to get top 10 scoreres by quiz id in descending order
+   */
+  router.route(`/quiz-leaderboard/top-10-scorers/:quizId`).get(quizLeaderboardController.GetTop10ScorersByQuizIdInDescendingOrder)
+  /**
+   * routes GET /quiz-leaderboard/rank/:quizId/:userId to get user rank by user id and quiz id
+   */
+  router.route(`/quiz-leaderboard/rank/:quizId/:userId`).get(quizLeaderboardController.GetUserRankByUserIdAndQuizId)
+
+  //#endregion
+
   //#region Feedback
 
   /**
