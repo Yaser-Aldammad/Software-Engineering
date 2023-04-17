@@ -38,9 +38,9 @@
 >
 > **Team Member:** Oluwafunmiwo Judah Sholola
 > [@JCK07115](https://github.com/JCK07115)
->
-> ### **Current State of The Project**
->
+
+## Current State of The Project
+
 > ### **Individual Coding Tasks**
 >
 > Below are the features and their relevant code tasks that each team member
@@ -274,7 +274,7 @@
 > [Update QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/63),
 > [Get QuizItem, Get QuizItem by Quiz ID, Get QuizItems](https://github.com/MUN-COMP6905/project-cteam/issues/64),
 > [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/65)
-
+>
 > _user story:_
 > [Quiz Question Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/152)
 >
@@ -282,7 +282,7 @@
 > [Modify Existing QUiz Question APIs for Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/153),
 > [Get MCQs Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/154),
 > [Get Q/A Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/155)
->
+
 > ### **Individual Requested/Generated User Stories & Features**
 >
 > Below are the user stories and 2 stemming features created by each team
@@ -290,7 +290,8 @@
 >
 > **Pranav Arora (202286040)**
 >
-> - **Assignment 2:** > _user story:_
+> - **Assignment 2:** 
+> _user story:_
 >   [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30)
 >
 > _features:_
@@ -342,6 +343,96 @@
 > [Challenge/Duel other users](https://github.com/MUN-COMP6905/project-cteam/issues/96),
 
 ## Project Description
+
+> ### Backend
+>
+>Creating RESTful APIs: Express is often used to create RESTful APIs that can be consumed by frontend applications or mobile apps. It provides features like  routing, middleware, and error handling that make it easy to build and maintain APIs.
+>In an MVC architecture with Express.js, the application can be structured as follows:
+> - Model: This represents the data and business logic of the application. It
+    includes data access, validation, and processing. You can use libraries like
+    Mongoose or Sequelize to define and interact with the database.
+> - View: This represents the user interface of the application. It includes the
+    HTML, CSS, and JavaScript files that the user sees and interacts with. You
+    can use templates like EJS, Pug, or Handlebars to render dynamic HTML.
+> - Controller: This acts as an intermediary between the model and view. It
+    receives user requests, processes them, and updates the model and view
+    accordingly. You can define controller functions using Express.js routing
+    and middleware functions.
+>
+> _All the backend files are in the folder
+> [backend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/backend)_
+
+> #### Backend Code Run Instructions
+>
+>- Clone this repository
+>
+>```git
+>git clone https://github.com/MUN-COMP6905/project-cteam
+>```
+> - Go to the backend folder
+> ```cmd
+> cd .\project-cteam\backend
+> ```
+> - Install the dependencies from `package.json`
+> ```cmd
+> npm install
+> ```
+>
+> - To start the server, run:
+>
+> ```cmd
+> npm run watch
+> ```
+>
+> - To run the tests, simply run the following command in the frontend folder:
+>
+> ```cmd
+> npm run test
+> ```
+>
+> The app will listen to http://localhost:3000
+>
+>#### API Documentation
+>- Base URL: The base URL for all endpoints is: http://localhost:3000/v1
+>- Authentication: QuizApp uses JWT(JSON Web Tokens) and Passport to authenticate
+  access to API endpoints in an Express.js application.
+>- Endpoints:
+>   - POST /example
+>   - Parameters:
+>     - first_name (required)
+>     - last_name (required)
+>     - email (required)
+>     - username (required)
+>     - password (required)
+>     - is_deleted (false default)
+>     - status (Active default)
+>     - roles (Student default)
+>     - phoneNo (not required)
+>     - countryCode (not required)
+>   - Response: 200 OK on success
+> ```bash
+>{
+>    "success": true,
+>    "message": "User created successfully.",
+>    "data": {
+>        "user": {
+>            "first_name": "test2",
+>            "last_name": "test2",
+>            "email": "test44@test.com",
+>            "username": "test44",
+>            "password": "$2a$05$MbVyLnwQhvLf8y5fN",
+>            "is_deleted": false,
+>            "status": "Active",
+>            "roles": "Student",
+>            "_id": "6401e0f51008078fa39df1ed",
+>            "created": "2023-03-03T11:58:45.430Z",
+>            "updated": "2023-03-03T11:58:45.439Z",
+>           "__v": 0
+>        },
+>        "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDAxZTBmNTEwMDgwNzhmYTM5ZGYxZWQiLCJpYXQiOjE2Nzc4NDQ3MjV9.Er_zqTi2ur5Iqfs_BilqJwGoVGDRusMd2GyTeP45U45fsfsdfsdcasaeupwLVIGC_G9kxsURXQ"
+>    }
+>}
+>```
 
 > ### Frontend
 >
@@ -397,26 +488,37 @@
 >
 > The app will listen to http://localhost:8080
 
-## Repository Structure
-
-> ### Frontend
->
-> ```bash
-> |--master
->    |--u-app-ui (@pranavarora1895 user story)
->       |--f-student-page
->       |--f-student-profile
->    |--u-unittest-quizfront
->       |--f-unit-static
->    |--u-admin-ui (@balshersingh10 user story)
->       |--f-db-bridge
->       |--f-admin-access
->    |--u-unittest-profilefront
-> ```
-
 ## Attributions
 
 <!-- Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student) -->
+
+> ### Common
+>
+> 1. ExpressJS
+>
+> - Source - https://expressjs.com/
+> - JavaScript framework that is used for frontend and backend development
+> - Initiated the server and created the routes to different pages and apis
+>
+> 2. JSDOCs
+>
+> - Source - https://jsdoc.app/
+> - JS documentation tool
+> - It helped us to document backend and frontend APIs, and HTML components
+>
+> 3. JEST
+>
+> - Source - https://jestjs.io/
+> - Unit Testing library
+> - Used for unit and API testing
+
+> ### Backend
+>
+> 1. MongoDB
+>
+> - Source - https://www.mongodb.com/
+> - NoSQL Database
+> - We used MongoDB to store the data.
 
 > ### Frontend
 >
@@ -427,125 +529,27 @@
 > - It helped us in generating the starter templates for the webpages on which
 >   we developed our HTML template code.
 >
-> 2. ExpressJS
->
-> - Source - https://expressjs.com/
-> - JavaScript framework that is used for frontend development
-> - Initiated the server and created the routes to different pages
->
-> 3. Figma
+> 2. Figma
 >
 > - Source - https://www.figma.com/
 > - Webpage design tool
 > - It helped us to create better designs for the frontend webpages
 >
-> 4. JSDOCs
->
-> - Source - https://jsdoc.app/
-> - JS documentation tool
-> - It helped us to document frontend APIs and HTML components
->
-> 5. Pexels
+> 3. Pexels
 >
 > - Source - https://www.pexels.com/
 > - Copyright free image library
 > - Downloaded copyright free images and used them to our webpages.
 >
-> 6. JSDOM
+> 4. JSDOM
 >
 > - Source - https://github.com/jsdom/jsdom
 > - Webpage Testing library
 > - Creates a headless browser to test the webpage templates. Works along with
 >   JEST.
 >
-> 7. JEST
->
-> - Source - https://jestjs.io/
-> - Unit Testing library
-> - Used for unit and API testing
->
-> 8. Lite-server
+> 5. Lite-server
 >
 > - Source - https://www.npmjs.com/package/lite-server
 > - Light-weight development only server
 > - Used for developement and testing the frontend.
-
----
-
-### Backend
-
-- Creating RESTful APIs: Express is often used to create RESTful APIs that can
-  be consumed by frontend applications or mobile apps. It provides features like
-  routing, middleware, and error handling that make it easy to build and
-  maintain APIs.
-- In an MVC architecture with Express.js, the application can be structured as
-  follows:
-
-  - Model: This represents the data and business logic of the application. It
-    includes data access, validation, and processing. You can use libraries like
-    Mongoose or Sequelize to define and interact with the database.
-
-  - View: This represents the user interface of the application. It includes the
-    HTML, CSS, and JavaScript files that the user sees and interacts with. You
-    can use templates like EJS, Pug, or Handlebars to render dynamic HTML.
-
-  - Controller: This acts as an intermediary between the model and view. It
-    receives user requests, processes them, and updates the model and view
-    accordingly. You can define controller functions using Express.js routing
-    and middleware functions.
-
-## API Documentation
-
-- Base URL: The base URL for all endpoints is: http://localhost:3000/v1
-- Authentication: QuizApp uses JWT(JSON Web Tokens) and Passport to authenticate
-  access to API endpoints in an Express.js application.
-- Endpoints:
-  - POST /example
-  - Parameters:
-    - first_name (required)
-    - last_name (required)
-    - email (required)
-    - username (required)
-    - password (required)
-    - is_deleted (false default)
-    - status (Active default)
-    - roles (Student default)
-    - phoneNo (not required)
-    - countryCode (not required)
-  - Response: 200 OK on success
-
-```bash
-{
-    "success": true,
-    "message": "User created successfully.",
-    "data": {
-        "user": {
-            "first_name": "test2",
-            "last_name": "test2",
-            "email": "test44@test.com",
-            "username": "test44",
-            "password": "$2a$05$MbVyLnwQhvLf8y5fN",
-            "is_deleted": false,
-            "status": "Active",
-            "roles": "Student",
-            "_id": "6401e0f51008078fa39df1ed",
-            "created": "2023-03-03T11:58:45.430Z",
-            "updated": "2023-03-03T11:58:45.439Z",
-            "__v": 0
-        },
-        "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDAxZTBmNTEwMDgwNzhmYTM5ZGYxZWQiLCJpYXQiOjE2Nzc4NDQ3MjV9.Er_zqTi2ur5Iqfs_BilqJwGoVGDRusMd2GyTeP45U45fsfsdfsdcasaeupwLVIGC_G9kxsURXQ"
-    }
-}
-```
-
-## Unit Testing
-
-- Jest is setup to write test cases for QuizApp
-
-## Contributing
-
-- Software Engineering Group C
-- To install the required packages:
-  - npm install jest supertest
-- Run the Jest test:
-  - npm test
