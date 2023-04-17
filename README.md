@@ -488,23 +488,6 @@
 >
 > The app will listen to http://localhost:8080
 
-## Repository Structure
-
-> ### Frontend
->
-> ```bash
-> |--master
->    |--u-app-ui (@pranavarora1895 user story)
->       |--f-student-page
->       |--f-student-profile
->    |--u-unittest-quizfront
->       |--f-unit-static
->    |--u-admin-ui (@balshersingh10 user story)
->       |--f-db-bridge
->       |--f-admin-access
->    |--u-unittest-profilefront
-> ```
-
 ## Attributions
 
 <!-- Each line/entry of your attributions section should consist of three parts: (1) the source (such as web page URL, individual name, or bibliographic reference), (2) the nature of the contribution to your submission, and (3) any additional information (such as how the collaboration worked, or whether your collaborator is a classmate or student) -->
