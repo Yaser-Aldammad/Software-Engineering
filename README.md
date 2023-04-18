@@ -15,14 +15,6 @@
 >
 > `Backend\__test__` folder contains unit tests for backend
 
-## Demo
-
-> Frontend Demo:
-> [▶️frontend_code_demo](https://drive.google.com/file/d/17evZn_4QlNyzeO2o0fDwJCVSr6PUTURd/view?usp=share_link)
-
-> Backend Demo:
-> [▶️Backend_APIs_demo](https://drive.google.com/file/d/15YVkcTgyfz5TueCoHa4dbQvT4oesrnPP/view?usp=sharing)
-
 ## Team description
 
 > ### **Frontend**
@@ -47,7 +39,19 @@
 > **Team Member:** Oluwafunmiwo Judah Sholola
 > [@JCK07115](https://github.com/JCK07115)
 
-## Current State of The Project
+## Architecture
+> [Architecture and Code Design](https://github.com/MUN-COMP6905/project-cteam/blob/master/docs/process/final-assign4/architecture.pdf)
+
+## Alternative Architecture
+> [Alternative Architecture](https://github.com/MUN-COMP6905/project-cteam/blob/master/docs/process/final-assign4/alt-architecture.pdf)
+
+
+## Demo (Current State of The Project)
+> Frontend Demo:
+> [▶️frontend_code_demo](https://drive.google.com/file/d/17evZn_4QlNyzeO2o0fDwJCVSr6PUTURd/view?usp=share_link)
+
+> Backend Demo:
+> [▶️Backend_APIs_demo](https://drive.google.com/file/d/15YVkcTgyfz5TueCoHa4dbQvT4oesrnPP/view?usp=sharing)
 
 > ### **Individual Coding Tasks**
 >
