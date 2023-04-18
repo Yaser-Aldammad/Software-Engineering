@@ -63,3 +63,30 @@ Link : https://github.com/MUN-COMP6905/project-cteam/pull/178
 Assignees : Muhammad-Shaheryar
 Finished : March 29, 2023 08:39 PM
 Deadline : March 29, 2023 11:59 PM
+
+----------------------------------------------------------------------
+
+Name: Quiz Leaderboard APIs complete #206
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/206
+Assignees : prabinKshrestha
+Finished : April 16, 2023
+Deadline : April 17, 2023 11:59 PM
+
+Name: additional QuizItem features #213
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/213
+Assignees : JCK07115
+Finished : April 16, 2023
+Deadline : April 17, 2023 11:59 PM
+
+Name: U userrole #221
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/221
+Assignees : Yaser-Aldammad
+Finished : April 16, 2023
+Deadline : April 17, 2023 11:59 PM
+
+Name: Quiz scheduling feature added #217
+Link : https://github.com/MUN-COMP6905/project-cteam/pull/217
+Assignees : Muhammad-Shaheryar
+Finished : April 16, 2023
+Deadline : April 17, 2023 11:59 PM
+
