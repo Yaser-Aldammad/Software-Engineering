@@ -17,7 +17,11 @@
 
 ## Demo
 
-> Frontend Demo: [▶️frontend_code_demo](https://drive.google.com/file/d/17evZn_4QlNyzeO2o0fDwJCVSr6PUTURd/view?usp=share_link)
+> Frontend Demo:
+> [▶️frontend_code_demo](https://drive.google.com/file/d/17evZn_4QlNyzeO2o0fDwJCVSr6PUTURd/view?usp=share_link)
+
+> Backend Demo:
+> [▶️Backend_APIs_demo](https://drive.google.com/file/d/15YVkcTgyfz5TueCoHa4dbQvT4oesrnPP/view?usp=sharing)
 
 ## Team description
 
@@ -56,18 +60,20 @@
 >
 > _features (code tasks and unit testing):_
 >
-> **Code Tasks:** [admin.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/admin.html), [adminhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/adminhtml.test.js)
+> **Code Tasks:** >
+> [admin.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/admin.html),
+> [adminhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/adminhtml.test.js)
 >
 > [Admin Panel: Admin Page UI](https://github.com/MUN-COMP6905/project-cteam/issues/51),
 > [Admin Panel UI test](https://github.com/MUN-COMP6905/project-cteam/issues/187)
 >
 > - **Assignment 3:**
 >
-> _user story:_
+> _user story:_ >
 > [Unit Test For Quiz Page Components](https://github.com/MUN-COMP6905/project-cteam/issues/127),
 > [f-unit-static](https://github.com/MUN-COMP6905/project-cteam/tree/f-unit-static)
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [NavBar Render Testing](https://github.com/MUN-COMP6905/project-cteam/issues/131),
 > [Static Image Rendering Testing](https://github.com/MUN-COMP6905/project-cteam/issues/132),
 > [Quiz Card Rendering Testing](https://github.com/MUN-COMP6905/project-cteam/issues/133),
@@ -75,7 +81,7 @@
 > [Frontend Quiz API Testing](https://github.com/MUN-COMP6905/project-cteam/issues/144),
 > [Login Page Component Testing](https://github.com/MUN-COMP6905/project-cteam/issues/146)
 >
-> _features (code_tasks):_
+> _features (code_tasks):_ >
 > [index.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/index.test.js),
 > [indexhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/indexhtml.test.js),
 > [loginhtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/loginhtml.test.js),
@@ -84,7 +90,7 @@
 >
 > - **Assignment 2:**
 >
-> _features (code_tasks):_
+> _features (code_tasks):_ >
 > [f-student-page](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-page),
 > [index.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/index.js),
 > [index.html](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/views/index.html)
@@ -95,7 +101,9 @@
 >
 > _features (code tasks and unit testing):_
 >
-> **Code Tasks:** [admin.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/admin.js), [admin.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/admin.test.js)
+> **Code Tasks:** >
+> [admin.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/admin.js),
+> [admin.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/admin.test.js)
 >
 > [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50),
 > [Admin Panel: Database bridge Frontend to Backend](https://github.com/MUN-COMP6905/project-cteam/issues/52),
@@ -103,23 +111,23 @@
 >
 > - **Assignment 3:**
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [FED Signup API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/142),
 > [FED Login API Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/140),
 > [Signup Webpage unit testing](https://github.com/MUN-COMP6905/project-cteam/issues/143)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile),
 > [login.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/login.test.js),
 > [signup.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signup.test.js),
 > [signuphtml.test.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/__test__/signuphtml.test.js)
 >
-> _feature (code tasks):_
+> _feature (code tasks):_ >
 > [Extension of Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/136)
 >
 > - **Assignment 2:**
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [f-student-profile](https://github.com/MUN-COMP6905/project-cteam/tree/f-student-profile),
 > [loginform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/loginform.js),
 > [signupform.js](https://github.com/MUN-COMP6905/project-cteam/blob/master/frontend/assets/js/signupform.js)
@@ -128,46 +136,46 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _ features (code tasks and unit testing):_ >
 > [Quiz Scheduling and Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/97),
 > [Quiz Scheduling & Suggestions: User Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/88),
 > [Quiz Scheduling & Suggestions: Quiz Timer](https://github.com/MUN-COMP6905/project-cteam/issues/88)
 >
 > - **Assignment 3:**
 >
-> _user story:_
+> _user story:_ >
 > [Setup Jest for Unit Testing](https://github.com/MUN-COMP6905/project-cteam/issues/100)
 >
-> _user story:_
+> _user story:_ >
 > [Unit Tests for Auth APIs](https://github.com/MUN-COMP6905/project-cteam/issues/101)
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [Signup Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/105),
 > [Login Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/106),
 > [Logout Unit Tests](https://github.com/MUN-COMP6905/project-cteam/issues/128)
 >
-> _user story:_
+> _user story:_ >
 > [User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/171)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Get/Get All User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/175),
 > [Delete User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/174),
 > [Update User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/173),
 > [Create User Feedback](https://github.com/MUN-COMP6905/project-cteam/issues/172),
 > [Get Feedback by UserID](https://github.com/MUN-COMP6905/project-cteam/issues/180)
 >
-> _user story:_
+> _user story:_ >
 > [Remove Password Property](https://github.com/MUN-COMP6905/project-cteam/issues/160)
 >
 > - **Assignment 2:**
 >
-> _user story:_
+> _user story:_ >
 > [Authentication](https://github.com/MUN-COMP6905/project-cteam/issues/77)
 >
-> _user story:_
+> _user story:_ >
 > [Setup and Manage User Account](https://github.com/MUN-COMP6905/project-cteam/issues/39)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Login](https://github.com/MUN-COMP6905/project-cteam/blob/u-app-ui/frontend/index.js),
 > [Logout](https://github.com/MUN-COMP6905/project-cteam/issues/40)
 >
@@ -175,7 +183,7 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _ features (code tasks and unit testing):_ >
 > [Quiz Leaderboard](https://github.com/MUN-COMP6905/project-cteam/issues/200),
 > [Get top ten scorers by quizId](https://github.com/MUN-COMP6905/project-cteam/issues/206),
 > [Get user rank by userId](https://github.com/MUN-COMP6905/project-cteam/issues/202),
@@ -183,20 +191,20 @@
 >
 > - **Assignment 3:**
 >
-> _user story:_
+> _user story:_ >
 > [Unit Tests for Quiz APIs](https://github.com/MUN-COMP6905/project-cteam/issues/113)
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [Create Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/114),
 > [Update Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/115),
 > [Delete Quiz Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/116),
 > [Get All Quizzes Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/117),
 > [Get Quiz by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/118)
 >
-> _user story:_
+> _user story:_ >
 > [Quiz History Implementation](https://github.com/MUN-COMP6905/project-cteam/issues/162)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Get and Get All Quiz Histories](https://github.com/MUN-COMP6905/project-cteam/issues/169),
 > [Delete Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/168),
 > [Update Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/167),
@@ -204,10 +212,10 @@
 >
 > - **Assignment 2:**
 >
-> _user story:_
+> _user story:_ >
 > [Quiz API's](https://github.com/MUN-COMP6905/project-cteam/issues/42)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Create Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/43),
 > [Update Quiz](https://github.com/MUN-COMP6905/project-cteam/issues/44),
 > [Get Quiz and Quizzes](https://github.com/MUN-COMP6905/project-cteam/issues/46),
@@ -217,7 +225,7 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _ features (code tasks and unit testing):_ >
 > [User Roles Middleware](https://github.com/MUN-COMP6905/project-cteam/issues/194),
 > [Create User Roles Middleware](https://github.com/MUN-COMP6905/project-cteam/issues/195),
 > [Add UserRole middleware into private routes](https://github.com/MUN-COMP6905/project-cteam/issues/196),
@@ -225,28 +233,28 @@
 >
 > - **Assignment 3:**
 >
-> _user story:_
+> _user story:_ >
 > [Unit Tests for User APIs](https://github.com/MUN-COMP6905/project-cteam/issues/129)
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [Update User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/109),
 > [Get All Users Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/111),
 > [Get User by ID Unit Test](https://github.com/MUN-COMP6905/project-cteam/pull/110),
 > [Delete User Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/112)
 >
-> _user story:_
+> _user story:_ >
 > [Email Notification](https://github.com/MUN-COMP6905/project-cteam/issues/156)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Forget Password](https://github.com/MUN-COMP6905/project-cteam/issues/157),
 > [Forget Password Verify](https://github.com/MUN-COMP6905/project-cteam/issues/158)
 >
 > - **Assignment 2:**
 >
-> _user story:_
+> _user story:_ >
 > [User API's](https://github.com/MUN-COMP6905/project-cteam/issues/34)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Create User](https://github.com/MUN-COMP6905/project-cteam/issues/35),
 > [Update User](https://github.com/MUN-COMP6905/project-cteam/issues/36),
 > [Get User and Get Users](https://github.com/MUN-COMP6905/project-cteam/pull/86),
@@ -256,7 +264,7 @@
 >
 > - **Assignment 4:**
 >
-> _ features (code tasks and unit testing):_
+> _ features (code tasks and unit testing):_ >
 > [Refactoring of QuizItems for SATA and MC type Quiz Questions](https://github.com/MUN-COMP6905/project-cteam/issues/209),
 > [add validation method for options field of MC/SATA question type](https://github.com/MUN-COMP6905/project-cteam/issues/210),
 > [add validation methods for answers field of SATA question type](https://github.com/MUN-COMP6905/project-cteam/issues/211),
@@ -264,10 +272,10 @@
 >
 > - **Assignment 3:**
 >
-> _user story:_
+> _user story:_ >
 > [Unit Tests for Quiz Questions APIs](https://github.com/MUN-COMP6905/project-cteam/issues/119)
 >
-> _features (unit testing):_
+> _features (unit testing):_ >
 > [Create Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/120),
 > [Update Question Unit Test](https://github.com/MUN-COMP6905/project-cteam/issues/121),
 > [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/121),
@@ -276,19 +284,19 @@
 >
 > - **Assignment 2:**
 >
-> _user story:_
+> _user story:_ >
 > [QuizItem API's](https://github.com/MUN-COMP6905/project-cteam/issues/61)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Create QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/62),
 > [Update QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/63),
 > [Get QuizItem, Get QuizItem by Quiz ID, Get QuizItems](https://github.com/MUN-COMP6905/project-cteam/issues/64),
 > [Delete QuizItem](https://github.com/MUN-COMP6905/project-cteam/issues/65)
 >
-> _user story:_
+> _user story:_ >
 > [Quiz Question Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/152)
 >
-> _features (code tasks):_
+> _features (code tasks):_ >
 > [Modify Existing QUiz Question APIs for Sub Types](https://github.com/MUN-COMP6905/project-cteam/issues/153),
 > [Get MCQs Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/154),
 > [Get Q/A Endpoint](https://github.com/MUN-COMP6905/project-cteam/issues/155)
@@ -300,55 +308,54 @@
 >
 > **Pranav Arora (202286040)**
 >
-> - **Assignment 2:** 
-> _user story:_
+> - **Assignment 2:** > _user story:_ >
 >   [Quiz Application UI](https://github.com/MUN-COMP6905/project-cteam/issues/30)
 >
-> _features:_
+> _features:_ >
 > [Student Profile](https://github.com/MUN-COMP6905/project-cteam/issues/31),
 > [Student Page](https://github.com/MUN-COMP6905/project-cteam/issues/32)
 >
 > **Balsher Singh (202285114)**
 >
-> _user story:_
+> _user story:_ >
 > [Admin Panel](https://github.com/MUN-COMP6905/project-cteam/issues/50)
 >
-> _features:_
+> _features:_ >
 > [Admin Page UI](https://github.com/MUN-COMP6905/project-cteam/issues/51),
 > [Database bridge Frontend to Backend](https://github.com/MUN-COMP6905/project-cteam/issues/52)
 >
 > **Muhammad Shaheryar (202285690)**
 >
-> _user story:_
+> _user story:_ >
 > [Quiz Scheduling and Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/97) >
-> _features:_
+> _features:_ >
 > [Quiz Timer](https://github.com/MUN-COMP6905/project-cteam/issues/87),
 > [User Suggestions](https://github.com/MUN-COMP6905/project-cteam/issues/88)
 >
 > **Prabin Kumar Shrestha (202291331)**
 >
-> _user story:_
+> _user story:_ >
 > [Quiz Analytics](https://github.com/MUN-COMP6905/project-cteam/issues/56)
 >
-> _features:_
+> _features:_ >
 > [Quiz History](https://github.com/MUN-COMP6905/project-cteam/issues/57),
 > [Data Visualization](https://github.com/MUN-COMP6905/project-cteam/issues/58)
 >
 > **Yaser Aldammad (202246203)**
 >
-> _user story:_
+> _user story:_ >
 > [User Analytics](https://github.com/MUN-COMP6905/project-cteam/issues/92)
 >
-> _features:_
+> _features:_ >
 > [Task Management](https://github.com/MUN-COMP6905/project-cteam/issues/95),
 > [Progress Visualization](https://github.com/MUN-COMP6905/project-cteam/issues/99)
 >
 > **Oluwafunmiwo Judah Sholola (202287158)**
 >
-> _user story:_
+> _user story:_ >
 > [Improved Interactivity](https://github.com/MUN-COMP6905/project-cteam/issues/91)
 >
-> _features:_
+> _features:_ >
 > [Quiz comment section](https://github.com/MUN-COMP6905/project-cteam/issues/94),
 > [Challenge/Duel other users](https://github.com/MUN-COMP6905/project-cteam/issues/96),
 
@@ -356,34 +363,47 @@
 
 > ### Backend
 >
->Creating RESTful APIs: Express is often used to create RESTful APIs that can be consumed by frontend applications or mobile apps. It provides features like  routing, middleware, and error handling that make it easy to build and maintain APIs.
->In an MVC architecture with Express.js, the application can be structured as follows:
+> Creating RESTful APIs: Express is often used to create RESTful APIs that can
+> be consumed by frontend applications or mobile apps. It provides features like
+> routing, middleware, and error handling that make it easy to build and
+> maintain APIs. In an MVC architecture with Express.js, the application can be
+> structured as follows:
+>
 > - Model: This represents the data and business logic of the application. It
+
     includes data access, validation, and processing. You can use libraries like
     Mongoose or Sequelize to define and interact with the database.
+
 > - View: This represents the user interface of the application. It includes the
+
     HTML, CSS, and JavaScript files that the user sees and interacts with. You
     can use templates like EJS, Pug, or Handlebars to render dynamic HTML.
+
 > - Controller: This acts as an intermediary between the model and view. It
+
     receives user requests, processes them, and updates the model and view
     accordingly. You can define controller functions using Express.js routing
     and middleware functions.
->
+
 > _All the backend files are in the folder
 > [backend/](https://github.com/MUN-COMP6905/project-cteam/tree/master/backend)_
 
 > #### Backend Code Run Instructions
 >
->- Clone this repository
+> - Clone this repository
 >
->```git
->git clone https://github.com/MUN-COMP6905/project-cteam
->```
+> ```git
+> git clone https://github.com/MUN-COMP6905/project-cteam
+> ```
+>
 > - Go to the backend folder
+>
 > ```cmd
 > cd .\project-cteam\backend
 > ```
+>
 > - Install the dependencies from `package.json`
+>
 > ```cmd
 > npm install
 > ```
@@ -402,11 +422,12 @@
 >
 > The app will listen to http://localhost:3000
 >
->#### API Documentation
->- Base URL: The base URL for all endpoints is: http://localhost:3000/v1
->- Authentication: QuizApp uses JWT(JSON Web Tokens) and Passport to authenticate
-  access to API endpoints in an Express.js application.
->- Endpoints:
+> #### API Documentation
+>
+> - Base URL: The base URL for all endpoints is: http://localhost:3000/v1
+> - Authentication: QuizApp uses JWT(JSON Web Tokens) and Passport to
+>   authenticate access to API endpoints in an Express.js application.
+> - Endpoints:
 >   - POST /example
 >   - Parameters:
 >     - first_name (required)
@@ -420,8 +441,9 @@
 >     - phoneNo (not required)
 >     - countryCode (not required)
 >   - Response: 200 OK on success
+>
 > ```bash
->{
+> {
 >    "success": true,
 >    "message": "User created successfully.",
 >    "data": {
@@ -441,8 +463,8 @@
 >        },
 >        "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDAxZTBmNTEwMDgwNzhmYTM5ZGYxZWQiLCJpYXQiOjE2Nzc4NDQ3MjV9.Er_zqTi2ur5Iqfs_BilqJwGoVGDRusMd2GyTeP45U45fsfsdfsdcasaeupwLVIGC_G9kxsURXQ"
 >    }
->}
->```
+> }
+> ```
 
 > ### Frontend
 >
